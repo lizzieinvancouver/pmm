@@ -1,0 +1,15 @@
+*synctex.gz
+*.Rdata
+*.RData
+*.Rda
+*.rds
+*.rda
+*.Rds
+*.Rhistory
+*.docx
+*.DS_Store
+
+*.doc
+*.aux
+*.log
+notposting/
