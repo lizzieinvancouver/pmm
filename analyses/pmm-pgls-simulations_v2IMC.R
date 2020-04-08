@@ -5,8 +5,6 @@
 
 ## He wrote: I don't have code for exactly what you want, but you can probably adapt the one I have relatively easily. In the R code attached, the function "one.sim.pmm()" simulates data and analyze it with PMM and PGLS. I think I used the same notation as in the paper. You would just have to drop the term for the intraspecific variance and simulate more values for the residual error (or add a similar term for the measurement error in addition to the residual error). Let me know if you have any other questions.
 
-
-
 # housekeeping
 rm(list=ls()) 
 options(stringsAsFactors = FALSE)
@@ -14,7 +12,8 @@ options(stringsAsFactors = FALSE)
 # Setting working directory. Add in your own path in an if statement for your file structure
 if(length(grep("Ignacio", getwd())>0)) { 
   setwd("~/GitHub/pmm/analyses/") 
-} 
+} else
+setwd("~/Documents/git/teaching/stan/pmm/analyses")
 
 ## load packages
 library(shinystan)
@@ -47,7 +46,6 @@ sigma.sq.c = 1
 sigma.sq.e = 1
 # ms.opt="-T -I 2 5 5 -ej 0.5 2 1"
 
-
 # Function to inflate a matrix (used in simulation function)
 inflate.mat <- function (mat,nsp,nind) {
   inflated.mat <- matrix(apply(apply(mat,2,function(c)
@@ -60,7 +58,7 @@ inflate.mat <- function (mat,nsp,nind) {
 one.sim.pmm <- function(nspecies=10,nindividuals=10,ngen=20,B = 0.25,
                         sigma.sq.x = 2,sigma.sq.p = 1,sigma.sq.c = 1,sigma.sq.e = 1,
                         ms.opt="-T -I 2 5 5 -ej 0.5 2 1")
-{
+
   
   ## Global parameters
   #
