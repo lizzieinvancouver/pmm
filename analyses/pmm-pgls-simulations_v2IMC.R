@@ -28,6 +28,11 @@ library(dplyr)
 library(knitr)
 library(broom)
 library(loo)
+# Packages required
+require(ape)
+require(nlme)
+require(Matrix)
+require(phyclust)
 
 source("corIntra.R")
 
