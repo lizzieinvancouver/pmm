@@ -126,11 +126,59 @@ gls.mod0 <- gls.mod1 <- gls.mod2 <- gls.mod3 <-NULL
 try(gls.mod0 <- gls(y~x,data=simd$data)) # no phylogenetic correlation
 try(gls.mod1 <- gls(y~x,correlation = pgls.inter.cor, data=simd$data),silent=TRUE) # inter structure 
 try(gls.mod2 <- gls(y~x,correlation = pgls.intra.cor, data=simd$data),silent=TRUE) # intra structure
-try(gls.mod3 <- gls(y~x,correlation = pgls.intrainter.cor, data=simd$data),silent=TRUE) # Estimating delta 
-    
+try(gls.mod3 <- gls(y~x,correlation = pgls.intrainter.cor, data=simd$data),silent=TRUE) # Estimating delta
+
+# Add brms (first we do the weird within-group centering, wgc)
+simd$data$specmean <- 
+  with(simd$data, sapply(split(simd$data$x, simd$data$animal), mean)[simd$data$animal])
+simd$data$specphylo <- simd$data$animal
+simd$data$withspecmean <- simd$data$x-simd$data$specmean
+
+A <- ape::vcv.phylo(simd$phylo)
+
+brmmod <- brm(
+  y ~ x + (1|animal) + (1|specphylo), 
+  data = simd$data, family = gaussian(), 
+  cov_ranef = list(phylo = A),
+  prior = c(
+    prior(normal(0,10), "b"),
+    prior(normal(0,50), "Intercept"),
+    prior(student_t(3,0,20), "sd"),
+    prior(student_t(3,0,20), "sigma")
+  ),
+  sample_prior = TRUE, chains = 4, cores = 4, 
+  iter = 4000, warmup = 1000
+)
+
+
+brmmod.wgc <- brm(
+  y ~ specmean + withspecmean + (1|animal) + (1|specphylo), 
+  data = simd$data, family = gaussian(), 
+  cov_ranef = list(phylo = A),
+  prior = c(
+    prior(normal(0,10), "b"),
+    prior(normal(0,50), "Intercept"),
+    prior(student_t(3,0,20), "sd"),
+    prior(student_t(3,0,20), "sigma")
+  ),
+  sample_prior = TRUE, chains = 4, cores = 4, 
+  iter = 4000, warmup = 1000
+)
+
+
+hyp <- paste(
+  "sd_specphylo__Intercept^2 /", 
+  "(sd_specphylo__Intercept^2 + sd_animal__Intercept^2 + sigma^2) = 0")
+(hyp <- hypothesis(brmmod.wgc, hyp, class = NULL))
+
+hyp <- paste(
+  "sd_specphylo__Intercept^2 /", 
+  "(sd_specphylo__Intercept^2 + sd_animal__Intercept^2 + sigma^2) = 0")
+(hyp <- hypothesis(brmmod, hyp, class = NULL))
+
 
 ###
-# Compile the results
+# Compile the results of PMM (in MCMCglmm) and PGLS
   
 # Model summaries
   M.0.sum <- summary(M.0)
