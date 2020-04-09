@@ -1,5 +1,6 @@
 ## Code from Joly et al. 2019 ##
 ## He sent this in an email on 10 March 2020 ##
+## Edits by Nacho & Lizzie so far ##
 
 ## Lizzie asked: Do you have any simulated data + model code from the MEE paper that using just an interspecific phylogeny? Then we could do some work to better understand what the within-species centering is doing.
 
@@ -12,7 +13,6 @@
 rm(list=ls()) 
 options(stringsAsFactors = FALSE)
 
-# Setting working directory. Add in your own path in an if statement for your file structure
 # Setting working directory. Add in your own path in an if statement for your file structure
 if(length(grep("Ignacio", getwd())>0)) { 
   setwd("~/GitHub/pmm/analyses/") 
