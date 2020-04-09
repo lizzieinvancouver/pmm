@@ -13,9 +13,12 @@ rm(list=ls())
 options(stringsAsFactors = FALSE)
 
 # Setting working directory. Add in your own path in an if statement for your file structure
+# Setting working directory. Add in your own path in an if statement for your file structure
 if(length(grep("Ignacio", getwd())>0)) { 
   setwd("~/GitHub/pmm/analyses/") 
-} 
+} else
+setwd("~/Documents/git/teaching/stan/pmm/analyses")
+
 
 ## load packages
 library(shinystan)
@@ -39,6 +42,7 @@ require(phyclust)
 ## source aux functions
 source("source/corIntra.R")
 source("source/pmm-get-simulated-data.R")
+source("source/pmm-get-simulated-data-nointra.R")
 
 
 
@@ -59,24 +63,29 @@ sigma.sq.c = 1
 sigma.sq.e = 1
 
 
-## get data using your specified parameters 
+## get data using your specified parameters # simdata returns only simdata$data on FIRST run, run it again and you get the full list specificed in f(x) ... or you get the full list every time if you don't call it simdata (something to do with <<- in the f(x) code?!)
 
-simdata<-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
+simd <-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
                      sigma.sq.x = sigma.sq.x,sigma.sq.p = sigma.sq.p,
                      sigma.sq.c = sigma.sq.c,sigma.sq.e = sigma.sq.e)
 
+
+simd.nointra<-one.sim.pmm.nointra(nspecies = nspecies, nindividuals = nindividuals,B = B,
+                     sigma.sq.x = sigma.sq.x,sigma.sq.p = sigma.sq.p,
+                     sigma.sq.e = sigma.sq.e)
+
   
-#plot(simdata$data$x,simdata$data$y)  
- 
+#plot(simd$data$x,simd$data$y)
+#simd <- simd.nointra
 
 ## run MCMCglmm models 
 # Prepare infraspecific correlation matrix for MCMCglmm
 #
 # Single value decomposition of the intraspecific structure
 #   -> follow code of Stone et al. 2012
-    intra.svd <- svd(simdata$intramat)
+    intra.svd <- svd(simd$intramat)
     intra.svd <- intra.svd$v %*% (t(intra.svd$u) * sqrt(intra.svd$d))
-    rownames(intra.svd) <- colnames(intra.svd) <- rownames(simdata$intramat)
+    rownames(intra.svd) <- colnames(intra.svd) <- rownames(simd$intramat)
 
 # The following is important and MCMCglmm searches the variables in the 
 # global environment
@@ -89,35 +98,35 @@ simdata<-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
 # Model M.0 -> no random effects
     priorpr.m0 <- list(R = list(V = 1, nu = 0.002))
     M.0 <- MCMCglmm(y ~ x, 
-                    data=simdata$data, scale=TRUE,prior=priorpr.m0,
+                    data=simd$data, scale=TRUE,prior=priorpr.m0,
                     nitt=21000,thin=10,burnin=1000,verbose=FALSE)
     
-# Model M.1 -> only phylogenetic random effects
+# Model M.1 -> adding phylogenetic random effects
     priorpr.m1 <- list(R = list(V = 1, nu = 0.002), 
                        G = list(G1 = list(V = 1, nu = 0.002)))
-    M.1 <- MCMCglmm(y ~ x, random = ~ animal, pedigree = simdata$phylo,
-                    data=simdata$data, scale=TRUE,prior=priorpr.m1,
+    M.1 <- MCMCglmm(y ~ x, random = ~ animal, pedigree = simd$phylo,
+                    data=simd$data, scale=TRUE,prior=priorpr.m1,
                     nitt=21000,thin=10,burnin=1000,verbose=FALSE)
   
     
 ## run PGLS models 
 #
 
-inter.mat.inflated <- inflate.mat(simdata$intermat,nspecies,nindividuals)
+inter.mat.inflated <- inflate.mat(simd$intermat,nspecies,nindividuals)
 
 # Generate phylogenetic correlation matrices
 # The intra correlation structure takes the inter-specific and the intra-
 # specific correlation matrices as input.
-pgls.intra.cor <- corIntra(0, inter=inter.mat.inflated, intra=simdata$intramat, fixed=TRUE)
-pgls.inter.cor <- corIntra(1, inter=inter.mat.inflated, intra=simdata$intramat, fixed=TRUE)
-pgls.intrainter.cor <- corIntra(0.5, inter=inter.mat.inflated, intra=simdata$intramat, fixed=FALSE)
+pgls.intra.cor <- corIntra(0, inter=inter.mat.inflated, intra=simd$intramat, fixed=TRUE)
+pgls.inter.cor <- corIntra(1, inter=inter.mat.inflated, intra=simd$intramat, fixed=TRUE)
+pgls.intrainter.cor <- corIntra(0.5, inter=inter.mat.inflated, intra=simd$intramat, fixed=FALSE)
     
 # Fit PGLS
 gls.mod0 <- gls.mod1 <- gls.mod2 <- gls.mod3 <-NULL
-try(gls.mod0 <- gls(y~x,data=simdata$data)) # no phylogenetic correlation
-try(gls.mod1 <- gls(y~x,correlation = pgls.inter.cor, data=simdata$data),silent=TRUE) # inter structure 
-try(gls.mod2 <- gls(y~x,correlation = pgls.intra.cor, data=simdata$data),silent=TRUE) # intra structure
-try(gls.mod3 <- gls(y~x,correlation = pgls.intrainter.cor, data=simdata$data),silent=TRUE) # Estimating delta 
+try(gls.mod0 <- gls(y~x,data=simd$data)) # no phylogenetic correlation
+try(gls.mod1 <- gls(y~x,correlation = pgls.inter.cor, data=simd$data),silent=TRUE) # inter structure 
+try(gls.mod2 <- gls(y~x,correlation = pgls.intra.cor, data=simd$data),silent=TRUE) # intra structure
+try(gls.mod3 <- gls(y~x,correlation = pgls.intrainter.cor, data=simd$data),silent=TRUE) # Estimating delta 
     
 
 ###
@@ -170,8 +179,11 @@ try(gls.mod3 <- gls(y~x,correlation = pgls.intrainter.cor, data=simdata$data),si
   # Heritability (h^2)
   res$h2 <- c(NA,M.1.var["animal"]/sum(M.1.var),
               NA,NA,NA,NA)
+  # Lizzie thinks this should equal (which seems vaguely correct based on a few tests)
+  sigma.sq.p/(sigma.sq.p+sigma.sq.c+sigma.sq.e) # or sigma.sq.p/(sigma.sq.p+sigma.sq.e) # using simd.nointra
   
 #write.csv(res,file = "output/sim1_IMC.csv")
+
 
   
 # END
