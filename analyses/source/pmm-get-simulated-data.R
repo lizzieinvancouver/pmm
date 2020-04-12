@@ -77,8 +77,7 @@ one.sim.pmm <- function(nspecies,nindividuals,B,
     diag(matempty) <- rep(1, nspecies)
     
     popstruct <- lapply(seq(1:nspecies), function(c)c=matempty)
-     
-    
+    # popstruct <- lapply(seq(1:nspecies),function(c) matrix(apply(sapply(sim.ms(nsam=nindividuals,nreps=ngen,ms.command=ms.opt),function(c) {xx <- vcv(c,corr=TRUE);or<-order(as.numeric(gsub("[a-z]","",colnames(xx))));return(xx[or,or])}),1,mean),ncol=nindividuals,nrow=nindividuals))
 
     # Make a block diagonal matrix representing the correlation structure of all species
     mat.names <- unlist(lapply(seq(1:nspecies),function(i) paste(letters[i],

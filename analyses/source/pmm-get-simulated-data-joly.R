@@ -1,8 +1,8 @@
 ## Code from Joly et al. 2019 ##
 ## He sent this in an email on 10 March 2020 ##
 
-## This is very similar to pmm-get-simulated-data.R but the simulation removes intraspecific structure ##
-## See pmm-pgls-simulations_v2.R for some of the email exchange about this code. ##
+## This code is Lizzie's attempt to get the code to run as Nacho has pmm-get-simulated.R running ...
+## So far though it fails on the coalescent tree ##
 
 # # Parameters for troubleshooting
 #nspecies=10
@@ -24,8 +24,8 @@ inflate.mat <- function (mat,nsp,nind) {
 }
 
 # Simulation function (runs one rep)
-one.sim.pmm.nointra <- function(nspecies, nindividuals ,B,
-                        sigma.sq.x, sigma.sq.p, sigma.sq.e)
+one.sim.pmm.joly <- function(nspecies,nindividuals,B, ngen,
+                        sigma.sq.x,sigma.sq.p,sigma.sq.c,sigma.sq.e, ms.opt)
 {
   
   ## Global parameters
@@ -57,16 +57,29 @@ one.sim.pmm.nointra <- function(nspecies, nindividuals ,B,
   # To check for PGLS convergence
   convergence=FALSE
   times=0
-  
     # Simulate species tree with a pure birth model
     spetree <- pbtree(n=nspecies,nsim=1,b=1,complete=FALSE,scale=1)
     spetree$tip.label <- letters[1:nspecies]
     # Obtain phylogenetic correlation structure (matrix)
     inter.mat <- vcv(spetree,corr=TRUE)
   
+    # Function to perform coalescent simulations using the 'ms' software
+    sim.ms <- function(nsam=nindividuals,nreps=20,ms.command="-T") {
+      require(phyclust)
+      ret.ms <- ms(nsam = nsam, nreps = nreps, opts = ms.command)
+      return(read.tree(text = ret.ms,skip=1,comment="/"))
+    }
+  
+    # Simulate an infraspecific correlation structure for each species. The 
+    # correlation structure is the mean of the VCV matrices of 20 gene genealogies
+    popstruct <- lapply(seq(1:nspecies),function(c) matrix(apply(sapply(sim.ms(nsam=nindividuals,nreps=ngen,ms.command=ms.opt),function(c) {xx <- vcv(c,corr=TRUE);or<-order(as.numeric(gsub("[a-z]","",colnames(xx))));return(xx[or,or])}),1,mean),ncol=nindividuals,nrow=nindividuals))
+    
+    
     # Make a block diagonal matrix representing the correlation structure of all species
-    mat.names <- unlist(lapply(seq(1:nspecies),function(i) paste(letters[i],
-                                                                 seq(1,nindividuals),sep="")))
+    mat.names <- unlist(lapply(seq(1:nspecies),function(i) paste(letters[i],seq(1,nindividuals),sep="")))
+    intra.mat <- matrix(bdiag(lapply(seq(1,length(popstruct)),function(c) 
+      popstruct[[c]])),nrow=(nspecies*nindividuals),dimnames=list(mat.names,mat.names))
+    
     
     ###
     # Simulate variables
@@ -74,11 +87,11 @@ one.sim.pmm.nointra <- function(nspecies, nindividuals ,B,
     # Parameters
     n.sp <- nspecies*nindividuals # number of samples
     P <- inter.mat # phylogenetic correlation matrix
-    # C <- intra.mat # infraspecific correlation matrix
+    C <- intra.mat # infraspecific correlation matrix
     # Random deviates from the normal distribution for the different effects:
-    u <- rnorm(n=n.sp,mean=10) # this gets used in x (but not sure why this is set to 10 here)
+    u <- rnorm(n=n.sp,mean=10) 
     v <- rnorm(n=nspecies,mean=0) 
-    # w <- rnorm(n=n.sp,mean=0) 
+    w <- rnorm(n=n.sp,mean=0) 
     z <- rnorm(n=n.sp,mean=0) 
     
     # Get values for x (not phylogenetically correlated)
@@ -92,14 +105,14 @@ one.sim.pmm.nointra <- function(nspecies, nindividuals ,B,
     rownames(p) <- mat.names
     
     # Intraspecific random effect
-    # c <- t(chol(C*sigma.sq.c)) %*% w
+    c <- t(chol(C*sigma.sq.c)) %*% w
     
     # residual error (not phylogenetically correlated)
     e <- matrix((sqrt(sigma.sq.e) * z), ncol=1)
     rownames(e) <- rownames(mat.names)
     
     # Calculate response variable
-    y <- x %*% B + p  + e # deleted: + c
+    y <- x %*% B + p + c + e
     
     
     ###
@@ -109,7 +122,7 @@ one.sim.pmm.nointra <- function(nspecies, nindividuals ,B,
     simdata <<- simdata
     simdata$phylo <- spetree  
     simdata$intermat <- inter.mat  
-    # simdata$intramat <- intra.mat  
+    simdata$intramat <- intra.mat  
     
   
   # Return results
