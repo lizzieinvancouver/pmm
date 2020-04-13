@@ -59,7 +59,7 @@ nspecies=20
 nindividuals=20
 B = 0.75
 sigma.sq.x = 1
-sigma.sq.p = 0.1
+sigma.sq.p = 0.25
 sigma.sq.c = 1
 sigma.sq.e = 1
 
@@ -263,7 +263,7 @@ hypwgc <- paste(
   # Lizzie thinks h2 should equal:
   sigma.sq.p/(sigma.sq.p+sigma.sq.c+sigma.sq.e) 
   
-# write.csv(res, file = "output/sim1_cjc.csv")
+# write.csv(res, file = "output/sim2_cjc.csv")
 
 
   
