@@ -11,8 +11,8 @@
 
 
 # # Parameters for troubleshooting
-#nspecies=10
-#nindividuals=10
+#nspecies=30
+#nindividuals=40
 #B = 0.25
 #sigma.sq.x = 2
 #sigma.sq.p = 1
@@ -28,6 +28,14 @@ inflate.mat <- function (mat,nsp,nind) {
       rep(c,each=nind)),nrow=nsp*nind,ncol=nsp*nind)
   return(inflated.mat)
 }
+
+
+# Function to generate random names going beyond 27 letters
+rnd.naming <- function(n = 5000) {
+  a <- do.call(paste0, replicate(3, sample(LETTERS, n, TRUE), FALSE))
+  paste0(a, sample(99, n, TRUE))
+}
+
 
 # Simulation function (runs one rep)
 one.sim.pmm <- function(nspecies,nindividuals,B,
@@ -64,24 +72,27 @@ one.sim.pmm <- function(nspecies,nindividuals,B,
   convergence=FALSE
   times=0
   
-    # Simulate species tree with a pure birth model
+   
+  # Simulate species tree with a pure birth model
     spetree <- pbtree(n=nspecies,nsim=1,b=1,complete=FALSE,scale=1)
-    spetree$tip.label <- letters[1:nspecies]
+    spetree$tip.label <- rnd.naming(nspecies)
     # Obtain phylogenetic correlation structure (matrix)
     inter.mat <- vcv(spetree,corr=TRUE)
   
    
     # we generate here a list of star-like genealogies (vcvs)
     # since we are not concerned (so far) with the genetic relationship among individuals
-    matempty <- matrix(rep(0,nspecies^2),ncol=nspecies,nrow=nspecies,)
-    diag(matempty) <- rep(1, nspecies)
+    matempty <- matrix(rep(0,nindividuals*nindividuals),ncol=nindividuals,nrow=nindividuals,)
+    diag(matempty) <- rep(1, nindividuals)
     
     popstruct <- lapply(seq(1:nspecies), function(c)c=matempty)
     # popstruct <- lapply(seq(1:nspecies),function(c) matrix(apply(sapply(sim.ms(nsam=nindividuals,nreps=ngen,ms.command=ms.opt),function(c) {xx <- vcv(c,corr=TRUE);or<-order(as.numeric(gsub("[a-z]","",colnames(xx))));return(xx[or,or])}),1,mean),ncol=nindividuals,nrow=nindividuals))
 
     # Make a block diagonal matrix representing the correlation structure of all species
-    mat.names <- unlist(lapply(seq(1:nspecies),function(i) paste(letters[i],
-                                                                 seq(1,nindividuals),sep="")))
+
+    mat.names <- unlist(lapply(seq(1:nspecies),function(i) paste(spetree$tip.label[i],
+                                                                 seq(1,nindividuals),sep=".")))
+    
     intra.mat <- matrix(bdiag(lapply(seq(1,length(popstruct)),function(c) 
       popstruct[[c]])),nrow=(nspecies*nindividuals),dimnames=list(mat.names,mat.names))
     

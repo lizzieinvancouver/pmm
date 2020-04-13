@@ -33,10 +33,10 @@ require(nlme)
 require(Matrix)
 require(phyclust)
 
-source("corIntra.R")
+source("source/corIntra.R")
 
 # # Parameters for troubleshooting
-nspecies=10
+nspecies=20
 nindividuals=10
 ngen=20
 B = 0.25
@@ -57,7 +57,7 @@ inflate.mat <- function (mat,nsp,nind) {
 # Simulation function (runs one rep)
 one.sim.pmm <- function(nspecies=10,nindividuals=10,ngen=20,B = 0.25,
                         sigma.sq.x = 2,sigma.sq.p = 1,sigma.sq.c = 1,sigma.sq.e = 1,
-                        ms.opt="-T -I 2 5 5 -ej 0.5 2 1")
+                        ms.opt="-T -I 2 5 5 -ej 0.5 2 1"){
 
   
   ## Global parameters
