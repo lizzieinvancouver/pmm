@@ -134,7 +134,7 @@ one.sim.pmm <- function(nspecies,nindividuals,B,
     ###
     # Data frame with the simulated data
     simdata <- list()
-    simdata$data <- data.frame(y=y,x=x,animal=gsub("[0-9]*","",mat.names))
+    simdata$data <- data.frame(y=y,x=x,animal=unlist(lapply(strsplit(mat.names,"\\.",fixed=F),function(x)x[1])))
     simdata <<- simdata
     simdata$phylo <- spetree  
     simdata$intermat <- inter.mat  
