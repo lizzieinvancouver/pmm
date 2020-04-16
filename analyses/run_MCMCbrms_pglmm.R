@@ -21,6 +21,7 @@ if(length(grep("Ignacio", getwd())>0)) {
 }  else
 setwd("~/Documents/git/teaching/stan/pmm/analyses")
 
+set.seed(113)
 
 ## load packages
 library(shinystan)
