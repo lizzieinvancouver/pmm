@@ -38,7 +38,7 @@ rnd.naming <- function(n = 5000) {
 
 
 # Simulation function (runs one rep)
-one.sim.pmm <- function(nspecies,nindividuals,B,
+one.sim.pmm <- function(nspecies,nindividuals,B,scaletree,
                         sigma.sq.x,sigma.sq.p,sigma.sq.c,sigma.sq.e)
 {
   
@@ -74,7 +74,7 @@ one.sim.pmm <- function(nspecies,nindividuals,B,
   
    
   # Simulate species tree with a pure birth model
-    spetree <- pbtree(n=nspecies,nsim=1,b=1,complete=FALSE,scale=1)
+    spetree <- pbtree(n=nspecies,nsim=1,b=1,complete=FALSE,scale=scaletree)
     spetree$tip.label <- rnd.naming(nspecies)
     # Obtain phylogenetic correlation structure (matrix)
     inter.mat <- vcv(spetree,corr=TRUE)
