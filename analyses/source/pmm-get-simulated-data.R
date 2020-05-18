@@ -38,8 +38,9 @@ rnd.naming <- function(n = 5000) {
 
 
 # Simulation function (runs one rep)
-one.sim.pmm <- function(nspecies,nindividuals,B,scaletree,
-                        sigma.sq.x,sigma.sq.p,sigma.sq.c,sigma.sq.e)
+one.sim.pmm <- function(nspecies, nindividuals,B, scaletree,
+                        sigma.sq.x,sigma.sq.p,sigma.sq.c,sigma.sq.e,
+                        phyloSlope)
 {
   
   ## Global parameters
@@ -126,9 +127,22 @@ one.sim.pmm <- function(nspecies,nindividuals,B,scaletree,
     # residual error (not phylogenetically correlated)
     e <- matrix((sqrt(sigma.sq.e) * z), ncol=1)
     rownames(e) <- rownames(mat.names)
-    
+
+    # What if we want the phylogeny to structure the slopes? (By Lizzie)
+    if(phyloSlope){
+    B1 <- B 
+    B <-  t(chol(P*B)) %*% v
+    B <- matrix(rep(B[,1],times=rep(nindividuals,nspecies)), ncol=1)
+    rownames(B) <- mat.names
+
+    # Calculate response variable
+    # Sidenote that identical(x%*%B1, x*B1)
+    y <- x * B + p + c + e
+    }
+    if(!phyloSlope){
     # Calculate response variable
     y <- x %*% B + p + c + e
+    }
     
     
     ###

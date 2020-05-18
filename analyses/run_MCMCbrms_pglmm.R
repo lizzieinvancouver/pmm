@@ -63,14 +63,18 @@ sigma.sq.x = 1
 sigma.sq.p = 0.25
 sigma.sq.c = 1
 sigma.sq.e = 1
+scaletree = 1
+phyloSlope = FALSE
 
 
 ## get data using your specified parameters
 # note: simdata (aka, now simd below) returns only simdata$data on FIRST run, run it again and you get the full list specificed in f(x) ... or you get the full list every time if you don't call it simdata (something to do with <<- in the f(x) code?!)
 
 simd <-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
+                     scaletree=scaletree,
                      sigma.sq.x = sigma.sq.x,sigma.sq.p = sigma.sq.p,
-                     sigma.sq.c = sigma.sq.c,sigma.sq.e = sigma.sq.e)
+                     sigma.sq.c = sigma.sq.c,sigma.sq.e = sigma.sq.e,
+                     phyloSlope=phyloSlope)
 
   
 # plot(simd$data$x,simd$data$y)
@@ -104,7 +108,8 @@ simd <-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
     M.1 <- MCMCglmm(y ~ x, random = ~ animal, pedigree = simd$phylo,
                     data=simd$data, scale=TRUE,prior=priorpr.m1,
                     nitt=21000,thin=10,burnin=1000,verbose=FALSE)
-  
+
+
     
 ## run PGLS models 
 #
