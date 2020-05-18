@@ -110,6 +110,17 @@ simd <-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
                     nitt=21000,thin=10,burnin=1000,verbose=FALSE)
 
 
+if(FALSE){ # Lizzie's poor attempts at writing my own stan code, need to check Rethinking next, I think
+testme <- stan("stan/nointer_2level_forceTEST.stan",
+                data=list(N=nrow(simd$data), n_sp=nspecies, sp=as.numeric(as.factor(simd$data$animal)),
+                force=simd$data$x, y=simd$data$y,
+                Vphy=vcv(simd$phylo)),
+                iter=1000, chains=4, seed=123456)
+summary(testme)$summary
+lam.int <- mean(extract(testme)[["lam_intercepts"]])
+null.int <- mean(extract(testme)[["null_intercepts"]])
+lam.int / (null.int + lam.int) # very wrong ... I believe
+    }
     
 ## run PGLS models 
 #
