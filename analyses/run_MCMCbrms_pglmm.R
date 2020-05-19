@@ -111,15 +111,25 @@ simd <-one.sim.pmm(nspecies = nspecies, nindividuals = nindividuals,B = B,
 
 
 if(FALSE){ # Lizzie's poor attempts at writing my own stan code, need to check Rethinking next, I think
+# get numeric species names in the same order as the tip labels... 
+simd$data$stansp <- paste("s", as.numeric(as.factor(factor(simd$data$animal, levels = unique(simd$data$animal)))), sep="")
+simd$data$stansp_num <- as.numeric(gsub('s', '', simd$data$stansp))
+    
 testme <- stan("stan/nointer_2level_forceTEST.stan",
-                data=list(N=nrow(simd$data), n_sp=nspecies, sp=as.numeric(as.factor(simd$data$animal)),
+                data=list(N=nrow(simd$data), n_sp=nspecies, sp=simd$data$stansp_num,
                 force=simd$data$x, y=simd$data$y,
                 Vphy=vcv(simd$phylo)),
                 iter=1000, chains=4, seed=123456)
 summary(testme)$summary
+
+# From Will's code
+# ...the estimated phylogenetic signal (Pagel's Lambda) of the
+# estimated environmental response is ~.7 (i.e., there's signal)
+# (see Hadfield & Nakagawa (2010) J. Evol. Biol. 23(3): 494-508 for
+# this method of calculating it)
 lam.int <- mean(extract(testme)[["lam_intercepts"]])
 null.int <- mean(extract(testme)[["null_intercepts"]])
-lam.int / (null.int + lam.int) # very wrong ... I believe
+lam.int / (null.int + lam.int) # very wrong ... I believe (says Lizzie)
     }
     
 ## run PGLS models 
@@ -195,7 +205,7 @@ brmmod.wgc <- brm(
   iter = 4000, warmup = 1000
 )
 
-
+# See also: https://discourse.mc-stan.org/t/phylogenetic-model-with-repeated-measurements-without-using-species-mean/4801
 
 hyp <- paste(
   "sd_specphylo__Intercept^2 /", 

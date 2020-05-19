@@ -2,6 +2,9 @@
 // Simplified version of nointe_2level.stan 
 // with phylogeny on intercept and turned off partial pooling on the slopes
 
+// NEED TO keep working on this ...
+// See https://groups.google.com/forum/#!topic/stan-users/Irv9RWDCpQE
+
 data {
 	int<lower=1> N;
 	int<lower=1> n_sp;

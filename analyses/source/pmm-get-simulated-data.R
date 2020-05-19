@@ -78,7 +78,7 @@ one.sim.pmm <- function(nspecies, nindividuals,B, scaletree,
     spetree <- pbtree(n=nspecies,nsim=1,b=1,complete=FALSE,scale=scaletree)
     spetree$tip.label <- rnd.naming(nspecies)
     # Obtain phylogenetic correlation structure (matrix)
-    inter.mat <- vcv(spetree,corr=TRUE)
+    inter.mat <- vcv(spetree, corr=TRUE)
   
    
     # we generate here a list of star-like genealogies (vcvs)
