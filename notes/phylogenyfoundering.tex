@@ -58,7 +58,7 @@ One interesting thing I noticed about this model is that it estimates a {\bf sep
 
 \emph{My underlying model:} I think the phylogeny is a better option for partial pooling that treating species as unordered categories. I would ideally like a model that fits mainly the phylogeny, but also allows me to assess the strength of the phylogeny in the analysis. I used to sort of doubt we'd be able to manage this though, so I was (am?) searching for the best alternative option. \\
 
-But just for fun, what is wrong with this model?\\
+But just for fun, what is wrong with this model?
 
 \begin{align}
 y & = \alpha_0 + \alpha + \beta x + e\\
@@ -66,14 +66,14 @@ y & = \alpha_0 + \alpha + \beta x + e\\
 \beta & \sim MVN(0, \sigma_{P\beta}^2)\\
 e & \sim normal(0, \sigma_y^2)\\
 \sigma_{P\alpha}^2 & = \alpha_{\alpha} + \lambda_\alpha*\Sigma\\
-\sigma_{P\beta}^2 & = \alpha_{\beta} + \lambda_\beta*\Sigma\\
+\sigma_{P\beta}^2 & = \alpha_{\beta} + \lambda_\beta*\Sigma
 \end{align}
 Where $\alpha_0 $ is a grand mean and species-level intercepts are partially pooled by phylogeny, scaled by $\lambda_\alpha$ and slopes are also are partially pooled by phylogeny, scaled by $\lambda_\beta$, and there is some residual error $\sigma_y$. Again, I ask what's wrong with this model?\\
 
 \emph{What we have tried:} So far, for our phenology project, we have tried the following:
 \begin{enumerate}
 \item Fit the models with traditional partial pooling then estimate Pagel's $\lambda$ on species-level estimates of forcing, chilling, photoperiod. {\bf What's wrong with this?} We partially pool based on no structure among species (species with noisy and/or low sample size data will pool towards data-rich, low-noise species) so we could obliterate any signal. Plus I am not sure how to feel about applying two different versions of species across analyses.
-\item Try to fit PMM with brms. {\bf What's wrong with this?} I have no idea what brms is doing really.
+\item Try to fit PMM with brms. {\bf What's wrong with this?} I have no idea what brms is doing really. I also think it will struggle to fit the model we want (phylo on slope and intercept) and it seems weird to me to partially pool by unordered species on the slopes but not intercept ... so if we like this model maybe we just try hard with regularizing priors or such to make it fit?
 \item Wrote my own Stan code that is not yet working, as we don't have good fake data to test it. But maybe I should work more on this?
 \end{enumerate}
 
