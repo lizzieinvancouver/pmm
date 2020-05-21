@@ -1,0 +1,30 @@
+\documentclass[11pt,letter]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1.1in, right=1.1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+
+\begin{align}
+y & = \alpha_0 + \alpha + \beta x + e\\
+\alpha & \sim MVN(0, \sigma_{P\alpha}^2)\\
+\beta & \sim MVN(0, \sigma_{P\beta}^2)\\
+e & \sim normal(0, \sigma_y^2)\\
+\sigma_{P\alpha}^2 & = \alpha_{\alpha} + \lambda_\alpha*\Sigma\\
+\sigma_{P\beta}^2 & = \alpha_{\beta} + \lambda_\beta*\Sigma\\
+\end{align}
+Where $\Sigma$ is the phylogenetic structure, $\alpha_0 $ is a grand mean and species-level intercepts are partially pooled by phylogeny, scaled by $\lambda_\alpha$ and slopes are also are partially pooled by phylogeny, scaled by $\lambda_\beta$, and there is some residual error $\sigma_y$. Again, I ask what's wrong with this model?\\
+
+
+
+
+\end{document}

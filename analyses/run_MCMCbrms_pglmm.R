@@ -61,8 +61,8 @@ nindividuals=20
 B = 0.75
 sigma.sq.x = 1
 sigma.sq.p = 0.25
-sigma.sq.c = 1
-sigma.sq.e = 1
+sigma.sq.c = 0.01
+sigma.sq.e = 0.1
 scaletree = 1
 phyloSlope = FALSE
 
@@ -129,7 +129,7 @@ summary(testme)$summary
 # this method of calculating it)
 lam.int <- mean(extract(testme)[["lam_intercepts"]])
 null.int <- mean(extract(testme)[["null_intercepts"]])
-lam.int / (null.int + lam.int) # very wrong ... I believe (says Lizzie)
+lam.int / (null.int + lam.int) # very wrong ... I believe (says Lizzie), but it would get close if you add in sigma_y and compare to an estimate that drops sigma.c : sigma.sq.p/(sigma.sq.p+sigma.sq.e)  
     }
     
 ## run PGLS models 

@@ -1,0 +1,109 @@
+\documentclass[11pt,letter]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1.1in, right=1.1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+{\bf Updates on modeling species given their phylogenetic history in Stan}\\
+
+\emph{Background \& Question:} A long line of evidence suggests phenological `sensitivity' in plants are likely driven in part by shared evolutionary history. As an example, pretend you're a tree who comes from a clade that for some reason in the past evolved to be responsive to variable spring temperatures. To be, effectively highly sensitive (you probably have high forcing, low chilling and low photoperiod cues to make this happen). You might move to a new climate where being less sensitive would be good, but because of your evolutionary history you're still pretty responsive. This would show up in models as a phylogenetic signal in your 'sensitivity' and if you drilled down, it should show up in your forcing. We want to know if there is evidence of this in plants as it would help us predict something about species for which we have no data and it would impose a constraint on how quickly we think these cues can evolve in the future. Lots of people have been interested in this before, but all work has used observational data. \\
+
+So, given experimental data (hopefully removing confounding effects of geography on phenological dates) how much does phylogeny predict phenology? This question has some interesting embedded problems (or we could call them `opportunities') as we both the cues which inform the `sensitivity' and can use these to estimate phenological dates, and then assess the phylogenetic signal in dates, if we wanted---but now we're gotten perhaps very circular.\\
+
+\emph{Common modeling approaches:} There are two really common approaches to questions like this: calculate Pagel's $\lambda$ on a trait, or correct for phylogenetic correlation in residuals in a typical analysis (PGLS) and analyse that correlation along the way (also called $\lambda$). These are {\bf not} necessarily identical: one is evaluating the correlation structure of a trait and one is calculating the correlation structure of residuals. Neither one of these is what we want because they are not the model we think is at play (see below) and because both rely on one trait value per species, but I think I should understand them to get anywhere. So let's do the PGLS, which I am copying from the second edition of \emph{Statistical Rethinking}.\\
+
+\begin{align}
+P & \sim MVN(\mu, S)\\
+\mu_i & = \alpha +  \beta*x_i
+\end{align}
+$\mu$ is a usual linear model. $P$ is a vector of phenological dates (one per species), and $S$ is a covariance matrix with as many rows and columns as species. In ordinary regression this takes the form:
+\begin{align}
+S = \sigma^2I
+\end{align}
+where I is just an identity matrix (all 1s) so we can ignore it. In PGLS we replace $S$ with the phylogenetic covariance matrix ($\Sigma$). {\bf You have to make sure of a few things}: the phylogeny must go in as correlation matrix (this makes the diagonals 1s and the off-diagonals the correlation across species due to evolutionary history) and make sure the rows and columns are in the same order as the species will be ordered numerically. One issue with this model is that (I think) It forces the correlation structure you give it---it does not adjust the correlation structure at all; some iterations of PGLS in certain R packages do this and it is quite an important addition to avoid Type I errors. I believe this just involves estimating a value to multiply the matix by such that:
+\begin{align}
+S = \sigma^2(\Sigma*\lambda)
+\end{align}
+So many models set $\lambda$ to 1, but it's definitely best to ask the model to estimate it (rather than assume the phylogenetic correlation strutcure if how you want to structure the residuals). \\
+
+\emph{PMM (phylogenetic mixed model):} Here's my understanding:\\
+
+\begin{align}
+y & = \alpha + \beta x + a + e\\
+a & \sim normal(0, \sigma_P^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)\\
+\text{PGLS: }y & \sim normal(\alpha + \beta x, \sigma_P^2\Sigma)
+\end{align}
+... where $\alpha$ and $\beta$, respectively, are the intercept and the slope for the co-factor x, $a$ is the phylogenetic random effect, and $e$ is the residual error. Now, the two last terms are assumed to be normally distributed, with $\Sigma$ as a phylogenetic correlation matrix , $I$ stands for the relevant identity matrix. Our model, thus, assumes that phylogenetic effects are correlated according to the phylogenetic correlation matrix $\Sigma$. Note also that our model is estimating two variances: $V_P$ is the variance of the phylogenetic effect and $V_R$ is the residual error (environment effects, intraspecific variance, measurement error, etc.). [This text here is copied from Chapter 11: General Quantitative Genetic Methods for Comparative Biology, by Villemereuil \& Nakagawa.]\\
+
+A big difference often pointed out about PMM versus PGLS is that PGLS does not allow for non-phylogenetically structured error (but I think it sort of does once you scale the phylogenetic effect by $\lambda$, no?) and the PMM explicitly models other sources of error through $e$, and then in the PMM the strength of the phylogenetic effect is measured as:
+
+\begin{align}
+\lambda & = \frac{\sigma^2_P}{\sigma^2_P+\sigma^2_R}
+\end{align}
+which is equivalent to just saying `what proportion of the variance is due to phylogeny?' (This model has only $a$ and $e$, while the Joly et al. has $a$, $e$ and $c$.)\\
+
+The multiple-values-per-species version of this just involves within-group centering (I think, need to check), which I don't see as necessary. \\
+
+One interesting thing I noticed about this model is that it estimates a {\bf separate} intercept for the $y = \alpha + \beta x$ part of the model and I wonder if we need this? (Though the more I think on this, who is to say what is an intercept versus error in this model? They are both additive terms.) \\
+
+\emph{My underlying model:} I think the phylogeny is a better option for partial pooling that treating species as unordered categories. I would ideally like a model that fits mainly the phylogeny, but also allows me to assess the strength of the phylogeny in the analysis. I used to sort of doubt we'd be able to manage this though, so I was (am?) searching for the best alternative option. \\
+
+But just for fun, what is wrong with this model?\\
+
+\begin{align}
+y & = \alpha_0 + \alpha + \beta x + e\\
+\alpha & \sim MVN(0, \sigma_{P\alpha}^2)\\
+\beta & \sim MVN(0, \sigma_{P\beta}^2)\\
+e & \sim normal(0, \sigma_y^2)\\
+\sigma_{P\alpha}^2 & = \alpha_{\alpha} + \lambda_\alpha*\Sigma\\
+\sigma_{P\beta}^2 & = \alpha_{\beta} + \lambda_\beta*\Sigma\\
+\end{align}
+Where $\alpha_0 $ is a grand mean and species-level intercepts are partially pooled by phylogeny, scaled by $\lambda_\alpha$ and slopes are also are partially pooled by phylogeny, scaled by $\lambda_\beta$, and there is some residual error $\sigma_y$. Again, I ask what's wrong with this model?\\
+
+\emph{What we have tried:} So far, for our phenology project, we have tried the following:
+\begin{enumerate}
+\item Fit the models with traditional partial pooling then estimate Pagel's $\lambda$ on species-level estimates of forcing, chilling, photoperiod. {\bf What's wrong with this?} We partially pool based on no structure among species (species with noisy and/or low sample size data will pool towards data-rich, low-noise species) so we could obliterate any signal. Plus I am not sure how to feel about applying two different versions of species across analyses.
+\item Try to fit PMM with brms. {\bf What's wrong with this?} I have no idea what brms is doing really.
+\item Wrote my own Stan code that is not yet working, as we don't have good fake data to test it. But maybe I should work more on this?
+\end{enumerate}
+
+
+\clearpage
+Some links:\\
+\href{https://groups.google.com/forum/#!topic/stan-users/Irv9RWDCpQE}{This is an example of a PMM in Stan code.}
+\href{https://discourse.mc-stan.org/t/varying-slope-with-phylogenetic-structure/5739/4}{Varying slope with phylogenetic structure}\\
+\href{https://discourse.mc-stan.org/t/multivariate-phylogenetic-with-repeated-measurements-model-help/14359/6}{Someone running a multiple measures model in BRMS with some queries. Not sure how useful this is.}\\
+
+Some random notes:\\
+Cholesky decompostion: From what I understand, this is a trick when you cannot get the model to run with your covariance matrix, \emph{Rethinking} says, it's way to ``smuggle the covariance martix out of the prior.''
+
+\end{document}
+
+\begin{figure}[h!]
+\centering
+\noindent \includegraphics[width=0.8\textwidth]{figures/brms_m1.png} 
+\caption{No phylogenetic structure, just species on the intercept.}
+\end{figure}
+
+
+\begin{figure}[h!]
+\centering
+\noindent \includegraphics[width=0.8\textwidth]{figures/brms_m2.png} 
+\caption{Adding phylogenetic structure (and species separately?) on the intercept.}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\noindent \includegraphics[width=0.8\textwidth]{figures/brms_m3.png} 
+\caption{Adding phylogenetic structure and species on the intercept and slope? Or not ... not sure!}
+\end{figure}
