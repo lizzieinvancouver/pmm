@@ -9,6 +9,13 @@
 \def\labelitemi{--}
 \parindent=0pt
 
+\usepackage{xcolor}
+
+\colorlet{codecolor}{black!30}
+\newcommand{\codebox}[1]{%
+  \colorbox{codecolor}{\ttfamily \detokenize{#1}}%
+}
+
 \begin{document}
 \bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
 \renewcommand{\refname}{\CHead{}}
@@ -76,6 +83,54 @@ Where $\alpha_0 $ is a grand mean and species-level intercepts are partially poo
 \item Try to fit PMM with brms. {\bf What's wrong with this?} I have no idea what brms is doing really. I also think it will struggle to fit the model we want (phylo on slope and intercept) and it seems weird to me to partially pool by unordered species on the slopes but not intercept ... so if we like this model maybe we just try hard with regularizing priors or such to make it fit?
 \item Wrote my own Stan code that is not yet working, as we don't have good fake data to test it. But maybe I should work more on this?
 \end{enumerate}
+
+{\bf Update on 1 June 2020}\\
+
+I have started work on some models that try to put the phylogeny on the slopes (which is what I want). Check out \verb|ubermini.stan| and related R code. Here's the main breakthrough from today, which is just me learning math.\\
+
+The money code is this line I stole from Will Pearse's code:\\
+
+\verb b_force $\sim$ \verb multi_normal(rep_vector(0,n_sp), \\ \verb|diag_matrix(rep_vector(null_interceptsb, n_sp)) + lam_interceptsb*Vphy;|\\
+
+It says that my vector of slopes is multinormal centered around 0 (why zero? That's how Gaussian processes work, it somehow gets the `centering' if you will from the $y \sim normal(\hat{y}, \sigma_y)$ bit of the model) and the variance should be the within-species variance on the diagonal, and the between-species variance on the off-diagonals. \\
+
+To go into painful detail (for me, if no one else) ... \verb|diag_matrix| is taking \verb|null_interceptsb| and making that an n x n matrix (where n is species number), so \verb|null_interceptsb| is on that diagonal (0s on the off-diagonals). Next, the code says to add this to the scaled (by \verb|lam_interceptsb|) n by n \verb|Vphy| matrix. In the end the diagonal will be \verb|null_interceptsb| + \verb|lam_interceptsb| ... and the off-diaganols will be \verb|lam_interceptsb*Vphy|. (Note that given this formula there is a within-species variance that is the same for all species.) Just to show it here ... \\
+
+Let $\alpha$ be  \verb|null_interceptsb| and $\lambda$ be \verb|lam_interceptsb|.\\
+
+\verb|b_force| = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha+\lambda*Vphy &  \cdots & \lambda*Vphy \\
+   & \ddots \\
+  \lambda*Vphy & \cdots &   \alpha+\lambda*Vphy
+ \end{bmatrix}
+\end{equation}
+
+\vspace{2ex}
+Remember that $Vphy$ is currently set to have 1s down the diagonal (\verb|Vphy=vcv(phylo, corr=TRUE)|) which means we can simplify to this:\\
+
+\verb|b_force| = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha+\lambda &  \cdots & \lambda*Vphy \\
+   & \ddots \\
+  \lambda*Vphy & \cdots &   \alpha+\lambda
+ \end{bmatrix}
+\end{equation}
+
+\vspace{2ex}
+So here's the rub---those ones mean $\lambda$ gets stuck on the diagonals and wouldn't it be better if the diagonals in the $Vphy$ were 0s so then we get:\\
+
+\verb|b_force| = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha &  \cdots & \lambda*Vphy \\
+   & \ddots \\
+  \lambda*Vphy & \cdots &   \alpha
+ \end{bmatrix}
+\end{equation}
+
 
 
 \clearpage
