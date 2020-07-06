@@ -1,12 +1,6 @@
-## Started 9 June 2020 ##
-## Generate test data for my phylogeny Stan models ##
+## Started 5 July 2020 ##
+## Generate test pgls ##
 
-## Someday we want:
-# y ~ a[sp] + b_force[phylo]*x1 + b_chill[phylo]*x2 + b_photo[phylo]*x3 + error
-
-## Almost simple to start ...
-## skip an intercept and just estimate
-# y ~ a[sp] + b_force*x1 + error
 
 # Setting working directory. Add in your own path in an if statement for your file structure
 if(length(grep("Ignacio", getwd())>0)) { 
@@ -21,48 +15,49 @@ require(phytools)
 require(rstan)
 
 nspecies = 40
-nind = 10
+nind = 1
 
 # Simulate species tree with a pure birth model
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
-# now set up the intercepts
+# attempt to create the model with phylogenetic structure in the error
 a <- 10
 m <- 0.6
 lam <- 0.5
-sigy <- 0.01
+sigy <- 0.1
 sig2 <- 0.1
 
+# we want the structure on the error, hmmm....
 scaledtree <- rescale(spetree, model="lambda", lam)
-interceptz <- fastBM(scaledtree, a=a, mu=0, sig2=sig2)
-phylosig(x=interceptz, tree=spetree, method="lambda")
-
+errorz <- fastBM(scaledtree, a=sigy, mu=0, sig2=sig2)
+phylosig(x=errorz, tree=spetree, method="lambda")
 
 # for testing ...
 nulltree <- rescale(spetree, model="lambda", 0)
 
 dfhere <- data.frame(x=numeric(), y=numeric())
 
-for (i in 1:length(interceptz)){
-    intercepthere <- interceptz[i]
+for (i in 1:nspecies*nind){
     xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
-    yhere <- intercepthere + xhere*m
+    yhere <- a + xhere*m
     dfadd <- data.frame(x=xhere, y=yhere)
     dfhere <- rbind(dfhere, dfadd)
 }
 
 dfhere$sp <- rep(spetree$tip.label, each=nind)
 dfhere$spnum <- as.numeric(gsub('s', '', dfhere$sp))
-    
-dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 
-# not converging for nind=1 even at 10 000 iter
-testme <- stan("stan/uberlessmini.stan",
+# Not at all sure this is correct ...
+dfhere$yerr <- dfhere$y + errorz
+
+
+# Sadly, not running....
+testme <- stan("stan/uberpgls.stan",
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
-                Vphy=vcv(spetree)),
-                iter=2000, chains=4, seed=123456) 
+                Vphy=vcv(spetree, corr=TRUE)),
+                iter=2000, chains=4, seed=123456)
 summary(testme)$summary
 
 # From Will's code
@@ -76,9 +71,3 @@ lam.int / (null.int + lam.int)
 
 sumer <- summary(testme)$summary
 # sumer[grep("b_force", rownames(sumer)),]
-
-# Compare true slopes to estimated slopes
-sumer[grep("b_force", rownames(sumer)), "mean"]
-interceptz
-
-plot(interceptz, sumer[grep("a\\[", rownames(sumer)), "mean"])
