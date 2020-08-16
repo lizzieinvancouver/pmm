@@ -51,23 +51,20 @@ dfhere$spnum <- as.numeric(gsub('s', '', dfhere$sp))
 # Not at all sure this is correct ...
 dfhere$yerr <- dfhere$y + errorz
 
+# Construct Lmat
+Lmat <- matrix(rep(1), nrow = nspecies, ncol = nspecies)
+diag(Lmat) <- 0
 
-# Sadly, not running....
+
+# Sadly, not running because it's "Rejecting initial value" ... no time to fix just now
 testme <- stan("stan/uberpgls.stan",
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
-                Vphy=vcv(spetree, corr=TRUE)),
-                iter=2000, chains=4, seed=123456)
+                Vphy=vcv(spetree),
+                Lmat=Lmat),
+                iter=2000, chains=4)
 summary(testme)$summary
 
-# From Will's code
-# ...the estimated phylogenetic signal (Pagel's Lambda) of the
-# estimated environmental response is ~.7 (i.e., there's signal)
-# (see Hadfield & Nakagawa (2010) J. Evol. Biol. 23(3): 494-508 for
-# this method of calculating it)
-lam.int <- mean(extract(testme)[["lam_interceptsb"]])
-null.int <- mean(extract(testme)[["null_interceptsb"]])
-lam.int / (null.int + lam.int) 
 
 sumer <- summary(testme)$summary
 # sumer[grep("b_force", rownames(sumer)),]

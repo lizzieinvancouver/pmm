@@ -1,5 +1,5 @@
 // uber pgls
-// pretty sure this is wrong.... and it's not working
+// no longer sure what is wrong here ... compare to pgls_lemoine.stan
 
 data {
 	int<lower=1> N;
@@ -7,27 +7,36 @@ data {
 	int<lower=1, upper=n_sp> sp[N];
 	vector[N] y; 		// response
 	vector[N] x; 	// predictor
+        matrix[n_sp, n_sp] Lmat; // (nsp by nsp and all 1s with 0s on diaganols) needed to make sure lambda is only calculated on off-diagonals
         matrix[n_sp,n_sp]Vphy;     // phylogeny
 		
 	}
 
+transformed data{
+	matrix[n_sp, n_sp] Ident; 
+        Ident = diag_matrix(rep_vector(1, N)); // matrix of 0s with 1s on diagonal
+}
+
 parameters {
-  matrix[N, N] sigma_y;    
-  real<lower=0,upper=100> null_interceptsb;       
-  real<lower=0,upper=100> lam_interceptsb;    
+  real<lower=0> vsigma; 
+  real<lower=0,upper=10> lam;  
   real a; // intercept
   real b_force; // slope of forcing effect 
-  real yhat[N];
 	}
 
 model {
-       sigma_y = diag_matrix(rep_vector(null_interceptsb, n_sp)) + lam_interceptsb*Vphy; 
+       vector[N] yhat;
+       matrix[n_sp, n_sp] vlambda;
+       matrix[n_sp, n_sp] sigma_y;   
+       vlambda = (lam*Lmat + Ident) .* Vphy;
+       sigma_y = vlambda*vsigma; 
+
        yhat = a + b_force * x;
         
 	a ~ normal(0,10);
         b_force ~ normal(0,3);
-        null_interceptsb ~ normal(0, 20);
-	lam_interceptsb ~ normal(0, 20);
+	lam ~ normal(0, 5);
+	vsigma ~ normal(0, 10);
 	y ~ multi_normal(yhat, sigma_y);
 
 }
