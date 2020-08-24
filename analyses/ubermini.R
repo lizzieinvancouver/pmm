@@ -8,7 +8,7 @@
 ## skip an intercept and just estimate
 # y ~ b_force[phylo]*x1 + error
 
-# Setting working directory. Add in your own path in an if statement for your file structure
+# Setting working directory
 if(length(grep("Ignacio", getwd())>0)) { 
   setwd("~/GitHub/pmm/analyses/") 
 } else
@@ -20,6 +20,10 @@ require(geiger)
 require(phytools)
 require(rstan)
 
+# Set one of the below to TRUE
+geigerversion=FALSE # creates test data using Brownian motion model the phylo-folks like
+mvnversion=TRUE # creates test data to match Stan code (I think)
+
 nspecies = 40
 nind = 10
 
@@ -29,10 +33,14 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # now set up the trait
 m <- 0.6
-lam <- 0.8
 sigy <- 0.01
-sig2 <- 0.1
+xmean <- 10
+xsd <- 3
 
+if(geigerversion){
+lam <- 0.8
+sig2 <- 0.1
+    
 scaledtree <- rescale(spetree, model="lambda", lam)
 slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sig2)
 phylosig(x=slopez, tree=spetree, method="lambda")
@@ -44,7 +52,7 @@ dfhere <- data.frame(x=numeric(), y=numeric())
 
 for (i in 1:length(slopez)){
     slopehere <- slopez[i]
-    xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
+    xhere <- rnorm(nind, xmean, xsd) # these are experiments, no phylo structure in x 
     yhere <- xhere*slopehere
     dfadd <- data.frame(x=xhere, y=yhere)
     dfhere <- rbind(dfhere, dfadd)
@@ -54,19 +62,23 @@ dfhere$sp <- rep(spetree$tip.label, each=nind)
 dfhere$spnum <- as.numeric(gsub('s', '', dfhere$sp))
     
 dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
+}
 
-if(FALSE){ # alternative test data (NOT DONE)
+if(mvnversion){ 
+library(MASS)
+
 Vphy <- vcv(spetree)
 diag(Vphy) <- 0
+null_interceptsb <- 0.5
+lam_interceptsb <- 0.01
 
-slopez <- MVN(0, Vphy) # START here! (and be sure to review all of the below as I just pasted it in for now)
-# rep_vector(0,n_sp), diag_matrix(rep_vector(null_interceptsb, n_sp)) + lam_interceptsb*Vphy
+slopez <- mvrnorm(n=1, mu=rep(0, nspecies), Sigma=(diag(rep(null_interceptsb, nspecies)) + lam_interceptsb*Vphy))
 
 dfhere <- data.frame(x=numeric(), y=numeric())
 
 for (i in 1:length(slopez)){
     slopehere <- slopez[i]
-    xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
+    xhere <- rnorm(nind, xmean, xsd) # these are experiments, no phylo structure in x 
     yhere <- xhere*slopehere
     dfadd <- data.frame(x=xhere, y=yhere)
     dfhere <- rbind(dfhere, dfadd)
@@ -79,9 +91,9 @@ dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 
 }
 
-# The below two lines make a big improvement (compared to Vphy=vcv(spetree, corr=TRUE))
-# but ... they seem to just divide the lambda that used to be almost always 1 to alsmost always 0.5 now
-# always 0.5 now as lam.int and null.int are always the same value,
+# Non-identifiable? Using geigerversion and the below two lines compared to Vphy=vcv(spetree, corr=TRUE) ...
+# seems to just divide the lambda that used to be almost always 1 to alsmost always 0.5 now ...
+# as lam.int and null.int are always the same value,
 # but when Vphy=vcv(spetree, corr=TRUE), then lam.int >> null.int and estimate approaches 1
 Vphy=vcv(spetree)
 diag(Vphy) <- 0
@@ -90,8 +102,26 @@ testme <- stan("stan/ubermini.stan",
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
                 Vphy=Vphy), # Vphy=vcv(spetree, corr=TRUE)),
-                iter=2000, chains=4, seed=123456)
+                iter=5000, chains=4, seed=123456)
 summary(testme)$summary
+
+sumer <- summary(testme)$summary
+
+# Compare true slopes to estimated slopes
+sumer[grep("b_force", rownames(sumer)), "mean"]
+slopez
+
+plot(slopez, sumer[grep("b_force", rownames(sumer)), "mean"])
+
+lam.int <- mean(extract(testme)[["lam_interceptsb"]])
+null.int <- mean(extract(testme)[["null_interceptsb"]])
+
+lam.int
+null.int
+
+# Will suggests ...
+lam.int / (null.int + lam.int) 
+
 
 # From Will's code
 # ...the estimated phylogenetic signal (Pagel's Lambda) of the
@@ -99,15 +129,19 @@ summary(testme)$summary
 # (see Hadfield & Nakagawa (2010) J. Evol. Biol. 23(3): 494-508
 # (bottom of pg 497, which is also just the classic from Housworth etc.) 
 # for this method of calculating it)
-lam.int <- mean(extract(testme)[["lam_interceptsb"]])
-null.int <- mean(extract(testme)[["null_interceptsb"]])
 lam.int / (null.int + lam.int) 
 
-sumer <- summary(testme)$summary
-# sumer[grep("b_force", rownames(sumer)),]
 
-# Compare true slopes to estimated slopes
-sumer[grep("b_force", rownames(sumer)), "mean"]
-slopez
+if(FALSE){
+# From Geoff on 31 May 2020:
+# Here's one set of calls that might clarify what's happening:
 
-plot(slopez, sumer[grep("b_force", rownames(sumer)), "mean"])
+# Regular diagonal
+diag(rep(1, 10)
+
+# Add a constant
+diag(rep(1, 10)) + 6
+
+# Add a vector
+diag(rep(1, 10)) + c(1:10)
+

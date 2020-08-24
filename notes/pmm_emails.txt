@@ -1,0 +1,58 @@
+Started 23 August 2020
+Where did the summer go?
+
+
+Trying to file and sort out relevant emails
+
+<><><><><><><><><><><><><><><><>
+
+<><><><><><><><><><><><><><><><>
+
+16 August 2020 (Will Pearse)
+ATTACHMENT: notes-from-a-small-island.R
+
+First off, thank you again for finding, and then making me look at, this variance/lambda problem. I really appreciate that you caught this, and I'm sorry that I've been so stretched with everything to have only properly gotten to this now. I also apologise, because I am pretty convinced that everything I'm about to say has already occurred to you...
+
+You've convinced me that the variance trick I was using in the PGLMM supplement isn't the same thing as lambda. We could talk about whether other variance-partitioning things might be a good, or maybe even better, thing to do in these kinds of models (more on that below), but you've convinced me that the ratio we were calculating isn't lambda (again, thank you for that!). So there are a couple of reasons that could be, I think: (1) Hadfield and Nakagawa were wrong, (2) I've made a mistake in the code, (3) the ratio trick only applies in certain circumstances, or (4) there's an identifiability problem (which you were suggesting as a possibility).
+
+Let's discount (1) from the off. (2) is also very plausible, as is (3), (4) I will return to. I've attached a small script that estimates lambda in what I think is a reasonable way (am I right?): a multiplier of the off-diagonals, with the diagonal remaining constant, and the whole thing multiplied by sigma (from equation 3 onwards in Freckleton, Harvey, and Pagel 2002 in Am Nat). I am, again, very open to being wrong in what I've written there (note the very janky way I've pulled out the diagonal, for example) but it gives estimates that are very nearly the same as what you get out of geiger. Does this strike you as correct?
+
+Which brings me to 4... The fitting in this is pretty bad (some divergent transitions), and the code is also pretty janky (see above). I also normally say that priors don't matter too much if you've got strong data and so it's not worth losing sleep over them; here, though, I have been able to fit prior distributions to lambda that have affected the estimates a bit. Also the posterior for lambda looks as bad as (maybe worse than) likelihood profile plots of lambda because this is a tricky thing to estimate accurately. So, all of this to say, I think there could easily be an identifiability problem here (too).
+
+My final weird thought is... This fits a lot better when you estimate the distribution's mean (the root, right?), which is something we weren't doing in the PGLMM because we were thinking in terms of random effects. So that perhaps answers your questions about centering, but opens a new problem as to how we should fit these kinds of models when we have multiple lambda-type coefficients to estimate (a problem you don't have with PGLS). Because those means all have to be co-estimated, and they are surely going to compete with each other, no?
+
+Anyway, apologies for the massive rant above; I've had a post-getting-Ramona-to-sleep beer so hopefully it's coherent... I'm off on holiday next week, but when I'm back if this is still of interest to you maybe we should Skype (maybe with Amanda too, as I've mentioned this to her as well, and anyone else you think might be interested). I do wonder if there might be a paper in just this, although I have no idea how many people it would be of interest to besides us! I should add that the paper would have to wait until I have submitted my paper with Jonathan...
+
+
+<><><><><><><><><><><><><><><><>
+3 June 2020 (Will Pease)
+Snippet about authorship:
+
+    ME: I have harassed you a lot now, so I would like to add you to the paper
+    as a co-author. Would that be okay? I am hoping we'll do most of the
+    heavy lifting ourselves and you can just read a draft.
+
+WILL: That's an incredibly kind offer but there's no need. I'm very happy to read stan code "for free" and, to be honest, this has been interesting to me. If I have to code up a model for you, then sure we can talk, but there's no need for just a few back-and-forths over email. Now, if this has got you so fired up that you want to write a paper about phylogenetic models in stan, let's talk, of course :D 
+
+
+<><><><><><><><><><><><><><><><>
+20 May 2020 (Will Pearse)
+Early-days emails ...
+
+ME: It's fitting fine on the fake data I have (it's overestimating lambda,
+but that's not fair because I am using old fake data for a different
+phylo model). My issue is more why no one does this. Both PMM and PGLS
+do something else -- are they smarter than me? I don't think PGLS is but
+PMM people (e.g. Housworth et al. 2004 or the BRMS implementation) seem
+smarter than me.
+
+WILL: Honestly, I think the problem was getting an algorithm that worked well. stan is just that good!
+
+Perhaps we could talk about potential problems with phylogenetic covariance on both the intercept and slope term, but honestly I don't see how that could cause anything pathological as long as you did the usual checks you have to do in every model anyway. I think a pure PGLS person would be annoyed because, again, the phylogeny isn't in the error term; but then that Uyeda phylogenetic natural history paper tells us to dream a little bigger and I agree.
+
+Perhaps there is more to it but, honestly, I don't see it either (maybe I'm also thick). We got reviews back on that paper (which, despite some odd phrases such as "evolution is change in phenotype through time" were fair in being critical because there's no data in it) and it was rejected. One of the comments was "why are you doing this in a Bayesian setting" and my reply is simply "because there's no reason not to any more"! Consider how slow these models are in pez, and how fast they are in stan. There's just no need for any of this anymore!...
+
+Cheers,
+
+Will
+
