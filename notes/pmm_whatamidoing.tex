@@ -1,0 +1,119 @@
+\documentclass[11pt,letter]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1.1in, right=1.1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\usepackage{xcolor}
+
+\colorlet{codecolor}{black!30}
+\newcommand{\codebox}[1]{%
+  \colorbox{codecolor}{\ttfamily \detokenize{#1}}%
+}
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+
+
+{\bf PMM (phylogenetic mixed model)} \\
+
+As I understand it:
+\begin{align}
+y & = \alpha + \beta x + a + e\\
+a & \sim normal(0, \sigma_P^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)
+\end{align}
+... where $\alpha$ and $\beta$, respectively, are the intercept and the slope for the co-factor $x$, $a$ is the phylogenetic random effect, and $e$ is the residual error. $\Sigma$ is a phylogenetic correlation matrix, $I$ stands for the relevant identity matrix. \\ % [Following above from Chapter 11: General Quantitative Genetic Methods for Comparative Biology, by Villemereuil \& Nakagawa, though seems similar to Housworth.]
+
+What I would like to do is have the phylogenetic effect structure the species-level slopes (while also allowing partial pooling on the species given uneven data):
+
+\begin{align}
+y & = \alpha + \beta x + e\\
+\beta  & \sim MVN(\mu, \sigma_{\beta}^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)
+\end{align}
+
+But I am not sure if my math above is correct (should it be $\beta \sim MVN(0, \sigma_{\beta}^2\Sigma)$ since it's a Gaussian Process?), or how to code it in Stan. \\
+
+The version I sent before was this:
+
+\begin{align}
+y & = \beta x + e\\
+\beta & \sim MVN(0, \Phi\Sigma)\\
+e & \sim normal(0, \sigma_y I)\\
+\end{align}
+
+In the code, $\beta$ was:\\
+
+\verb b_force $\sim$ \verb multi_normal(rep_vector(0,n_sp), \\ \verb|diag_matrix(rep_vector(null_interceptsb, n_sp)) + lam_interceptsb*Vphy;|\\
+
+To make this clearer (maybe), let $\alpha$ be  \verb|null_interceptsb| and $\lambda$ be \verb|lam_interceptsb|.\\
+
+When $Vphy$ is set to have 1s down the diagonal (e.g., \verb|Vphy=vcv(phylo, corr=TRUE)|) the above simplifies to this:\\
+
+$\Phi\Sigma$ = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha+\lambda &   \lambda  & \lambda \\
+    \lambda  & \alpha+ \lambda &  \lambda  \\
+  \lambda &  \lambda  &   \alpha+\lambda
+ \end{bmatrix}
+\end{equation}
+
+\vspace{2ex}
+When $Vphy$ is set to have 0s down the diagonal the above simplifies to this:\\
+
+$\Phi\Sigma$ = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha &  \lambda & \lambda \\
+   \lambda  &  \alpha & \lambda \\
+  \lambda & \lambda &   \alpha
+ \end{bmatrix}
+\end{equation}
+\vspace{2ex}
+
+And that separation seemed better to me, so that's why I did it even though I agree it seems wrong. \\
+
+Perhaps something similar to what happens in PGLS (as best I understand, next page) would be better? This would be something like:
+
+\begin{equation}
+\beta \sim MVN(\mu, \Phi\Sigma)
+\end{equation}
+\begin{equation}
+\Phi\Sigma = \\
+ \begin{bmatrix}
+  \sigma_{\beta} &  \lambda \sigma_{\beta} & \lambda \sigma_{\beta} \\
+  \lambda \sigma_{\beta}  & \sigma_{\beta} & \lambda \sigma_{\beta} \\
+  \lambda \sigma_{\beta} & \lambda \sigma_{\beta} &   \sigma_{\beta}
+ \end{bmatrix}
+\end{equation}
+\vspace{2ex}\\
+where $\mu$ is a a single coefficient estimate. % (for the root I think?)
+ 
+\newpage
+{\bf PGLS, as I understand it}\\
+
+\emph{PGLS, allowing $\lambda$ to vary} ...\\
+
+\begin{align}
+y & \sim MVN(\mu, S)\\
+\mu & = \alpha +  \beta*x \\
+\end{align}
+where $\mu$ is a usual linear model, $y$ is reponse data (one per species), and $S$ is a covariance matrix with as many rows and columns as species. In PGLS  (allowing $\lambda$ to vary), $\Sigma$, the phylogenetic covariance matrix, is used to construct an $S$ that should look like this:
+\begin{equation}
+ \begin{bmatrix}
+  \sigma^2 &  \lambda \sigma^2 & \lambda \sigma^2 \\
+  \lambda \sigma^2  & \sigma^2 & \lambda \sigma^2 \\
+  \lambda \sigma^2 & \lambda \sigma^2 &   \sigma^2
+ \end{bmatrix}
+\end{equation}
+
+\end{document}

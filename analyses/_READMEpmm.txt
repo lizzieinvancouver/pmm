@@ -25,4 +25,6 @@ uberlessmini.R -- similar to ubermini.R but puts phylo on intercept.
 
 ubermini.R -- my original code to test Will's model, simple test data with intercept of 0, and just slope (with phylo on slope) on linear model
 
+ubermini_2.R -- Will's new attempt in late August 2020
+
 uberpgls.R -- my attempts to write PGLS code, not successful yet. 

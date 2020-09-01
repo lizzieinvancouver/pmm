@@ -38,7 +38,7 @@ xmean <- 10
 xsd <- 3
 
 if(geigerversion){
-lam <- 0.8
+lam <- 1
 sig2 <- 0.1
     
 scaledtree <- rescale(spetree, model="lambda", lam)
@@ -137,11 +137,11 @@ if(FALSE){
 # Here's one set of calls that might clarify what's happening:
 
 # Regular diagonal
-diag(rep(1, 10)
+diag(rep(1, 10))
 
 # Add a constant
 diag(rep(1, 10)) + 6
 
 # Add a vector
 diag(rep(1, 10)) + c(1:10)
-
+}
