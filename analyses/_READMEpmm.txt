@@ -28,3 +28,7 @@ ubermini.R -- my original code to test Will's model, simple test data with inter
 ubermini_2.R -- Will's new attempt in late August 2020
 
 uberpgls.R -- my attempts to write PGLS code, not successful yet. 
+
+Below are similar to above, but tidied up for Tony Ives: 
+ubertoy_nogeiger.R -- this one builds the data exactly as I believe I have coded the model
+puberty.R -- this one uses geiger to adjust the phylogeny by lambda 

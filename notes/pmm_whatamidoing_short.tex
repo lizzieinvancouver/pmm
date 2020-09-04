@@ -1,0 +1,75 @@
+\documentclass[11pt,letter]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1.1in, right=1.1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\usepackage{xcolor}
+
+\colorlet{codecolor}{black!30}
+\newcommand{\codebox}[1]{%
+  \colorbox{codecolor}{\ttfamily \detokenize{#1}}%
+}
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+
+
+{Your basic PMM (phylogenetic mixed model) ...as I understand it:
+\begin{align}
+y & = \alpha + \beta x + a + e\\
+a & \sim normal(0, \sigma_P^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)
+\end{align}
+... where $\alpha$ and $\beta$, respectively, are the intercept and the slope for the co-factor $x$, $a$ is the phylogenetic random effect, and $e$ is the residual error. $\Sigma$ is a phylogenetic correlation matrix. \\ % [Following above from Chapter 11: General Quantitative Genetic Methods for Comparative Biology, by Villemereuil \& Nakagawa, though seems similar to Housworth.]
+
+What I would like to do is have the phylogenetic effect structure the species-level slopes (while also allowing partial pooling on the species given my uneven real data, that is, for some species I might have 3 observations, each at a different $x$ value, and for other species, I have 30 observations). So here's my toy example ....
+
+\begin{align}
+y & = \beta x + e\\
+\beta & \sim MVN(0, \Phi\Sigma)\\
+e & \sim normal(0, \sigma_y)\\
+\end{align}
+
+In the Stan code, $\beta$ is:\\
+
+\verb b_force $\sim$ \verb multi_normal(rep_vector(0,n_sp), \\ \verb|diag_matrix(rep_vector(null_interceptsb, n_sp)) + lam_interceptsb*Vphy;|\\
+
+To make this clearer (maybe), let $\alpha$ be  \verb|null_interceptsb| and $\lambda$ be \verb|lam_interceptsb|.\\
+
+When $Vphy$ is set to have 1s down the diagonal (e.g., \verb|Vphy=vcv(phylo, corr=TRUE)|) the above simplifies to this:\\
+
+$\Phi\Sigma$ = 
+\begin{equation}
+ \begin{bmatrix}
+  \alpha+\lambda &   \lambda  & \lambda \\
+    \lambda  & \alpha+ \lambda &  \lambda  \\
+  \lambda &  \lambda  &   \alpha+\lambda
+ \end{bmatrix}
+\end{equation}
+
+Perhaps something similar to what happens in PGLS (as best I understand, next page) would be better? This would be something like:
+
+\begin{equation}
+\beta \sim MVN(\mu, \Phi\Sigma)
+\end{equation}
+\begin{equation}
+\Phi\Sigma = \\
+ \begin{bmatrix}
+  \sigma_{\beta} &  \lambda \sigma_{\beta} & \lambda \sigma_{\beta} \\
+  \lambda \sigma_{\beta}  & \sigma_{\beta} & \lambda \sigma_{\beta} \\
+  \lambda \sigma_{\beta} & \lambda \sigma_{\beta} &   \sigma_{\beta}
+ \end{bmatrix}
+\end{equation}
+\vspace{2ex}\\
+where $\mu$ is a a single coefficient estimate. Though Will sent me code for this and it doesn't seem to work either ....
+
+
+\end{document}
