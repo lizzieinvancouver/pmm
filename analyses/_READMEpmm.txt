@@ -31,4 +31,21 @@ uberpgls.R -- my attempts to write PGLS code, not successful yet.
 
 Below are similar to above, but tidied up for Tony Ives: 
 ubertoy_nogeiger.R -- this one builds the data exactly as I believe I have coded the model
-puberty.R -- this one uses geiger to adjust the phylogeny by lambda 
+ubertoy.R -- this one uses geiger to adjust the phylogeny by lambda 
+
+
+<><><><><><><><><>
+Next steps, various steps etc.
+for Lizzie (22 September 2020)
+
+
+PMM test data:
+* Put up an example of ubertoy using Will's method on Stan Discourse
+* Work on the code in phyr (get running on OSPREE maybe?)
+* organize the damn files here
+* follow up with Will, Simone, Tony
+
+PMM in OSPREE:
+* Phylo_ospree_reanalyses.R has all the work...
+* As of 22 Sep I cannot get the version Will sent in late August (ubermini_2.R) to run (nointer_2levelphyall_2.stan in OSPREE), even with just forcing so I need to work on this more. 
+<><><><><><><><><>
