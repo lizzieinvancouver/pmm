@@ -26,6 +26,7 @@ Below are similar to above, but tidied up for Tony Ives:
 ubertoy_nogeiger.R -- this one builds the data exactly as I believe I have coded the model
 ubertoy.R -- this one uses geiger to adjust the phylogeny by lambda 
 
+ubermini_latent.R (and .stan) -- based off the ubermini code, but separates out a vector of latent (non-phylo) slops from phylo slopes (formerly pmm_geoff.R and .stan)
 
 
 <><><><><><><><><>

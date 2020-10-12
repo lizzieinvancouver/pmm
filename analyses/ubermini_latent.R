@@ -1,4 +1,5 @@
-## Started 29 May 2020 ##
+## Started mid October 2020 ##
+## By Geoff ##
 ## Generate test data for my phylogeny Stan models ##
 
 ## Someday we want:
@@ -36,11 +37,11 @@ param <- list(
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 ### Generate phylogenetic effect using (unscaled) tree
-slope.phylogeny <- fastBM(spetree, a = 0, mu = 0, sig2 = param[["sigma_phylo"]] ^ 2)
+slope.phylogeny <- fastBM(spetree, a = 0, mu = 0, sig2 = param[["sigma_phylo"]] ^ 2) # I am not sure if sig2 is really what we want to vary here, but maybe you have read up on it and it is ... a = 0 sets the root trait value to 0, this might be what we want given your 'actual slope' additive model? 
 ### Generate latent slope
 slope.latent <- rnorm(n = nspecies, mean = param[["b_force_latent_mu"]], sd = param[["b_force_latent_sigma"]])
 ### Add together
-slope.actual <- slope.phylogeny + slope.latent
+slope.actual <- slope.phylogeny + slope.latent 
 
 ## What is lambda? Model will struggle if too low (because it will want sigma_phylo to be 0, the lower bound)
 phylosig(x=slope.actual, tree=spetree, method="lambda")$lambda
