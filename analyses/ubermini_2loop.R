@@ -22,6 +22,12 @@ require(rstan)
 
 options(mc.cores = parallel::detectCores())
 
+dfout <- data.frame(m=numeric(), lam=numeric(), phylosig=numeric(),
+    bz50=numeric(), bz2.5=numeric(), bz97.5=numeric(),
+    lam_interceptsb50=numeric(), lam_interceptsb2.5=numeric(), lam_interceptsb97.5=numeric(),
+    slopelm=numeric(), Rhat=numeric())
+
+# Set up one species and tree for all sims ... 
 nspecies = 90
 nind = 10
 
@@ -29,9 +35,15 @@ nind = 10
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
+msims <- c(0.1, 0.5, 1, 5)
+lamsims <- c(0.1, 0.5, 0.9)
+
+for(i in c(msims)){
+    for (j in c(lamsims)){
+
 # now set up the trait
-m <- 0.6
-lam <- 0.7
+m <- i
+lam <- j
 sigy <- 0.01
 sig2 <- 0.1
 
@@ -44,8 +56,8 @@ nulltree <- rescale(spetree, model="lambda", 0)
 
 dfhere <- data.frame(x=numeric(), y=numeric())
 
-for (i in 1:length(slopez)){
-    slopehere <- slopez[i]
+for (k in 1:length(slopez)){
+    slopehere <- slopez[k]
     xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
     yhere <- xhere*slopehere
     dfadd <- data.frame(x=xhere, y=yhere)
@@ -61,17 +73,27 @@ testme <- stan("stan/ubermini_2.stan", # Note: changed to a new model
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
                 Vphy=vcv(spetree)), # Note: dropped the corr=TRUE
-                iter=2000, chains=2, seed=123456)
-summary(testme)$summary
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"50%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"25%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"75%"]
+                iter=4000, chains=4)
 
-fitContinuous(spetree, slopez, model="lambda")
 
 # Compare true slopes to estimated slopes
 sumer <- summary(testme)$summary
-# sumer[grep("b_force", rownames(sumer)), "mean"]
-# slopez
+        
+slopemodel <- summary(lm(slopez ~ sumer[grep("b_force", rownames(sumer)), "mean"]))
 
-plot(slopez, sumer[grep("b_force", rownames(sumer)), "mean"])
+dfadd <- data.frame(m=m, lam=lam, phylosig=phylosig(x=slopez, tree=spetree, method="lambda")[[1]],
+    bz50=summary(testme)$summary[c("b_z"),"50%"],
+    bz2.5=summary(testme)$summary[c("b_z"),"2.5%"],
+    bz97.5=summary(testme)$summary[c("b_z"),"97.5%"],
+    lam_interceptsb50=summary(testme)$summary[c("lam_interceptsb"),"50%"],
+    lam_interceptsb2.5=summary(testme)$summary[c("lam_interceptsb"),"97.5%"],
+    lam_interceptsb97.5=summary(testme)$summary[c("lam_interceptsb"),"2.5%"],
+    slopelm=coef(slopemodel)[[2]],
+    Rhat=mean(summary(testme)$summary[c("lam_interceptsb", "sigma_interceptsb", "b_z", "sigma_y"),"Rhat"]))
+
+dfout <- rbind(dfout, dfadd)
+
+    }
+}
+
+write.csv(dfout, "output/dfout_nocorr.csv")
