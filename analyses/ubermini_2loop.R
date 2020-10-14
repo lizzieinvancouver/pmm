@@ -97,3 +97,6 @@ dfout <- rbind(dfout, dfadd)
 }
 
 write.csv(dfout, "output/dfout_nocorr.csv")
+
+# df <- read.csv("~/Documents/git/teaching/stan/pmm/analyses/output/dfout_nocorr.csv")
+# ggplot(df, aes(phylosig, lam_interceptsb50, group=as.factor(m), color=as.factor(m)))+geom_point()
