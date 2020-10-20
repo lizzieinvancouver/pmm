@@ -69,7 +69,7 @@ dfhere$spnum <- as.numeric(gsub('s', '', dfhere$sp))
     
 dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 
-testme <- stan("stan/ubermini_2.stan", # Note: changed to a new model
+testme <- stan("stan/ubermini_2_biggerpriors.stan", # Note: changed to a new model
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
                 Vphy=vcv(spetree)), # Note: dropped the corr=TRUE
@@ -100,3 +100,4 @@ write.csv(dfout, "output/dfout_nocorr.csv")
 
 # df <- read.csv("~/Documents/git/teaching/stan/pmm/analyses/output/dfout_nocorr.csv")
 # ggplot(df, aes(phylosig, lam_interceptsb50, group=as.factor(m), color=as.factor(m)))+geom_point()
+# ggplot(df, aes(m, bz50, group=as.factor(m), color=as.factor(lam)))+geom_point()
