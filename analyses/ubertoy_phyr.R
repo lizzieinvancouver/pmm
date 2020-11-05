@@ -69,7 +69,7 @@ dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 
 
 # check whether simulated x (should not have phylo signal) actually does not have it
-checkx <- aggregate(dfhere, by=list(sp=dfhere$sp),mean)
+checkx <- aggregate(dfhere, by=list(sp=dfhere$sp), mean)
 phylosig(x=checkx$x, tree=spetree, method="lambda")$lambda
 
 
