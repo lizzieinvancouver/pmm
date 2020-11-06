@@ -30,10 +30,10 @@ spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # now set up the trait
-m <- 0.6
-lam <- 0.7
-sigy <- 0.01
-sig2 <- 0.1
+m <- 0.6  # root trait value, compare to b_z (set to -0.4 if you want to recreate early Nov 2020 issue in OSPREE data: `multi_normal_lpdf: LDLT_Factor of covariance parameter is not positive definite')
+lam <- 0.7 # lambda
+sigy <- 0.01 # sigma_y
+sig2 <- 0.1 # rate of evolution (a constant rate across the tree)
 
 scaledtree <- rescale(spetree, model="lambda", lam)
 slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sig2)
@@ -57,11 +57,11 @@ dfhere$spnum <- as.numeric(gsub('s', '', dfhere$sp))
     
 dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 
-testme <- stan("stan/ubermini_2.stan", # Note: changed to a new model
+testme <- stan("stan/ubermini_2_biggerpriors.stan", # Or ubermini_2.stan
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
                 Vphy=vcv(spetree)), # Note: dropped the corr=TRUE
-                iter=2000, chains=2, seed=123456)
+                iter=2000, chains=4) # seed=123456
 summary(testme)$summary
 summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"50%"]
 summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"25%"]

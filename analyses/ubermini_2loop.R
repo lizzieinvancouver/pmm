@@ -42,10 +42,10 @@ for(i in c(msims)){
     for (j in c(lamsims)){
 
 # now set up the trait
-m <- i
-lam <- j
-sigy <- 0.01
-sig2 <- 0.1
+m <- i # root trait value, compare to b_z 
+lam <- j # lambda
+sigy <- 0.01 # sigma_y
+sig2 <- 0.1 # rate of evolution
 
 scaledtree <- rescale(spetree, model="lambda", lam)
 slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sig2)
