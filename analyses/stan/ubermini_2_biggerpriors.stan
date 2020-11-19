@@ -3,10 +3,12 @@
 functions {
   matrix lambda_vcv(matrix vcv, real lambda, real sigma){
     matrix[rows(vcv),cols(vcv)] local_vcv;
+    matrix[rows(vcv),cols(vcv)] sigma_mat;  
     local_vcv = vcv * lambda;
     for(i in 1:rows(local_vcv))
       local_vcv[i,i] = vcv[i,i];
-    return(local_vcv * sigma);
+    sigma_mat = diag_matrix(rep_vector(sigma, rows(vcv)));
+    return(sigma_mat * local_vcv * sigma_mat);
   }
 }
 
@@ -35,12 +37,13 @@ model {
 		b_force[sp[i]] * x[i];
 			     	}
 
-	b_force ~ multi_normal(rep_vector(b_z,n_sp), lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)); 
+  b_force ~ multi_normal(rep_vector(b_z,n_sp), lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)); 
 
-        sigma_interceptsb ~ normal(0, 1);
-	lam_interceptsb ~ normal(0, 1);
-	b_z ~ normal(0, 5);
-	y ~ normal(yhat, sigma_y);
+  sigma_interceptsb ~ normal(0, 1);
+  lam_interceptsb ~ normal(0, 1);
+  b_z ~ normal(0, 5);
+  y ~ normal(yhat, sigma_y);
+  sigma_y ~ normal(0, 1);
 
 }
 

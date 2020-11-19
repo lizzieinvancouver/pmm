@@ -21,6 +21,7 @@ require(phytools)
 require(rstan)
 
 options(mc.cores = parallel::detectCores())
+## options(mc.cores = 4)
 
 nspecies = 90
 nind = 10
@@ -36,7 +37,7 @@ sigy <- 0.01 # sigma_y
 sig2 <- 0.1 # rate of evolution (a constant rate across the tree)
 
 scaledtree <- rescale(spetree, model="lambda", lam)
-slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sig2)
+slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sig2 ^ 2)
 phylosig(x=slopez, tree=spetree, method="lambda")
 
 # for testing ...
@@ -60,12 +61,13 @@ dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigy)
 testme <- stan("stan/ubermini_2_biggerpriors.stan", # Or ubermini_2.stan
                 data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                 x=dfhere$x, y=dfhere$yerr,
-                Vphy=vcv(spetree)), # Note: dropped the corr=TRUE
-                iter=2000, chains=4) # seed=123456
+                Vphy=vcv(spetree, corr = TRUE)), # Note: In this case corr=TRUE/FALSE produce same output
+                iter=3000, chains=4) # seed=123456
 summary(testme)$summary
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"50%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"25%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z"),"75%"]
+summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"mean"]
+summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"50%"]
+summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"25%"]
+summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"75%"]
 
 fitContinuous(spetree, slopez, model="lambda")
 
