@@ -36,14 +36,15 @@ model {
             yhat[i] = 
 		b_force[sp[i]] * x[i];
 			     	}
-
+  /* print(lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)); */
+  
   b_force ~ multi_normal(rep_vector(b_z,n_sp), lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)); 
 
   sigma_interceptsb ~ normal(0, 1);
-  lam_interceptsb ~ normal(0, 1);
+  lam_interceptsb ~ beta(2, 2);
   b_z ~ normal(0, 5);
   y ~ normal(yhat, sigma_y);
-  sigma_y ~ normal(0, 1);
+  sigma_y ~ normal(0, .5);
 
 }
 
