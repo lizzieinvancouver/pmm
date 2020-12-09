@@ -64,14 +64,14 @@ model {
   sigma_interceptsbc ~ normal(0, 1);
   lam_interceptsbc ~ beta(2, 2);
   b_zc ~ normal(0, 5);
-  sigma_interceptsbc ~ normal(0, 1);
-  lam_interceptsbc ~ beta(2, 2);
-  b_zc ~ normal(0, 5);
+  sigma_interceptsbp ~ normal(0, 1);
+  lam_interceptsbp ~ beta(2, 2);
+  b_zp ~ normal(0, 5);
   sigma_interceptsa ~ normal(0, 1);
   lam_interceptsa ~ beta(2, 2);
-  a_z ~ normal(20, 10);
+  a_z ~ normal(20, 10); 
   y ~ normal(yhat, sigma_y);
-  sigma_y ~ normal(0, 5); # made this bigger
+  sigma_y ~ normal(0, 10); # made this bigger
 
 }
 
