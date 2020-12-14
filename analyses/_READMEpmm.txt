@@ -8,6 +8,8 @@ Looking for Lemoine PGLS?
 
 max_sims.R from Max Farrell
 
+phlyo_opsree_compact.R -- December work using ubermini_2 on OSPREE
+
 pmm-pgls-simulations_v2.R -- original code from Simon Joly
 
 pmm-pgls-simulations_v2IMC.R -- edits to Joly code for our purposes
@@ -18,7 +20,9 @@ uberlessmini.R -- similar to ubermini.R but puts phylo on intercept.
 
 ubermini.R -- my original code to test Will's model, simple test data with intercept of 0, and just slope (with phylo on slope) on linear model
 
-ubermini_2.R -- Will's new attempt in late August 2020 ** This one might work! Has different multi normal formula than the other code!
+*****
+ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **
+*****
 
 uberpgls.R -- my attempts to write PGLS code, not successful yet. 
 
