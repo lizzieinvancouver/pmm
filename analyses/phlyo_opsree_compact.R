@@ -72,3 +72,8 @@ testme <- stan("stan/nointer_2levelphyall_2.stan",
 }
 
 # goo <- readRDS("output/testme4.Rds")
+# on server: 3500/5000: 338 DivTrans 5500/7000: 204 DivTrans; 5500/7000 and 0.9: 134
+# testme4 (new) 8000/9000 -- 227; testme 5: 9000/10000 and 0.9 -- 137; testme6 9000/10000 and 0.95 -- 197; testme7: 9000/10000 and 0.99 -- 42!
+# next on server (took at least 2 days I think!): testme4 8000/9000 and 0.99 -- 32 DivTrans; testme5  11000/12000 and 0.99 24; testme6 8000/9000 and 0.999 37;  testme 7 11000/12000 and 0.999 14 DivTrans. 
+goo <- readRDS("output/testme4.Rds")
+
