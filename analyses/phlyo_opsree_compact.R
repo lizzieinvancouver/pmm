@@ -95,7 +95,8 @@ nondiv_params <- partition[[2]]
 pars <- c("sigma_y", "lam_interceptsa", "sigma_interceptsa", "lam_interceptsbf", "sigma_interceptsbf",
     "lam_interceptsbc", "sigma_interceptsbc", "lam_interceptsbp", "sigma_interceptsbp", "b_zf", "b_zc",
     "b_zp", "a_z", "lp__")
-summary(fit)$summary[which(pars %in% rownames(summary(fit)$summary)),]
+sumfit <- summary(fit)$summary
+sumfit[which(rownames(sumfit) %in% pars),]
 
 colz <- c(rep("#8F272780", nrow(nondiv_params[pars])), rep("#00FF0080", nrow(div_params[pars])))
 
