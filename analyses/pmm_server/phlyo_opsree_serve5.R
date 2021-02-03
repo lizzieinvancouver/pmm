@@ -30,6 +30,6 @@ testme8 <- stan("stan/lessmini_threeslopeintercept.stan",
     data=list(N=nrow(d), n_sp=nspecies, sp=d$sppnum,
        x1=d$force.z, x2=d$chill.z, x3=d$photo.z,
        y=d$resp, Vphy=vcv(phylo)),
-    iter=20000, warmup=19000, chains=4, cores=4, control=list(adapt_delta=0.999))
+    iter=6000, warmup=5000, chains=4, cores=4, control=list(stepsize=0.001, adapt_delta=0.999))
 
 saveRDS(testme8, "output/testme8.rds")
