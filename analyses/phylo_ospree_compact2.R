@@ -2,24 +2,10 @@
 ## By Lizzie ## 
 ## Taken mainly from Phylo_ospree_reanalyses.R ##
 
-## housekeeping 
-## rm(list=ls())
-## options(stringsAsFactors = FALSE)
-## options(mc.cores = 4)
-
-# Setting working directory. Add in your own path in an if statement for your file structure
-## if(length(grep("Lizzie", getwd())>0)) {
-## setwd("~/Documents/git/teaching/stan/pmm/analyses") } else if (length(grep("boomer", getwd()))>0) {setwd("boom/boom")
-## }  else setwd("hereliesboomboom")
-
-# Get the data
-# See Phylo_ospree_reanalyses.R for what I wrote out  (ospree repo)
-
 library("ape")
 library("rstan")
 
-## source("source/stan_utility.R")
-
+# Data
 phylo <- read.tree("input/ospreephylo.tre")
 bb.stan <- read.csv("input/ospreebb.csv")
 
@@ -33,20 +19,28 @@ d <- merge(bb.stan, phymatch, by.x="spps", by.y="tip")
 d <- d[order(d$sppnum),]
 nspecies <- max(d$sppnum)
 
-## One slope model
+## Two slope, one intercept model
 ### Set priors
 phypriors <- list(
-    b_z_prior_mu = 0,
-    b_z_prior_sigma = 5,
-    sigma_interceptsb_prior_mu = 40,
-    sigma_interceptsb_prior_sigma = 5,
+    a_z_prior_mu = 0,
+    a_z_prior_sigma = 5,
+    b_zf_prior_mu = 0,
+    b_zf_prior_sigma = 5,
+    b_zc_prior_mu = 0,
+    b_zc_prior_sigma = 5,
+    sigma_interceptsa_prior_mu = 40,
+    sigma_interceptsa_prior_sigma = 5,
+    sigma_interceptsbf_prior_mu = 5,
+    sigma_interceptsbf_prior_sigma = 5,
+    sigma_interceptsbc_prior_mu = 5,
+    sigma_interceptsbc_prior_sigma = 5,
     sigma_y_mu_prior = 20,
     sigma_y_mu_sigma = 1)
 
 ### Fit model
-testme <- stan("stan/uber_oneslope.stan",
+testme <- stan("stan/uber_twoslopeintercept.stan",
     data=append(list(N=nrow(d), n_sp=nspecies, sp=d$sppnum,
-       x1=d$force.z, # chill=d$chill.z, photo=d$photo.z,
+       x1=d$force.z, x2 = d$chill.z, ## , photo=d$photo.z,
        y=d$resp, Vphy=vcv(phylo, corr = TRUE)), phypriors),
     iter=2000, chains=4,
     refresh = 100)
@@ -57,43 +51,11 @@ names(testme)[4:(nspecies+3)] <- unique(d$phylo)
 ### Summarize full fit
 summary(testme)$summary
         
-### Summarize lambda, b_z, and sigmas
-summary(testme, pars = list("lam_interceptsb", "sigma_interceptsb", "b_z", "sigma_y"))$summary
-
-## One slope, one intercept model
-### Set priors
-phypriors <- list(
-    a_z_prior_mu = 0,
-    a_z_prior_sigma = 5,
-    b_z_prior_mu = 0,
-    b_z_prior_sigma = 5,
-    sigma_interceptsa_prior_mu = 40,
-    sigma_interceptsa_prior_sigma = 5,
-    sigma_interceptsb_prior_mu = 5,
-    sigma_interceptsb_prior_sigma = 5,
-    sigma_y_mu_prior = 20,
-    sigma_y_mu_sigma = 1)
-
-### Fit model
-testme <- stan("stan/uber_oneslopeintercept.stan",
-    data=append(list(N=nrow(d), n_sp=nspecies, sp=d$sppnum,
-       x1=d$force.z, # chill=d$chill.z, photo=d$photo.z,
-       y=d$resp, Vphy=vcv(phylo, corr = TRUE)), phypriors),
-    iter=2000, chains=4,
-    refresh = 10)
-
-### Add species names
-names(testme)[4:(nspecies+3)] <- unique(d$phylo)
-
-### Summarize full fit
-summary(testme)$summary
-        
-### Summarize lambda, b_z, intercepts, and sigmas
-summary(testme, pars = list("lam_interceptsa", "lam_interceptsb", "sigma_interceptsa", "sigma_interceptsb", "a_z" "b_z", "sigma_y"))$summary
+### Summarize lambda, b_zf, b_zc, intercepts, and sigmas
+summary(testme, pars = list("lam_interceptsa", "lam_interceptsb", "sigma_interceptsa", "sigma_interceptsbf", "sigma_interceptbc", "a_z", "b_zf", "b_zc" "sigma_y"))$summary
 
 
 ### TBD
-
 
 ## if(FALSE){
 ## # the below runs ...
