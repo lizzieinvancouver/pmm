@@ -18,6 +18,8 @@
 library("ape")
 library("rstan")
 
+options(mc.cores = 4)
+
 ## source("source/stan_utility.R")
 
 phylo <- read.tree("input/ospreephylo.tre")
@@ -36,7 +38,7 @@ nspecies <- max(d$sppnum)
 ## One slope model
 ### Set priors
 phypriors <- list(
-    b_z_prior_mu = 0,
+    b_z_prior_mu = -4,
     b_z_prior_sigma = 5,
     sigma_interceptsb_prior_mu = 40,
     sigma_interceptsb_prior_sigma = 5,
@@ -63,9 +65,9 @@ summary(testme, pars = list("lam_interceptsb", "sigma_interceptsb", "b_z", "sigm
 ## One slope, one intercept model
 ### Set priors
 phypriors <- list(
-    a_z_prior_mu = 0,
+    a_z_prior_mu = 30,
     a_z_prior_sigma = 5,
-    b_z_prior_mu = 0,
+    b_z_prior_mu = -4,
     b_z_prior_sigma = 5,
     sigma_interceptsa_prior_mu = 40,
     sigma_interceptsa_prior_sigma = 5,
