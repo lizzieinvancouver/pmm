@@ -46,8 +46,10 @@ model {
   
   // Priors
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
-  lam_interceptsb ~ beta(2, 2);
   sigma_interceptsb ~ normal(sigma_interceptsb_prior_mu, sigma_interceptsb_prior_sigma);
   sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_sigma);
+
+  lam_interceptsb ~ normal(0.5, 1);
+  
 }
 

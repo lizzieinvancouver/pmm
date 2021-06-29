@@ -57,11 +57,12 @@ model {
   // Priors
   a_z ~ normal(a_z_prior_mu, a_z_prior_sigma);
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
-  lam_interceptsa ~ beta(2, 2);
-  lam_interceptsb ~ beta(2, 2);
   sigma_interceptsa ~ normal(sigma_interceptsa_prior_mu, sigma_interceptsa_prior_sigma);
   sigma_interceptsb ~ normal(sigma_interceptsb_prior_mu, sigma_interceptsb_prior_sigma);
   sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_sigma);
+
+  lam_interceptsa ~ normal(0.5, 1);
+  lam_interceptsb ~ normal(0.5, 1);
 
 }
 
