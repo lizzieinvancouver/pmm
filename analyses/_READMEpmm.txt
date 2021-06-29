@@ -1,14 +1,23 @@
 23 August 2020
+Updated 29 June 2021
 Lizzie finally making some notes on what's in the folder 
 
 Looking for Lemoine PGLS? 
 >> git/teaching/gelmanhill/BayesPGLS/pgls.R
 >> git/teaching/gelmanhill/BayesPGLS/pgls_lemoine.stan
 
+phlyo_opsree_compact.R -- December work using ubermini_2 on OSPREE (overwritten by Geoff at some point?)
+
+simsmore folder -- work by Geoff L. in 2021, based off ubermini_2.R and related Stan code to build up simulations with multiple slopes and an intercept (ubermini_2.R is a slope-only model, so assuming an intercept of 0)
+
+*****
+ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **
+*****
+
+<><><><><><><><><>
+wanderings folder (created 29 June 2021, same time Lizzie deleted a bunch of stuff)
 
 max_sims.R from Max Farrell
-
-phlyo_opsree_compact.R -- December work using ubermini_2 on OSPREE
 
 pmm-pgls-simulations_v2.R -- original code from Simon Joly
 
@@ -20,21 +29,9 @@ uberlessmini.R -- similar to ubermini.R but puts phylo on intercept.
 
 ubermini.R -- my original code to test Will's model, simple test data with intercept of 0, and just slope (with phylo on slope) on linear model
 
-*****
-ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **
-*****
+ubertoy_phyr.R -- trying to run model using R package by Ives (phyr)
 
-uberpgls.R -- my attempts to write PGLS code, not successful yet. 
-
-Below are similar to above, but tidied up for Tony Ives: 
-ubertoy_nogeiger.R -- this one builds the data exactly as I believe I have coded the model
-ubertoy.R -- this one uses geiger to adjust the phylogeny by lambda 
-
-ubermini_latent.R (and .stan) -- based off the ubermini code, but separates out a vector of latent (non-phylo) slops from phylo slopes (formerly pmm_geoff.R and .stan)
-
-
-<><><><><><><><><>
-notcurrent folder
+wanderings/evenolder folder
 
 run_MCMCbrms_pglmm_nointra.R  -- my edits to Joly code to remove intraspecific covariance matrix ... I think superseded by pmm-pgls-simulations_v2IMC.R  (but should check)
 
@@ -46,17 +43,8 @@ supplement.R -- code from Will's paper, but has the early method (lambda + alpha
 
 
 <><><><><><><><><>
-Next steps, various steps etc.
-for Lizzie (22 September 2020)
-
-
-PMM test data:
-* Put up an example of ubertoy using Will's method on Stan Discourse
-* Work on the code in phyr (get running on OSPREE maybe?)
-* organize the damn files here
-* follow up with Will, Simone, Tony
+Extra notes ...
 
 PMM in OSPREE:
 * Phylo_ospree_reanalyses.R has all the work...
-* As of 22 Sep I cannot get the version Will sent in late August (ubermini_2.R) to run (nointer_2levelphyall_2.stan in OSPREE), even with just forcing so I need to work on this more. 
 <><><><><><><><><>
