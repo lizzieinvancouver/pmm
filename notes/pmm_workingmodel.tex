@@ -1,0 +1,87 @@
+\documentclass[11pt,letter]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1.1in, right=1.1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\usepackage{xcolor}
+
+\colorlet{codecolor}{black!30}
+\newcommand{\codebox}[1]{%
+  \colorbox{codecolor}{\ttfamily \detokenize{#1}}%
+}
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+\emph{Update on working PMM model}\\
+
+By Lizzie\\
+29 June 2021\\
+
+
+Let's start with the basic {\bf PMM (phylogenetic mixed model)} \\
+
+As I understand it:
+\begin{align}
+y & = \alpha + \beta x + a + e\\
+a & \sim normal(0, \sigma_P^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)
+\end{align}
+... where $\alpha$ and $\beta$, respectively, are the intercept and the slope for the co-factor $x$, $a$ is the phylogenetic random effect, and $e$ is the residual error. $\Sigma$ is a phylogenetic correlation matrix, $I$ stands for the relevant identity matrix. (The above from Chapter 11: General Quantitative Genetic Methods for Comparative Biology, by Villemereuil \& Nakagawa, though seems similar to Housworth.)\\
+
+What we would like to do is have the phylogenetic effect structure the species-level slopes (while also allowing partial pooling on the species given uneven data, that is, for some species we might have 3 observations, each at a different $x$ value, and for other species, we have 30 observations).
+
+We think we have this running in \verb|ubermini_2.R| (simulation code) and \verb|ubermini_2.stan|. \\
+
+In the Stan code, $\beta$ is:\\
+
+\verb b_force $\sim$ \verb multi_normal(rep_vector(b_z,n_sp), \\
+\verb|lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)|\\
+
+So the \verb|b_z| represents the root trait value, and all the action happens in the second part of the function, which calls \verb|lambda_vcv|, which is defined at the top of the Stan code. This function sets up two matrices (both the size of the VCV in your data): (1) a matrix of your VCV with $\lambda$ on the off-diagonals only (\verb|local_vcv|) and (2) a matrix with $\sigma$ on the diagonal (\verb|sigma_mat|)  and then returns the product \verb|sigma_mat| * \verb|lambda_mat| * \verb|sigma_mat|. So that, when you put the  $\beta$ code above with the \verb|lambda_vcv| function you get:
+
+\begin{equation*}
+\beta \sim MVN(\mu, \Phi\Sigma)
+\end{equation*}
+\begin{equation*}
+\Phi\Sigma = 
+ \begin{bmatrix}
+  \sigma^2_{\beta} &  \lambda \sigma^2_{\beta} & \lambda \sigma^2_{\beta} \\
+  \lambda \sigma^2_{\beta}  & \sigma^2_{\beta} & \lambda \sigma^2_{\beta} \\
+  \lambda \sigma^2_{\beta} & \lambda \sigma^2_{\beta} &   \sigma^2_{\beta}
+ \end{bmatrix}
+\end{equation*}
+
+\newpage
+\emph{What we tried...}\\
+From May to October 2020, Lizzie worked on this model (getting help from others, with help on the matrix work especially Will Pearse). We tried a couple forms of the $MVN(\mu, \Phi\Sigma)$ (see \verb|notes/phylabtalk_oct2020| for an overview) to get to this current one. \\
+
+It looks like it does not matter in the current test code whether or not the VCV goes in as a correlation matrix or not. This seems odd to me. \\
+
+We have this code running on simulations with just slope (\verb|ubermini_2.R|) as well as with an intercept and up to three slopes (phylogeny on all slopes and intercept), see the simsmore folder. \\
+
+{\bf PGLS, as I understand it} (in case you want to compare...)\\
+
+\emph{PGLS, allowing $\lambda$ to vary} ...\\
+
+\begin{align}
+y & \sim MVN(\mu, S)\\
+\mu & = \alpha +  \beta*x \\
+\end{align}
+where $\mu$ is a usual linear model, $y$ is reponse data (one per species), and $S$ is a covariance matrix with as many rows and columns as species. In PGLS  (allowing $\lambda$ to vary), $\Sigma$, the phylogenetic covariance matrix, is used to construct an $S$ that should look like this:
+\begin{equation}
+ \begin{bmatrix}
+  \sigma^2 &  \lambda \sigma^2 & \lambda \sigma^2 \\
+  \lambda \sigma^2  & \sigma^2 & \lambda \sigma^2 \\
+  \lambda \sigma^2 & \lambda \sigma^2 &   \sigma^2
+ \end{bmatrix}
+\end{equation}
+
+\end{document}
