@@ -6,9 +6,13 @@ Looking for Lemoine PGLS?
 >> git/teaching/gelmanhill/BayesPGLS/pgls.R
 >> git/teaching/gelmanhill/BayesPGLS/pgls_lemoine.stan
 
-phlyo_opsree_compact.R -- December work using ubermini_2 on OSPREE (overwritten by Geoff at some point?)
+phlyo_opsree_compact1.R -- Originally, December work using ubermini_2 on OSPREE. Current version fits a one trait (i.e., oneslope) model to the OSPREE data. Model is stan/uber_oneslopeintercept.stan
 
-simsmore folder -- work by Geoff L. in 2021, based off ubermini_2.R and related Stan code to build up simulations with multiple slopes and an intercept (ubermini_2.R is a slope-only model, so assuming an intercept of 0)
+phlyo_opsree_compact2.R -- Fits a two trait (i.e., twoslope) model to the OSPREE data. Model is stan/uber_twoslopeintercept.stan
+
+phlyo_opsree_compact3.R -- Fits a three trait (i.e., threeslope) model to the OSPREE data. Model is stan/uber_threeslopeintercept.stan
+
+simsmore folder -- work by Geoff L. in 2021, based off ubermini_2.R and related Stan code to build up simulations with multiple slopes and an intercept (simulate_fit_oneslope is a slope-only model, so assuming an intercept of 0)
 
 *****
 ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **

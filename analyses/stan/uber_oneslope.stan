@@ -21,6 +21,8 @@ data {
   // Priors
   real b_z_prior_mu;
   real b_z_prior_sigma;
+  real lam_interceptsb_prior_alpha;
+  real lam_interceptsb_prior_beta;
   real sigma_interceptsb_prior_mu;
   real sigma_interceptsb_prior_sigma;
   real sigma_y_mu_prior;
@@ -29,7 +31,7 @@ data {
 
 parameters {
   real<lower=0> sigma_y;    
-  real<lower=0> lam_interceptsb;       
+  real<lower=0, upper=1> lam_interceptsb;       
   real<lower=0> sigma_interceptsb;    
   vector[n_sp] b_force; // slope of forcing effect
   real b_z;
@@ -46,10 +48,9 @@ model {
   
   // Priors
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
+  lam_interceptsb ~ beta(lam_interceptsb_prior_alpha, lam_interceptsb_prior_beta);
   sigma_interceptsb ~ normal(sigma_interceptsb_prior_mu, sigma_interceptsb_prior_sigma);
   sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_sigma);
-
-  lam_interceptsb ~ normal(0.5, 1);
   
 }
 
