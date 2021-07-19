@@ -61,7 +61,7 @@ for (i in 1:nspecies){
     temp <- data.frame(sp = rep(i, nind),
                        x1 = rnorm(n = nind, mean = 10, sd = 3),
                        trait1 = rep(error_bf[i], nind),
-                       slope = rep(slopez, each=nind))
+                       slope = rep(slopez[i], each=nind))
     dfhere <- rbind(dfhere, temp)
 }
 dfhere$mu <- dfhere$x1 * dfhere$slope + dfhere$trait1 # adjusted here
