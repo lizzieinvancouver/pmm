@@ -17,7 +17,6 @@ require(ape)
 require(geiger)
 require(phytools)
 require(rstan)
-library(truncnorm)
 
 ## options(mc.cores = parallel::detectCores())
 options(mc.cores = 4)
@@ -37,6 +36,18 @@ param <- list(b_z = 0.6, # root value trait1 (leave as is, but think of it as th
               slope_mu = 3, # new slope mean
               slope_sigma = 1 # new slope variance
               )
+
+# Set priors
+phypriors <- list(
+    b_z_prior_mu = 1,
+    b_z_prior_sigma = 3,
+    lam_interceptsb_prior_alpha = 7,
+    lam_interceptsb_prior_beta = 3,
+    sigma_interceptsb_prior_mu = 0.1,
+    sigma_interceptsb_prior_sigma = 1,
+    sigma_y_mu_prior = 1, 
+    sigma_y_mu_sigma = 5
+)
 
 # Generate slopes -- no phylo structure
 slopez <- rnorm(nspecies, param[["slope_mu"]], param[["slope_sigma"]])
@@ -64,16 +75,18 @@ simu_inits <- function(chain_id) {
 }
 
 # Fit model
-testme <- stan("lessmini_error.stan",
-               data=list(N=nrow(dfhere),
+testme <- stan("..//stan/uber_oneslope.stan",
+               data=append(list(N=nrow(dfhere),
                          n_sp=nspecies,
                          sp=dfhere$sp,
                          x1=dfhere$x1,
                          y=dfhere$y,
                          Vphy=vcv(spetree, corr = TRUE)),
-               iter=4000, chains=4,
-               init = simu_inits
-               ) # seed=123456
+               phypriors),
+               init = simu_inits,
+               iter = 3000,
+               warmup = 2000,
+               chains = 4)
 
 # Summarize fit
 summary(testme)$summary
