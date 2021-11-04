@@ -11,7 +11,10 @@ options(stringsAsFactors = FALSE)
 # Add in your own path in an if statement for your file structure (please don't delete this)
 if(length(grep("Lizzie", getwd())>0)) {
 setwd("~/Documents/git/teaching/stan/pmm/analyses") } else if (length(grep("boomer", getwd()))>0) {setwd("boom/boom")
-}  else setwd("hereliesboomboom")
+}  else if(length(grep("Ignacio", getwd()))>0) { 
+    setwd("~/GitHub/pmm/analyses/") 
+} else setwd("hereliesboomboom")
+
 
 # libraries
 library("ape")
@@ -89,12 +92,12 @@ testme <- stan("stan/uber_threeslopeintercept.stan",
                                 Vphy=vcv(phylo, corr = TRUE)),
                            phypriors),
                init = simu_inits,
-               iter = 6000,
-               warmup = 5000,
-               chains = 4,
+               iter = 1000,
+               warmup = 500,
+               chains = 2,
                seed = 62921,
-               refresh = 200
-               )
+               refresh = 100
+)
 
 ## Save fitted posterior
 saveRDS(testme, "output/testme.rds")
