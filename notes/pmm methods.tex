@@ -14,7 +14,7 @@
 
 \subsection*{Model}
 
-For each of $n$ species, we assumed that data were generated from the following sampling distribution:
+For each of $n$ species, we assumed data were generated from the following sampling distribution:
 
 \begin{align}
   \label{modely}
@@ -26,7 +26,7 @@ where
   \mu_j = \alpha_j + \beta_{1,j} X_2 + \beta_{2,j} X_2 + \beta_{3,j} X_3
 \end{align}
 
-Predictors $X_1$, $X_2$, $X_3$ are standardized forcing, chilling, and photoperiod, and their effects on the phenology of species $j$ are determined by parameters $\beta_{1,j}$, $\beta_{2,j}$, $\beta_{3,j}$ representing traits. These traits, including the species-specific intercept $\alpha_j$, are elements of the following normal random vectors:
+Predictors $X_1$, $X_2$, $X_3$ are standardized forcing, chilling, and photoperiod, and their effects on the phenology of species $j$ are determined by parameters $\beta_{1,j}$, $\beta_{2,j}$, $\beta_{3,j}$ representing phenological traits. We assumed each trait, including the specific-level intercept $\alpha_j$, evolved independently following a Brownian motion model of evolution. Thus, species traits are elements of the following normal random vectors:
 \begin{align}
   \boldsymbol{\alpha} = \{\alpha_1, \ldots, \alpha_n\}^T & \text{ such that }
   \boldsymbol{\alpha} \sim \mathcal{N}(\mu_{\alpha},\boldsymbol{\Sigma_{\alpha}}) \\
@@ -43,14 +43,14 @@ Predictors $X_1$, $X_2$, $X_3$ are standardized forcing, chilling, and photoperi
 \begin{align}
   \label{phymat}
 \begin{bmatrix}
-  \sigma^2_i & \lambda_i \times \sigma_{i} \times \rho_{12} & \ldots & \lambda_i \times \sigma_{i} \times \rho_{1n} \\
-  \lambda_i \times \sigma_i \times \rho_{21} & \sigma^2_i & \ldots & \lambda_i \times \sigma_{i} \times \rho_{2n} \\
+  \sigma^2_i & \lambda_i \times \sigma^2_{i} \times \rho_{12} & \ldots & \lambda_i \times \sigma^2_{i} \times \rho_{1n} \\
+  \lambda_i \times \sigma^2_i \times \rho_{21} & \sigma^2_i & \ldots & \lambda_i \times \sigma^2_{i} \times \rho_{2n} \\
   \vdots & \vdots & \ddots & \vdots \\
-  \lambda_i \times \sigma_i \times \rho_{n1} & \lambda_i \times \sigma_i \times \rho_{n2} & \ldots & \sigma^2_i \\
+  \lambda_i \times \sigma^2_i \times \rho_{n1} & \lambda_i \times \sigma^2_i \times \rho_{n2} & \ldots & \sigma^2_i \\
 \end{bmatrix}
 \end{align}
 
-\noindent where $\sigma_i^2$ is the rate of evolution across a tree for trait $i$ (here assumed to be constant along all branches), $\lambda_i$ scales branch lengths and therefore is a measure of the ``phylogenetic signal'' within a species trait, and $\rho_{xy}$ is the phylogenetic correlation between species $x$ and $y$, or the fraction of the tree shared by the two species.
+where $\sigma_i^2$ is the variance of the Brownian motion model of evolution and thus represents the rate of evolution across a tree for trait $i$ (assumed to be constant along all branches). Parameter $\lambda_i$ is Pagel's $D$, which scales the covariance and therefore is a measure of the ``phylogenetic signal'' within trait $i$ (note: because estimates can be partitioned into phylogenetic and nonphylogenetic components in this model, $0 \leq \lambda \leq 1$; see Freckleton et al. 2002 Am Nat). Finally, $\rho_{xy}$ is the phylogenetic correlation between species $x$ and $y$, or the fraction of the tree shared by the two species.
 
 The above specification is exactly equivalent to writing equation \ref{modelmu} in terms of root trait values and residuals, such that:
 
