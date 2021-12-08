@@ -25,7 +25,7 @@ options(mc.cores = 4)
 # Set seed
 set.seed(2021)
 
-nspecies = 500
+nspecies = 200
 nind = 10
 
 # Simulate species tree with a pure birth model
@@ -92,7 +92,7 @@ simu_inits <- function(chain_id) {
 
 # Fit model
 
-test_500 <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_old <- stan("Stan/uber_oneslopeintercept_cholesky.stan",
                data = append(list(N=nrow(dfhere),
                                   n_sp=nspecies,
                                   sp=dfhere$sp,
@@ -107,10 +107,10 @@ test_500 <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
                seed = 62921
                )
 
-save(test_500, file = "output_phylo_cholesky_500.Rda")
+save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
 
-test_noint <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
                                     sp=dfhere$sp,
@@ -118,13 +118,14 @@ test_noint <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
                                     y=dfhere$y,
                                     Vphy=vcv(spetree, corr = TRUE)),
                                phypriors),
+                 init = simu_inits,
                  iter = 4000,
                  warmup = 2000,
                  chains = 4,
                  seed = 62921
 )
 
-save(test_noint, file = "output_phylo_cholesky_noint.Rda")
+save(test_new, file = "output_phylo_cholesky_newchol.Rda")
 # Summarize fit
 # summary(testme)$summary
 # 
