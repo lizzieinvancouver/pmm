@@ -5,7 +5,7 @@
 ## Modified by Deirdre (Dec 2021) to modify the code to increase model efficiency for large matricies.
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
-    setwd("~/Documents/github/Synchrony")
+    setwd("~/Documents/github/pmm")
 } else if(length(grep("Lizzie", getwd())>0)) {
     setwd("~/Documents/git/projects/others/deirdre/synchrony")
 } else{
@@ -57,10 +57,10 @@ phypriors <- list(
     sigma_interceptsbf_prior_sigma = 0.1,
     sigma_y_mu_prior = 0.01, # true value
     sigma_y_mu_sigma = 0.01,
-    a_mu_prior = 0, # adding priors for a_ and b_
-    a_sigma_prior = 1,
-    b_mu_prior = 0, 
-    b_sigma_prior = 1
+    mu_prior_a_ = 0, # adding priors for a_ and b_
+    sigma_prior_a = 1,
+    mu_prior_b_ = 0, 
+    sigma_prior_b_ = 1
     
 )
 
@@ -92,22 +92,22 @@ simu_inits <- function(chain_id) {
 
 # Fit model
 
-test_old <- stan("Stan/uber_oneslopeintercept_cholesky.stan",
-               data = append(list(N=nrow(dfhere),
-                                  n_sp=nspecies,
-                                  sp=dfhere$sp,
-                                  x1=dfhere$x1,
-                                  y=dfhere$y,
-                                  Vphy=vcv(spetree, corr = TRUE)),
-                             phypriors),
-               init = simu_inits,
-               iter = 4000,
-               warmup = 2000,
-               chains = 4,
-               seed = 62921
-               )
-
-save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
+# test_old <- stan("Stan/uber_oneslopeintercept_cholesky.stan",
+#                data = append(list(N=nrow(dfhere),
+#                                   n_sp=nspecies,
+#                                   sp=dfhere$sp,
+#                                   x1=dfhere$x1,
+#                                   y=dfhere$y,
+#                                   Vphy=vcv(spetree, corr = TRUE)),
+#                              phypriors),
+#                init = simu_inits,
+#                iter = 4000,
+#                warmup = 2000,
+#                chains = 4,
+#                seed = 62921
+#                )
+# 
+# save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
 
 test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
@@ -118,16 +118,18 @@ test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
                                     y=dfhere$y,
                                     Vphy=vcv(spetree, corr = TRUE)),
                                phypriors),
-                 init = simu_inits,
+                 #init = simu_inits,
                  iter = 4000,
                  warmup = 2000,
                  chains = 4,
                  seed = 62921
 )
 
-save(test_new, file = "output_phylo_cholesky_newchol.Rda")
+save(test_new, file = "cholesky_fixed_noint.Rda")
+
+#load("analyses/output/output_phylo_cholesky_newchol.Rda")
 # Summarize fit
-# summary(testme)$summary
+summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 # 
 # # Compare to true values
 # summary(testme)$summary[names(param), "mean"]

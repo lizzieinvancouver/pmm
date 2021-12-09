@@ -33,10 +33,10 @@ data {
   real sigma_interceptsbf_prior_sigma;
   real sigma_y_mu_prior;
   real sigma_y_mu_sigma;  
-  real a_mu_prior;
-  real a_sigma_prior;
-  real b_mu_prior;
-  real b_sigma_prior;
+  real mu_prior_a_;
+  real sigma_prior_a_;
+  real mu_prior_b_;
+  real sigma_prior_b_;
 
 }
 
@@ -68,7 +68,7 @@ model {
        real yhat[N];
        	for(i in 1:N){
             yhat[i] = 
-		a_z + b[sp[i]] * x1[i];
+		a[sp[i]] + b[sp[i]] * x1[i];
 			     	}
 a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), sqrt(lam_interceptsa) * sigma_interceptsa * L); 
 b ~ multi_normal_cholesky(rep_vector(b_zf,n_sp), sqrt(lam_interceptsbf) * sigma_interceptsbf * L);
@@ -82,8 +82,8 @@ b ~ multi_normal_cholesky(rep_vector(b_zf,n_sp), sqrt(lam_interceptsbf) * sigma_
   lam_interceptsbf ~ beta(lam_interceptsbf_prior_alpha, lam_interceptsbf_prior_beta);
   sigma_interceptsbf ~ normal(sigma_interceptsbf_prior_mu, sigma_interceptsbf_prior_sigma);
   sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_sigma);
- a_ ~ normal(a_mu_prior, a_sigma_prior);
-  b_ ~ normal(b_mu_prior, b_sigma_prior);
+ a_ ~ normal(mu_prior_a_, sigma_prior_a_);
+  b_ ~ normal(mu_prior_b_, sigma_prior_b_);
 
 }
 
