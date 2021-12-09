@@ -5,9 +5,9 @@
 ## Modified by Deirdre (Dec 2021) to modify the code to increase model efficiency for large matricies.
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
-    setwd("~/Documents/github/pmm")
+    setwd("~/Documents/github/pmm/analyses")
 } else if(length(grep("Lizzie", getwd())>0)) {
-    setwd("~/Documents/git/projects/others/deirdre/synchrony")
+    setwd("~/Documents/git/teaching/stan/pmm/analyses")
 } else{
     setwd("/home/deirdre/phylogeny") # for midge
 }
@@ -110,7 +110,7 @@ simu_inits <- function(chain_id) {
 # save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
 
-test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_new <- stan("stan/uber_oneslopeintercept_cholesky_modified.stan",
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
                                     sp=dfhere$sp,
@@ -120,10 +120,8 @@ test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
                                phypriors),
                  #init = simu_inits,
                  iter = 4000,
-                 warmup = 2000,
-                 chains = 4,
-                 seed = 62921
-)
+                 warmup = 3000,
+                 chains = 4)
 
 save(test_new, file = "cholesky_fixed_noint.Rda")
 
