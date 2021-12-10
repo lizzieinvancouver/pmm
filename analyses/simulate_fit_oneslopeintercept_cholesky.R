@@ -125,7 +125,7 @@ test_new <- stan("analyses/stan/uber_oneslopeintercept_cholesky_modified.stan",
 save(test_new, file = "cholesky_fixed_noint.Rda")
 
 #load("analyses/output/cholesky_fixed_noint.Rda")
-load("analyses/output/cholesky_fixed.Rda")
+#load("analyses/output/cholesky_fixed.Rda")
 
 ssm<- as.shinystan(test_new)
 launch_shinystan(ssm)
