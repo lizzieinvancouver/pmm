@@ -58,7 +58,7 @@ phypriors <- list(
     sigma_y_mu_prior = 0.01, # true value
     sigma_y_mu_sigma = 0.01,
     mu_prior_a_ = 0, # adding priors for a_ and b_
-    sigma_prior_a = 1,
+    sigma_prior_a_ = 1,
     mu_prior_b_ = 0, 
     sigma_prior_b_ = 1
     
@@ -110,7 +110,7 @@ simu_inits <- function(chain_id) {
 # save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
 
-test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_new <- stan("analyses/stan/uber_oneslopeintercept_cholesky_modified.stan",
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
                                     sp=dfhere$sp,
@@ -127,7 +127,12 @@ test_new <- stan("Stan/uber_oneslopeintercept_cholesky_modified.stan",
 
 save(test_new, file = "cholesky_fixed_noint.Rda")
 
-#load("analyses/output/output_phylo_cholesky_newchol.Rda")
+#load("analyses/output/cholesky_fixed_noint.Rda")
+load("analyses/output/cholesky_fixed.Rda")
+
+ssm<- as.shinystan(test_new)
+launch_shinystan(ssm)
+
 # Summarize fit
 summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 # 
