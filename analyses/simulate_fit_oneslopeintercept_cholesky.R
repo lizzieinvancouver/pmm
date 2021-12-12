@@ -109,7 +109,7 @@ simu_inits <- function(chain_id) {
 # 
 # save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
-test_new <- stan("analyses/stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_new <- stan("stan/uber_oneslopeintercept_cholesky_modified.stan",
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
                                     sp=dfhere$sp,

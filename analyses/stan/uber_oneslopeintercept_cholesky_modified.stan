@@ -70,9 +70,8 @@ model {
             yhat[i] = 
 		a[sp[i]] + b[sp[i]] * x1[i];
 
-					     	}
-  a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), sqrt(lam_interceptsa) * sigma_interceptsa * L); 
-  b ~ multi_normal_cholesky(rep_vector(b_zf,n_sp), sqrt(lam_interceptsbf) * sigma_interceptsbf * L);
+		}
+
   y ~ normal(yhat, sigma_y);
   
   // Priors
