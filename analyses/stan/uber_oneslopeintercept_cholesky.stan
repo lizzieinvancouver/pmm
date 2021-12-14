@@ -2,12 +2,10 @@
 functions {
   matrix lambda_vcv(matrix vcv, real lambda, real sigma){
     matrix[rows(vcv),cols(vcv)] local_vcv;
-    matrix[rows(vcv),cols(vcv)] sigma_mat;  
     local_vcv = vcv * lambda;
     for(i in 1:rows(local_vcv))
       local_vcv[i,i] = vcv[i,i];
-    sigma_mat = diag_matrix(rep_vector(sigma, rows(vcv)));
-    return(sigma_mat * local_vcv * sigma_mat);
+    return(quad_form_diag(local_vcv, rep_vector(sigma, rows(vcv))));
   }
 }
 
@@ -17,7 +15,7 @@ data {
   int<lower=1, upper=n_sp> sp[N];
   vector[N] y; 		// response
   vector[N] x1; 	// predictor
-  matrix[n_sp,n_sp]Vphy;     // phylogeny
+  matrix[n_sp,n_sp] Vphy;     // phylogeny
   // Priors
   real a_z_prior_mu;
   real a_z_prior_sigma;
@@ -49,13 +47,21 @@ parameters {
 	}
 
 model {
-       real yhat[N];
-       	for(i in 1:N){
-            yhat[i] = 
-		a[sp[i]] + b_force[sp[i]] * x1[i];
-			     	}
-  a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa))); 
-  b_force ~ multi_normal_cholesky(rep_vector(b_zf, n_sp), cholesky_decompose(lambda_vcv(Vphy, lam_interceptsbf, sigma_interceptsbf))); 
+  real yhat[N];
+  matrix[n_sp,n_sp] vcv_a;     // phylogeny
+  matrix[n_sp,n_sp] vcv_b;     // phylogeny
+
+  for(i in 1:N){
+    yhat[i] = 
+      a[sp[i]] + b_force[sp[i]] * x1[i];
+  }
+
+  vcv_a = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa));
+  vcv_b = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsbf, sigma_interceptsbf));
+ 
+  a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), vcv_a);
+  b_force ~ multi_normal_cholesky(rep_vector(b_zf, n_sp), vcv_b);
+
   y ~ normal(yhat, sigma_y);
   
   // Priors
