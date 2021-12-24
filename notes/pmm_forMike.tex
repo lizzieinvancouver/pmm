@@ -1,0 +1,98 @@
+\documentclass[12pt,a4paper]{article}
+
+% Quick file to try to get help with linear algebra from Mike Betancourt 
+% copied from pmm methods.tex, but adjusted for Deirdre L.'s model and added my older notes below
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{natbib}
+
+\title{PMM notes}
+
+\author{Geoffrey Legault, edits by Lizzie}
+
+\begin{document}
+
+\section*{Phylogenetic mixed model}
+
+\subsection*{Current model description}
+
+For each of $n$ species, we assumed data were generated from the following sampling distribution:
+
+\begin{align}
+  \label{modely}
+  y_j \sim \mathcal{N}(\mu_j, \sigma_e^2)
+\end{align}
+where:
+\begin{align}
+  \label{modelmu}
+  \mu_j = \alpha_j + \beta_{j} X
+\end{align}
+
+Predictor $X$ is continuous (in this case, year), and its effects on the phenology of species $j$ are determined by parameter $\beta_{j}$ representing response over time. We assumed each trait, including the specific-level intercept $\alpha_j$, evolved independently following a Brownian motion model of evolution. Thus, species traits are elements of the following normal random vectors:
+\begin{align}
+  \boldsymbol{\alpha} = \{\alpha_1, \ldots, \alpha_n\}^T & \text{ such that }
+  \boldsymbol{\alpha} \sim \mathcal{N}(\mu_{\alpha},\boldsymbol{\Sigma_{\alpha}}) \\
+  \boldsymbol{\beta} =  \{\beta_{1}, \ldots, \beta_{n}\}^T & \text{ such that }
+  \boldsymbol{\beta} \sim \mathcal{N}(\mu_{\beta},\boldsymbol{\Sigma_{\beta}}) \nonumber \\
+\end{align}
+
+\noindent where the means of the multivariate normal distributions are root trait values (i.e., trait values prior to evolving across a phylogenetic tree) and $\boldsymbol{\Sigma_i}$ are $n \times n$ phylogenetic variance-covariance matrices of the form: \\
+
+\begin{align}
+  \label{phymat}
+\begin{bmatrix}
+  \sigma^2_i & \lambda_i \times \sigma^2_{i} \times \rho_{12} & \ldots & \lambda_i \times \sigma^2_{i} \times \rho_{1n} \\
+  \lambda_i \times \sigma^2_i \times \rho_{21} & \sigma^2_i & \ldots & \lambda_i \times \sigma^2_{i} \times \rho_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda_i \times \sigma^2_i \times \rho_{n1} & \lambda_i \times \sigma^2_i \times \rho_{n2} & \ldots & \sigma^2_i \\
+\end{bmatrix}
+\end{align}
+
+\noindent where $\sigma_i^2$ is the variance of the Brownian motion model of evolution and thus represents the rate of evolution across a tree for trait $i$ (assumed to be constant along all branches). Parameter $\lambda_i$ is Pagel's $D$, which scales the covariance and therefore is a measure of the ``phylogenetic signal'' within trait $i$ (note: because estimates can be partitioned into phylogenetic and nonphylogenetic components in this model, $0 \leq \lambda \leq 1$; see Freckleton et al. 2002 Am Nat). Finally, $\rho_{xy}$ is the phylogenetic correlation between species $x$ and $y$, or the fraction of the tree shared by the two species.
+
+The above specification is exactly equivalent to writing equation \ref{modelmu} in terms of root trait values and residuals, such that:
+
+\begin{align}
+  \mu_j = \mu_\alpha + \mu_{\beta_1} X_1 + \mu_{\beta_2} X_2 + \mu_{\beta_3} X_3 + e_{\alpha_{j}} + e_{\beta_{1,j}} + e_{\beta_{2,j}} + e_{\beta_{3,j}}
+\end{align}
+
+\noindent where the residual error terms (e.g., $e_{\alpha_{j}}$) are elements of normal random vectors from multivariate normal distributions centered on $0$ with the same phylogenetic variance-covariance matrices as in equation \ref{phymat}.
+
+\newpage
+\subsection*{Lizzie's basic model and code description} % from pmm_workingmodel.tex
+
+Let's start with the basic {\bf PMM (phylogenetic mixed model)} \\
+
+As I understand it:
+\begin{align}
+y & = \alpha + \beta x + a + e\\
+a & \sim normal(0, \sigma_P^2\Sigma)\\
+e & \sim normal(0, \sigma_R^2I)
+\end{align}
+... where $\alpha$ and $\beta$, respectively, are the intercept and the slope for the co-factor $x$, $a$ is the phylogenetic random effect, and $e$ is the residual error. $\Sigma$ is a phylogenetic correlation matrix, $I$ stands for the relevant identity matrix. (The above from Chapter 11: General Quantitative Genetic Methods for Comparative Biology, by Villemereuil \& Nakagawa, though seems similar to Housworth.)\\
+
+What we would like to do is have the phylogenetic effect structure the species-level slopes (while also allowing partial pooling on the species given uneven data, that is, for some species we might have 3 observations, each at a different $x$ value, and for other species, we have 30 observations).
+
+We think we have this running in \verb|ubermini_2.R| (simulation code) and \verb|ubermini_2.stan|. \\
+
+In the Stan code, $\beta$ is:\\
+
+\verb b_force $\sim$ \verb multi_normal(rep_vector(b_z,n_sp), \\
+\verb|lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)|\\
+
+So the \verb|b_z| represents the root trait value, and all the action happens in the second part of the function, which calls \verb|lambda_vcv|, which is defined at the top of the Stan code. This function sets up two matrices (both the size of the VCV in your data): (1) a matrix of your VCV with $\lambda$ on the off-diagonals only (\verb|local_vcv|) and (2) a matrix with $\sigma$ on the diagonal (\verb|sigma_mat|)  and then returns the product \verb|sigma_mat| * \verb|lambda_mat| * \verb|sigma_mat|. So that, when you put the  $\beta$ code above with the \verb|lambda_vcv| function you get:
+
+\begin{equation*}
+\beta \sim MVN(\mu, \Phi\Sigma)
+\end{equation*}
+\begin{equation*}
+\Phi\Sigma = 
+ \begin{bmatrix}
+  \sigma^2_{\beta} &  \lambda \sigma^2_{\beta} & \lambda \sigma^2_{\beta} \\
+  \lambda \sigma^2_{\beta}  & \sigma^2_{\beta} & \lambda \sigma^2_{\beta} \\
+  \lambda \sigma^2_{\beta} & \lambda \sigma^2_{\beta} &   \sigma^2_{\beta}
+ \end{bmatrix}
+\end{equation*}
+
+\end{document}
