@@ -55,13 +55,9 @@ phypriors <- list(
     lam_interceptsbf_prior_beta = 3, # 
     sigma_interceptsbf_prior_mu = 0.1, # true value
     sigma_interceptsbf_prior_sigma = 0.1,
-    sigma_y_mu_prior = 0.01, # true value
-    sigma_y_mu_sigma = 0.01,
-    mu_prior_a_ = 0, # adding priors for a_ and b_
-    sigma_prior_a_ = 1,
-    mu_prior_b_ = 0, 
-    sigma_prior_b_ = 1
-    
+    sigma_y_mu_prior = 0.01,
+    sigma_y_mu_sigma = 1
+   
 )
 
 # Generate intercept
@@ -109,7 +105,8 @@ simu_inits <- function(chain_id) {
 # 
 # save(test_old, file = "output_phylo_cholesky_oldchol.Rda")
 
-test_new <- stan("stan/uber_oneslopeintercept_cholesky_modified.stan",
+test_new <- stan("stan/uber_oneslopeintercept_cholesky_modified.stan", 
+               #  control = list(max_treedepth =15),
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
                                     sp=dfhere$sp,
@@ -121,18 +118,61 @@ test_new <- stan("stan/uber_oneslopeintercept_cholesky_modified.stan",
                  iter = 4000,
                  warmup = 3000,
                  chains = 4)
+summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 
 save(test_new, file = "cholesky_fixed_noint.Rda")
 
-#load("analyses/output/cholesky_fixed_noint.Rda")
+load("output/cholesky_fixed_noint.Rda")
 #load("analyses/output/cholesky_fixed.Rda")
 
-ssm<- as.shinystan(test_new)
-launch_shinystan(ssm)
+ ssm<- as.shinystan(test_new)
+ launch_shinystan(ssm)
 
+pairs(test_new, pars = c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y", "lp__")) 
 # Summarize fit
-summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
-# 
+# trying to get the ESS based on code from: 
+# https://betanalpha.github.io/assets/case_studies/identifiability.html
+# step times plot:
+stepsizes1 <- sapply(1:4, function(c) get_sampler_params(test_new, inc_warmup=FALSE)[[c]][,'stepsize__'][1])
+steps1 <- do.call(rbind, get_sampler_params(test_new, inc_warmup=FALSE))[,'n_leapfrog__']
+table(steps1)
+int_times1 <- unlist(lapply(1:4, function(c) stepsizes1[c] * steps1[(1000 * (c - 1) + 1): (1000 * c)]))
+
+int_time_breaks <- seq(-0.1, 8.1, 0.1)
+
+hist(int_times1, breaks=int_time_breaks, main="N = 1",
+     col="darkgreen", border="blue",
+     xlab="Integration Time", yaxt='n', ylab="")
+
+summary1 <- summary(test_new, probs = c(0.5))$summary
+
+sigma_y_ess <- summary1[,'n_eff'][1]
+lam_inta_ess <- summary1[,'n_eff'][2]
+sig_inta_ess <- summary1[,'n_eff'][3]
+lam_intb_ess <- summary1[,'n_eff'][4]
+sig_intb_ess <- summary1[,'n_eff'][5]
+b_z_ess <- summary1[,'n_eff'][6]
+a_z_ess <- summary1[,'n_eff'][7]
+
+ess <- summary1[1:6,'n_eff']
+
+
+# ESS per leapfrog step - measure of computational efficiency, decreases w/ no. obs, as cost of leapfrogs incre ESS per computational cost decreases
+ess_per <- c(summary1[1:6,'n_eff'] / sum(steps1))
+#b_ess_per <- c(summary1[,'n_eff'][2] / sum(steps1))
+
+par(mfrow=c(1, 1))
+
+plot(1, a_ess_per / a_ess_per[1], col="darkgreen", type="l", log="y",
+     xlab="N", xaxt='n',
+     ylab="Relative Effective Sample Size / Grad Eval (a)", ylim=c(0.01, 1))
+axis(1, at=1:3, labels=c("1", "100", "10000"))
+
+plot(1, b_ess_per / b_ess_per[1], col="darkgreen", type="l", log="y",
+     xlab="N", xaxt='n',
+     ylab="Relative Effective Sample Size / Grad Eval (b)", ylim=c(0.01, 1))
+axis(1, at=1:3, labels=c("1", "100", "10000"))
+
 # # Compare to true values
 # summary(testme)$summary[names(param), "mean"]
 # t(param)
