@@ -52,7 +52,7 @@ dat.fin$study.fact <- as.numeric(as.factor(dat.fin$studyid))
 dat.fin$sppheno.fact <- as.numeric(as.factor(dat.fin$sp.pheno))
 
 # ################################################
-phylo <- read.csv("phylogeny/taxonlvl_spname_Nov72021_edited.csv")
+phylo <- read.csv("Input/taxonlvl_spname_Nov72021_edited.csv")
 
 phylo$species.name <- as.factor(phylo$species.name)
 phylo$species.y <- as.factor(phylo$sp)
@@ -76,7 +76,6 @@ d <- phylo_pheno[match(tree$tip.label, phylo_pheno$family),]; length(unique(d$fa
 
 phymatch <- data.frame(family = tree$tip.label, sppnum = c(1:length(tree$tip.label)))
 
-temp <- subset(phylo_pheno, family == "Oscillatoriaceae ")
 d <- merge(phylo_pheno, phymatch, by="family")
 
 length(unique(d$sp.pheno)) # 1279
@@ -138,14 +137,14 @@ length(unique(phylo_pheno$family))
 
 datalist <- append(list(N = nrow(phylo_pheno),
                         Nspp = length(unique(phylo_pheno$sp.pheno)),
-                        S = length(unique(phylo_pheno$family)),
+                        Nfam = length(unique(phylo_pheno$family)),
                         sppnum = phylo_pheno$pheno.fact,
                         famnum = phylo_pheno$family_fact,
                         y = phylo_pheno$doy,
                        # study = phylo_pheno$study.fact,
                         x = phylo_pheno$yr1980,
                         Vphy = vcv_tree), phypriors)
-datalist$S
+datalist$Nfam
 length(datalist$sppnum)
 length((datalist$famnum))
 
@@ -153,13 +152,11 @@ mdl.fam <- stan("Stan/phylogeny_family_cholesky.stan",
                  data = datalist,
                  init = simu_inits,
                  iter = 4000,
-                 warmup = 50,
-                 chains = 1,
+                 warmup = 2000,
+                 chains = 4,
                  seed = 62921,
                  refresh = 10
 )
 
-fun <- stan("Stan/function.stan",
-                data = datalist)
 
 save( mdl.fam, file = "Output/fam_phylo_nostudy.Rda")
