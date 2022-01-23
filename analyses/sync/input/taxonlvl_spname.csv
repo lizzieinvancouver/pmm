@@ -1,0 +1,1202 @@
+query,species.name,db,sp,genus,family,order,class,phylum,kingdom
+Aphanizomenon,Aphanizomenon,ncbi,NA,Aphanizomenon,Nostocaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Anabaena circinalis,Anabaena circinalis,ncbi,Dolichospermum circinale,Dolichospermum,Aphanizomenonaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Anabaena solitaria,Anabaena solitaria,ncbi,Dolichospermum solitarium,Dolichospermum,Aphanizomenonaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Anabaena spiroides,Anabaena spiroides,ncbi,Dolichospermum spiroides,Dolichospermum,Aphanizomenonaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Planktothrix,Planktothrix,ncbi,NA,Planktothrix,Oscillatoriaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Microcystis,Microcystis,ncbi,NA,Microcystis,Chroococcaceae,Chroococcales,Cyanophyceae,Cyanobacteria,Bacteria
+Pseudanabaena,Pseudanabaena,ncbi,NA,Pseudanabaena,Nostocaceae,Nostocales,Cyanophyceae,Cyanobacteria,Bacteria
+Woronichinia,Woronichinia,ncbi,NA,Woronichinia,Coelosphaeriaceae,Synechococcales,Cyanophyceae,Cyanobacteria,Bacteria
+Woronichinia,Chlorophyll a,ncbi,NA,Woronichinia,Coelosphaeriaceae,Synechococcales,Cyanophyceae,Cyanobacteria,Bacteria
+Aulacoseira,Aulacoseira,ncbi,NA,Aulacoseira,Aulacoseiraceae,Aulacoseirales,Coscinodiscophyceae,Bacillariophyta,Chromista
+Rhodomonas,Rhodomonas,ncbi,Rhodomonas,Pyrenomonadaceae,Cryptomonadaceae,Cryptomonadales,Cryptophyceae,Cryptophyta,Chromista
+Chrysochromulina,Chrysochromulina,ncbi,NA,Chrysochromulina,Chrysochromulinaceae,Prymnesiales,Haptophyta,Haptista,Chromista
+Uroglena,Uroglena,ncbi,NA,Uroglena,Chromulinaceae,Chromulinales,Chrysophyceae,Ochrophyta,Chromista
+Dinobryon,Dinobryon,ncbi,NA,Dinobryon,Dinobryaceae,Chromulinales,Chrysophyceae,Ochrophyta,Chromista
+Cryptomonas,Cryptomonas,ncbi,NA,Cryptomonas,Cryptomonadaceae,Cryptomonadales,Cryptophyceae,Ochrophyta,Chromista
+Ceratium,Ceratium,ncbi,NA,Ceratium,Ceratiaceae,Gonyaulacales,Dinophyceae,Dinoflagellata ,Chromista
+Gymnodinium,Gymnodinium,ncbi,NA,Gymnodinium,Gymnodiniaceae,Gymnodiniales,Dinophyceae,Dinoflagellata ,Chromista
+Peridinium,Peridinium,ncbi,NA,Peridinium,Peridiniaceae,Peridiniales,Dinophyceae,Myzoza,Chromista
+Synura,Synura,ncbi,NA,Synura,Synuraceae,Ochromonadales,Chrysophyceae,Ochrophyta,Chromista
+Amanita muscaria,Amanita muscaria,ncbi,Amanita muscaria,Amanita,Amanitaceae,Agaricales,Agaricomycetes,Basidiomycota,Fungi
+Rabidosa rabida,Aranea,ncbi,Rabidosa rabida,Rabidosa,Lycosidae,Araneae,Arachnida,Arthropoda,Metazoa
+Bosmina,Bosmina,ncbi,NA,Bosmina,Bosminidae,Diplostraca,Branchiopoda,Arthropoda,Metazoa
+Daphnia,Daphnia,ncbi,NA,Daphnia,Daphniidae,Diplostraca,Branchiopoda,Arthropoda,Metazoa
+Daphnia galeata,Daphnia hyalina-galeata,ncbi,Daphnia galeata,Daphnia,Daphniidae,Diplostraca,Branchiopoda,Arthropoda,Metazoa
+Daphnia pulicaria,Daphnia pulicaria,ncbi,Daphnia pulicaria,Daphnia,Daphniidae,Diplostraca,Branchiopoda,Arthropoda,Metazoa
+Acartia hudsonica,Acartia hudsonica,ncbi,Acartia hudsonica,Acartia,Acartiidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Acartia tonsa,Acartia tonsa,ncbi,Acartia tonsa,Acartia,Acartiidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Calanus finmarchicus,Calanus finmarchicus,ncbi,Calanus finmarchicus,Calanus,Calanidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Calanus helgolandicus,Calanus helgolandicus,ncbi,Calanus helgolandicus,Calanus,Calanidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Neocalanus plumchrus,Neocalanus plumchrus,ncbi,Neocalanus plumchrus,Neocalanus,Calanidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Leptodiaptomus ashlandi,Leptodiaptomus ashlandi,ncbi,Leptodiaptomus ashlandi,Leptodiaptomus,Diaptomidae,Calanoida,Hexanauplia,Arthropoda,Metazoa
+Cyclops,Cyclops,ncbi,NA,Cyclops,Cyclopidae,Cyclopoida,Hexanauplia,Arthropoda,Metazoa
+Cyclops vicinus,Cyclops vicinus,ncbi,Cyclops vicinus,Cyclops,Cyclopidae,Cyclopoida,Hexanauplia,Arthropoda,Metazoa
+Mesocyclops,Mesocyclops,ncbi,NA,Mesocyclops,Cyclopidae,Cyclopoida,Hexanauplia,Arthropoda,Metazoa
+Thermocyclops oithonoides,Thermocyclops oithonoides,ncbi,Thermocyclops oithonoides,Thermocyclops,Cyclopidae,Cyclopoida,Hexanauplia,Arthropoda,Metazoa
+Oncaea venusta,Copepod,ncbi,Oncaea venusta,Oncaea,Oncaeidae,Poecilostomatoida,Hexanauplia,Arthropoda,Metazoa
+Musca domestica,Diptera,ncbi,Musca domestica,Musca,Muscidae,Diptera,Insecta,Arthropoda,Metazoa
+Eristalis tenax,Syrphid,ncbi,Eristalis tenax,Eristalis,Syrphidae,Diptera,Insecta,Arthropoda,Metazoa
+Adelges viridis,Adelgidae,ncbi,Adelges viridis,Adelges,Adelgidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Adelges viridis,Adelgidae and Phylloxeridae spp,ncbi,Adelges viridis,Adelges,Adelgidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Anoecia corni,Anoecia corni,ncbi,Anoecia corni,Anoecia,Anoeciidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Acyrthosiphon,Acyrthosiphon primulae,ncbi,NA,Acyrthosiphon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Acyrthosiphon malvae,Acyrthosiphon malvae,ncbi,Acyrthosiphon malvae,Acyrthosiphon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Acyrthosiphon pisum,Acyrthosiphon pisum,ncbi,Acyrthosiphon pisum,Acyrthosiphon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Amphorophora rubi,Amphorophora rubi,ncbi,Amphorophora rubi,Amphorophora,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis,Aphis,ncbi,NA,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis fabae,Aphis fabae,ncbi,Aphis fabae,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis nasturtii,Aphis nasturtii,ncbi,Aphis nasturtii,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis pomi,Aphis pomi,ncbi,Aphis pomi,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis salicariae,Aphis salicariae,ncbi,Aphis salicariae,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aphis sambuci,Aphis sambuci,ncbi,Aphis sambuci,Aphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Atheroides serrulatus,Atheroides serrulatus,ncbi,Atheroides serrulatus,Atheroides,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aulacorthum,Aulacorthum palustre,ncbi,NA,Aulacorthum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aulacorthum solani,Aulacorthum solani,ncbi,Aulacorthum solani,Aulacorthum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Betulaphis quadrituberculata,Betulaphis quadrituberculata,ncbi,Betulaphis quadrituberculata,Betulaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Brachycaudus,Brachycaudus,ncbi,NA,Brachycaudus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Brachycaudus helichrysi,Brachycaudus helichrysi,ncbi,Brachycaudus helichrysi,Brachycaudus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Brachycaudus rumexicolens,Brachycaudus rumexicolens,ncbi,Brachycaudus rumexicolens,Brachycaudus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Brevicoryne brassicae,Brevicoryne brassicae,ncbi,Brevicoryne brassicae,Brevicoryne,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Calaphis flava,Calaphis flava,ncbi,Calaphis flava,Calaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Capitophorus,Capitophorus similis,ncbi,NA,Capitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Capitophorus elaeagni,Capitophorus elaeagni,ncbi,Capitophorus elaeagni,Capitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Capitophorus hippophaes,Capitophorus hippophaes,ncbi,Capitophorus hippophaes,Capitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella,Cavariella,ncbi,NA,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella,Cavariella archangelicae,ncbi,NA,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella aegopodii,Cavariella aegopodii,ncbi,Cavariella aegopodii,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella konoi,Cavariella konoi,ncbi,Cavariella konoi,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella pastinacae,Cavariella pastinacae,ncbi,Cavariella pastinacae,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cavariella theobaldi,Cavariella theobaldi,ncbi,Cavariella theobaldi,Cavariella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Ceruraphis eriophori,Ceruraphis eriophori,ncbi,Ceruraphis eriophori,Ceruraphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Chaitophorus,Chaitophorus,ncbi,NA,Chaitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Chaitophorus populeti,Chaitophorus populeti,ncbi,Chaitophorus populeti,Chaitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Chaitophorus populialbae,Chaitophorus populialbae,ncbi,Chaitophorus populialbae,Chaitophorus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cinara,Cinara,ncbi,NA,Cinara,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Cryptomyzus galeopsidis,Cryptomyzus galeopsidis,ncbi,Cryptomyzus galeopsidis,Cryptomyzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Drepanosiphum platanoidis,Drepanosiphum platanoidis,ncbi,Drepanosiphum platanoidis,Drepanosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Dysaphis,Dysaphis,ncbi,NA,Dysaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Dysaphis plantaginea,Dysaphis plantaginea,ncbi,Dysaphis plantaginea,Dysaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Dysaphis pyri,Dysaphis pyri,ncbi,Dysaphis pyri,Dysaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Elatobium abietinum,Hemiptera,ncbi,Elatobium abietinum,Elatobium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Elatobium abietinum,Elatobium abietinum,ncbi,Elatobium abietinum,Elatobium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eucallipterus tiliae,Eucallipterus tiliae,ncbi,Eucallipterus tiliae,Eucallipterus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Euceraphis punctipennis,Euceraphis punctipennis,ncbi,Euceraphis punctipennis,Euceraphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eulachnus,Eulachnus,ncbi,NA,Eulachnus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eulachnus agilis,Eulachnus agilis,ncbi,Eulachnus agilis,Eulachnus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eulachnus brevipilosus,Eulachnus brevipilosus,ncbi,Eulachnus brevipilosus,Eulachnus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Hayhurstia atriplicis,Hayhurstia atriplicis,ncbi,Hayhurstia atriplicis,Hayhurstia,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Hyadaphis foeniculi,Hyadaphis foeniculi,ncbi,Hyadaphis foeniculi,Hyadaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Hyalopterus pruni,Hyalopterus pruni,ncbi,Hyalopterus pruni,Hyalopterus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Hyperomyzus lactucae,Hyperomyzus lactucae,ncbi,Hyperomyzus lactucae,Hyperomyzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Hyperomyzus pallidus,Hyperomyzus pallidus,ncbi,Hyperomyzus pallidus,Hyperomyzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Linosiphon galiophagum,Linosiphon galiophagum,ncbi,Linosiphon galiophagum,Linosiphon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Lipaphis erysimi,Lipaphis erysimi,ncbi,Lipaphis erysimi,Lipaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Macrosiphum euphorbiae,Macrosiphum euphorbiae,ncbi,Macrosiphum euphorbiae,Macrosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Macrosiphum rosae,Macrosiphum rosae,ncbi,Macrosiphum rosae,Macrosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Megoura viciae,Megoura viciae,ncbi,Megoura viciae,Megoura,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Metopolophium,Metopolophium festucae,ncbi,NA,Metopolophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Metopolophium,Metopolophium frisicum,ncbi,NA,Metopolophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Metopolophium,Metopolophium fasciatum,ncbi,NA,Metopolophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Metopolophium albidum,Metopolophium albidum,ncbi,Metopolophium albidum,Metopolophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Metopolophium dirhodum,Metopolophium dirhodum,ncbi,Metopolophium dirhodum,Metopolophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Microlophium carnosum,Microlophium carnosum,ncbi,Microlophium carnosum,Microlophium,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzocallis,Myzocallis,ncbi,NA,Myzocallis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzocallis castanicola,Myzocallis castanicola,ncbi,Myzocallis castanicola,Myzocallis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzocallis coryli,Myzocallis coryli,ncbi,Myzocallis coryli,Myzocallis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzus ascalonicus,Myzus ascalonicus,ncbi,Myzus ascalonicus,Myzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzus cerasi,Myzus cerasi,ncbi,Myzus cerasi,Myzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzus certus,Myzus certus,ncbi,Myzus certus,Myzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzus lythri,Myzus lythri,ncbi,Myzus lythri,Myzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Myzus persicae,Myzus persicae,ncbi,Myzus persicae,Myzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Diuraphis holcaphis,Diuraphis holcaphis,ncbi,Diuraphis holcaphis,Diuraphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Tubaphis,Tubaphis ranunculina,ncbi,Tubaphis ranunculina,Tubaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Nasonovia ribisnigri,Nasonovia ribisnigri,ncbi,Nasonovia ribisnigri,Nasonovia,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Ovatus,Ovatus insitus,ncbi,NA,Ovatus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Ovatus crataegarius,Ovatus crataegarius,ncbi,Ovatus crataegarius,Ovatus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Periphyllus,Periphyllus,ncbi,NA,Periphyllus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Periphyllus testudinaceus,Periphyllus testudinaceus,ncbi,Periphyllus testudinaceus,Periphyllus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Phorodon humuli,Phorodon humuli,ncbi,Phorodon humuli,Phorodon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Phyllaphis fagi,Phyllaphis fagi,ncbi,Phyllaphis fagi,Phyllaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Pterocallis alni,Pterocallis alni,ncbi,Pterocallis alni,Pterocallis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum,Rhopalosiphum rufulum,ncbi,NA,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum,Rhopalosiphum,ncbi,NA,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum maidis,Rhopalosiphum maidis,ncbi,Rhopalosiphum maidis,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum nymphaeae,Rhopalosiphum nymphaeae,ncbi,Rhopalosiphum nymphaeae,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum oxyacanthae,Rhopalosiphum oxyacanthae,ncbi,Rhopalosiphum oxyacanthae,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhopalosiphum padi,Rhopalosiphum padi,ncbi,Rhopalosiphum padi,Rhopalosiphum,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Schizaphis,Schizaphis,ncbi,NA,Schizaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Schizolachnus pineti,Schizolachnus pineti,ncbi,Schizolachnus pineti,Schizolachnus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Sipha,Sipha glyceriae,ncbi,NA,Sipha,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Sitobion,Sitobion,ncbi,NA,Sitobion,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Sitobion,Sitobion alopecuri,ncbi,NA,Sitobion,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Sitobion avenae,Sitobion avenae,ncbi,Sitobion avenae,Sitobion,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Sitobion fragariae,Sitobion fragariae,ncbi,Sitobion fragariae,Sitobion,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Subsaltusaphis,Subsaltusaphis,ncbi,NA,Subsaltusaphis,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Tuberculatus,Tuberculatus,ncbi,NA,Tuberculatus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Tuberculatus,Tuberculatus borealis,ncbi,NA,Tuberculatus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Tuberculatus annulatus,Tuberculatus annulatus,ncbi,Tuberculatus annulatus,Tuberculatus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Uroleucon,Uroleucon,ncbi,NA,Uroleucon,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Utamphorophora humboldti,Utamphorophora humboldti,ncbi,Utamphorophora humboldti,Utamphorophora,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Wahlgreniella arbuti,Wahlgreniella arbuti,ncbi,Wahlgreniella arbuti,Wahlgreniella,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Aploneura lentisci,Aploneura lentisci,ncbi,Aploneura lentisci,Aploneura,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eriosoma,Eriosoma,ncbi,NA,Eriosoma,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eriosoma patchiae,Eriosoma patchiae,ncbi,Eriosoma patchiae,Eriosoma,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Eriosoma ulmi,Eriosoma ulmi,ncbi,Eriosoma ulmi,Eriosoma,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Forda formicaria,Forda formicaria,ncbi,Forda formicaria,Forda,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Kaltenbachiella pallida,Kaltenbachiella pallida,ncbi,Kaltenbachiella pallida,Kaltenbachiella,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Pachypappa,Pachypappa tremulae,ncbi,NA,Pachypappa,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Pemphigus,Pemphigus,ncbi,NA,Pemphigus,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Pemphigus populi,Pemphigus populi,ncbi,Pemphigus populi,Pemphigus,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Prociphilus pini,Prociphilus pini,ncbi,Prociphilus pini,Prociphilus,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Tetraneura ulmi,Tetraneura ulmi,ncbi,Tetraneura ulmi,Tetraneura,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Thecabius affinis,Thecabius affinis,ncbi,Thecabius affinis,Thecabius,Pemphigidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Daktulosphaira vitifoliae,Phylloxeridae,ncbi,Daktulosphaira vitifoliae,Daktulosphaira,Phylloxeridae,Hemiptera,Insecta,Arthropoda,Metazoa
+Thelaxes dryophila,Thelaxes dryophila,ncbi,Thelaxes dryophila,Thelaxes,Thelaxidae,Hemiptera,Insecta,Arthropoda,Metazoa
+Apis mellifera,Apis mellifera,ncbi,Apis mellifera,Apis,Apidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Bombus,Bombus,ncbi,NA,Bombus,Apidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Bombus,Bombus,ncbi,NA,Bombus,Apidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Bombus hypocrita,Bombus hypocrita,ncbi,Bombus hypocrita,Bombus,Apidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Bombus hypocrita,Hymenoptera,ncbi,Bombus hypocrita,Bombus,Apidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Cotesia congregata,Parasitoids,ncbi,Cotesia congregata,Cotesia,Braconidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Vespula vulgaris,Vespula vulgaris,ncbi,Vespula vulgaris,Vespula,Vespidae,Hymenoptera,Insecta,Arthropoda,Metazoa
+Alucita hexadactyla,Alucita hexadactyla,ncbi,Alucita hexadactyla,Alucita,Alucitidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Blastobasis adustella,Blastobasis adustella,ncbi,Blastobasis adustella,Blastobasis,Blastobasidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Coleophora albicosta,Coleophora albicosta,ncbi,Coleophora albicosta,Coleophora,Coleophoridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriphila geniculea,Agriphila geniculea,ncbi,Agriphila geniculea,Agriphila,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriphila inquinatella,Agriphila inquinatella,ncbi,Agriphila inquinatella,Agriphila,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriphila straminella,Agriphila straminella,ncbi,Agriphila straminella,Agriphila,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriphila tristella,Agriphila tristella,ncbi,Agriphila tristella,Agriphila,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chrysoteuchia culmella,Chrysoteuchia culmella,ncbi,Chrysoteuchia culmella,Chrysoteuchia,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Crambus,Crambus whitmerella,ncbi,NA,Crambus,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Crambus perlella,Crambus perlella,ncbi,Crambus perlellus,Crambus,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eudonia angustea,Eudonia angustea,ncbi,Eudonia angustea,Eudonia,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eudonia mercurella,Eudonia mercurella,ncbi,Eudonia mercurella,Eudonia,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eurrhypara hortulata,Eurrhypara hortulata,ncbi,Eurrhypara hortulata,Eurrhypara,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Evergestis forficalis,Evergestis forficalis,ncbi,Evergestis forficalis,Evergestis,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Nomophila noctuella,Nomophila noctuella,ncbi,Nomophila noctuella,Nomophila,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pleuroptya ruralis,Pleuroptya ruralis,ncbi,Patania ruralis,Patania,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scoparia ambigualis,Scoparia ambigualis,ncbi,Scoparia ambigualis,Scoparia,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Udea ferrugalis,Udea ferrugalis,ncbi,Udea ferrugalis,Udea,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Udea lutealis,Udea lutealis,ncbi,Udea lutealis,Udea,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Udea olivalis,Udea olivalis,ncbi,Udea olivalis,Udea,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Udea prunalis,Udea prunalis,ncbi,Udea prunalis,Udea,Crambidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Achlya flavicornis,Achlya flavicornis,ncbi,Achlya flavicornis,Achlya,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cilix glaucata,Cilix glaucata,ncbi,Cilix glaucata,Cilix,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cymatophorina diluta,Cymatophorina diluta,ncbi,Cymatophorima diluta,Cymatophorima,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Drepana falcataria,Drepana falcataria,ncbi,Drepana falcataria,Drepana,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Falcaria lacertinaria,Falcaria lacertinaria,ncbi,Falcaria lacertinaria,Falcaria,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Habrosyne pyritoides,Habrosyne pyritoides,ncbi,Habrosyne pyritoides,Habrosyne,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ochropacha duplaris,Ochropacha duplaris,ncbi,Ochropacha duplaris,Ochropacha,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tetheella fluctuosa,Tetheella fluctuosa,ncbi,Tetheella fluctuosa,Tetheella,Drepanidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Elachista canapennella,Elachista canapennella,ncbi,Elachista canapennella,Elachista,Elachistidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Arctia caja,Arctia caja,ncbi,Arctia caja,Arctia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Calliteara pudibunda,Calliteara pudibunda,ncbi,Calliteara pudibunda,Calliteara,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cybosia mesomella,Cybosia mesomella,ncbi,Cybosia mesomella,Cybosia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diaphora mendica,Diaphora mendica,ncbi,Diaphora mendica,Diaphora,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eilema complana,Eilema complana,ncbi,Eilema complana,Eilema,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eilema depressa,Eilema depressa,ncbi,Eilema depressum,Eilema,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eilema griseola,Eilema griseola,ncbi,Eilema griseolum,Eilema,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eilema lurideola,Eilema lurideola,ncbi,Eilema lurideolum,Eilema,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eilema sororcula,Eilema sororcula,ncbi,Eilema sororculum,Eilema,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euproctis chrysorrhoea,Euproctis chrysorrhoea,ncbi,Euproctis chrysorrhoea,Euproctis,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euproctis similis,Euproctis similis,ncbi,Euproctis similis,Euproctis,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Herminia grisealis,Herminia grisealis,ncbi,Herminia grisealis,Herminia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Zanclognatha tarsipennalis,Zanclognatha tarsipennalis,ncbi,Herminia tarsipennalis,Herminia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypena crassalis,Hypena crassalis,ncbi,Hypena crassalis,Hypena,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypena crassalis,Lepidoptera,ncbi,Hypena crassalis,Hypena,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypena proboscidalis,Hypena proboscidalis,ncbi,Hypena proboscidalis,Hypena,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypenodes humidalis,Hypenodes humidalis,ncbi,Hypenodes humidalis,Hypenodes,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Laspeyria flexula,Laspeyria flexula,ncbi,Laspeyria flexula,Laspeyria,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lymantria monacha,Lymantria monacha,ncbi,Lymantria monacha,Lymantria,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Miltochrista miniata,Miltochrista miniata,ncbi,Miltochrista miniata,Miltochrista,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Nudaria mundana,Nudaria mundana,ncbi,Nudaria mundana,Nudaria,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Phragmatobia fuliginosa,Phragmatobia fuliginosa,ncbi,Phragmatobia fuliginosa,Phragmatobia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Rivula sericealis,Rivula sericealis,ncbi,Rivula sericealis,Rivula,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Spilosoma luteum,Spilosoma luteum,ncbi,Spilarctia lutea,Spilarctia,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Spilosoma lubricipeda,Spilosoma lubricipeda,ncbi,Spilosoma lubricipeda,Spilosoma,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thumatha senex,Thumatha senex,ncbi,Thumatha senex,Thumatha,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tyria jacobaeae,Tyria jacobaeae,ncbi,Tyria jacobaeae,Tyria,Erebidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mirificarma mulinella,Mirificarma mulinella,ncbi,Mirificarma mulinella,Mirificarma,Gelechiidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Abraxas grossulariata,Abraxas grossulariata,ncbi,Abraxas grossulariatus,Abraxas,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aethalura punctulata,Aethalura punctulata,ncbi,Aethalura punctulata,Aethalura,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriopis aurantiaria,Agriopis aurantiaria,ncbi,Agriopis aurantiaria,Agriopis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriopis leucophaearia,Agriopis leucophaearia,ncbi,Agriopis leucophaearia,Agriopis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agriopis marginaria,Agriopis marginaria,ncbi,Agriopis marginaria,Agriopis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Alcis jubata,Alcis jubata,ncbi,Alcis jubata,Alcis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Alcis repandata,Alcis repandata,ncbi,Alcis repandata,Alcis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Alsophila aescularia,Alsophila aescularia,ncbi,Alsophila aescularia,Alsophila,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Anticlea badiata,Anticlea badiata,ncbi,Anticlea badiata,Anticlea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Anticlea derivata,Anticlea derivata,ncbi,Anticlea derivata,Anticlea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apeira syringaria,Apeira syringaria,ncbi,Apeira syringaria,Apeira,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apocheima hispidaria,Apocheima hispidaria,ncbi,Apocheima hispidaria,Apocheima,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apocheima pilosaria,Apocheima pilosaria,ncbi,Apocheima pilosaria,Apocheima,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aspitates ochrearia,Caterpillar,ncbi,Aspitates ochrearia,Aspitates,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aspitates ochrearia,Semiaspilates ochrearia,ncbi,Aspitates ochrearia,Aspitates,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Asthena albulata,Asthena albulata,ncbi,Asthena albulata,Asthena,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Biston betularia,Biston betularia,ncbi,Biston betularia,Biston,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Biston strataria,Biston strataria,ncbi,Biston stratarius,Biston,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Bupalus piniaria,Bupalus piniaria,ncbi,Bupalus piniaria,Bupalus,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cabera exanthemata,Cabera exanthemata,ncbi,Cabera exanthemata,Cabera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cabera pusaria,Cabera pusaria,ncbi,Cabera pusaria,Cabera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Campaea margaritata,Campaea margaritata,ncbi,Campaea margaritaria,Campaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chesias legatella,Chesias legatella,ncbi,Chesias legatella,Chesias,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chesias rufata,Chesias rufata,ncbi,Chesias rufata,Chesias,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chiasmia clathrata,Chiasmia clathrata,ncbi,Chiasmia clathrata,Chiasmia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chloroclysta miata,Chloroclysta miata,ncbi,Chloroclysta miata,Chloroclysta,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chloroclysta siterata,Chloroclysta siterata,ncbi,Chloroclysta siterata,Chloroclysta,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cidaria fulvata,Cidaria fulvata,ncbi,Cidaria fulvata,Cidaria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Coenotephria salicata,Coenotephria salicata,ncbi,Coenotephria salicata,Coenotephria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colostygia multistrigaria,Colostygia multistrigaria,ncbi,Colostygia multistrigaria,Colostygia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colostygia olivata,Colostygia olivata,ncbi,Colostygia olivata,Colostygia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colostygia pectinataria,Colostygia pectinataria,ncbi,Colostygia pectinataria,Colostygia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colotois pennaria,Colotois pennaria,ncbi,Colotois pennaria,Colotois,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Comibaena bajularia,Comibaena bajularia,ncbi,Comibaena bajularia,Comibaena,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cosmorhoe ocellata,Cosmorhoe ocellata,ncbi,Cosmorhoe ocellata,Cosmorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Crocallis elinguaria,Crocallis elinguaria,ncbi,Crocallis elinguaria,Crocallis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cyclophora linearia,Cyclophora linearia,ncbi,Cyclophora linearia,Cyclophora,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Deileptenia ribeata,Deileptenia ribeata,ncbi,Deileptenia ribeata,Deileptenia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chloroclysta citrata,Chloroclysta citrata,ncbi,Dysstroma citrata,Dysstroma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chloroclysta truncata,Chloroclysta truncata,ncbi,Dysstroma truncata,Dysstroma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ecliptopera silaceata,Ecliptopera silaceata,ncbi,Ecliptopera silaceata,Ecliptopera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ectropis crepuscularia,Eupithecia extensaria,ncbi,Ectropis crepuscularia,Ectropis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ectropis crepuscularia,Phytoplankton,ncbi,Ectropis crepuscularia,Ectropis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Electrophaes corylata,Electrophaes corylata,ncbi,Electrophaes corylata,Electrophaes,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ennomos alniaria,Ennomos alniaria,ncbi,Ennomos alniaria,Ennomos,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ennomos erosaria,Ennomos erosaria,ncbi,Ennomos erosarius,Ennomos,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ennomos fuscantaria,Ennomos fuscantaria,ncbi,Ennomos fuscantarius,Ennomos,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ennomos quercinaria,Ennomos quercinaria,ncbi,Ennomos quercinarius,Ennomos,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Entephria caesiata,Entephria caesiata,ncbi,Entephria caesiata,Entephria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrhoe alternata,Epirrhoe alternata,ncbi,Epirrhoe alternata,Epirrhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrhoe rivata,Epirrhoe rivata,ncbi,Epirrhoe rivata,Epirrhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrita,Epirrita,ncbi,NA,Epirrita,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrita autumnata,Epirrita autumnata,ncbi,Epirrita autumnata,Epirrita,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrita christyi,Epirrita christyi,ncbi,Epirrita christyi,Epirrita,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrita dilutata,Epirrita dilutata,ncbi,Epirrita dilutata,Epirrita,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epirrita filigrammaria,Epirrita filigrammaria,ncbi,Epirrita filigrammaria,Epirrita,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Erannis defoliaria,Erannis defoliaria,ncbi,Erannis defoliaria,Erannis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eulithis populata,Eulithis populata,ncbi,Eulithis populata,Eulithis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eulithis pyraliata,Eulithis pyraliata,ncbi,Eulithis pyraliata,Eulithis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eulithis testata,Eulithis testata,ncbi,Eulithis testata,Eulithis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euphyia unangulata,Euphyia unangulata,ncbi,Euphyia unangulata,Euphyia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia,Eupithecia,ncbi,NA,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia abbreviata,Eupithecia abbreviata,ncbi,Eupithecia abbreviata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia absinthiata,Eupithecia absinthiata,ncbi,Eupithecia absinthiata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia centaureata,Eupithecia centaureata,ncbi,Eupithecia centaureata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia exiguata,Eupithecia exiguata,ncbi,Eupithecia exiguata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia icterata,Eupithecia icterata,ncbi,Eupithecia icterata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia intricata,Eupithecia intricata,ncbi,Eupithecia intricata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia lariciata,Eupithecia lariciata,ncbi,Eupithecia lariciata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia nanata,Eupithecia nanata,ncbi,Eupithecia nanata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia plumbeolata,Eupithecia plumbeolata,ncbi,Eupithecia plumbeolata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia pulchellata,Eupithecia pulchellata,ncbi,Eupithecia pulchellata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia pusillata,Eupithecia pusillata,ncbi,Eupithecia pusillata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia satyrata,Eupithecia satyrata,ncbi,Eupithecia satyrata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia subfuscata,Eupithecia subfuscata,ncbi,Eupithecia subfuscata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia tantillaria,Eupithecia tantillaria,ncbi,Eupithecia tantillaria,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia virgaureata,Eupithecia virgaureata,ncbi,Eupithecia virgaureata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupithecia vulgata,Eupithecia vulgata,ncbi,Eupithecia vulgata,Eupithecia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Geometra papilionaria,Geometra papilionaria,ncbi,Geometra papilionaria,Geometra,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Gymnoscelis rufifasciata,Gymnoscelis rufifasciata,ncbi,Gymnoscelis rufifasciata,Gymnoscelis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hemithea aestivaria,Hemithea aestivaria,ncbi,Hemithea aestivaria,Hemithea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hydrelia sylvata,Hydrelia sylvata,ncbi,Hydrelia sylvata,Hydrelia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hydriomena furcata,Hydriomena furcata,ncbi,Hydriomena furcata,Hydriomena,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hydriomena impluviata,Hydriomena impluviata,ncbi,Hydriomena impluviata,Hydriomena,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hylaea fasciaria,Hylaea fasciaria,ncbi,Hylaea fasciaria,Hylaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypomecis punctinalis,Hypomecis punctinalis,ncbi,Hypomecis punctinalis,Hypomecis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea aversata,Idaea aversata,ncbi,Idaea aversata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea biselata,Idaea biselata,ncbi,Idaea biselata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea dimidiata,Idaea dimidiata,ncbi,Idaea dimidiata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea emarginata,Idaea emarginata,ncbi,Idaea emarginata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea fuscovenosa,Idaea fuscovenosa,ncbi,Idaea fuscovenosa,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea rusticata,Idaea rusticata,ncbi,Idaea rusticata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea seriata,Idaea seriata,ncbi,Idaea seriata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea subsericeata,Idaea subsericeata,ncbi,Idaea subsericeata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Idaea trigeminata,Idaea trigeminata,ncbi,Idaea trigeminata,Idaea,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Jodis lactearia,Jodis lactearia,ncbi,Jodis lactearia,Jodis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lampropteryx otregiata,Lampropteryx otregiata,ncbi,Lampropteryx otregiata,Lampropteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lampropteryx suffumata,Lampropteryx suffumata,ncbi,Lampropteryx suffumata,Lampropteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lomaspilis marginata,Lomaspilis marginata,ncbi,Lomaspilis marginata,Lomaspilis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lomographa bimaculata,Lomographa bimaculata,ncbi,Lomographa bimaculata,Lomographa,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lomographa temerata,Lomographa temerata,ncbi,Lomographa temerata,Lomographa,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lycia hirtaria,Lycia hirtaria,ncbi,Lycia hirtaria,Lycia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Macaria alternata,Macaria alternata,ncbi,Macaria alternata,Macaria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Macaria liturata,Macaria liturata,ncbi,Macaria liturata,Macaria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ectropis crepuscularia,Ectropis bistortata,ncbi,Ectropis crepuscularia,Ectropis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Odontopera bidentata,Odontopera bidentata,ncbi,Odontopera bidentata,Odontopera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Operophtera brumata,Operophtera brumata,ncbi,Operophtera brumata,Operophtera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Operophtera fagata,Operophtera fagata,ncbi,Operophtera fagata,Operophtera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Opisthograptis luteolata,Opisthograptis luteolata,ncbi,Opisthograptis luteolata,Opisthograptis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthonama vittata,Orthonama vittata,ncbi,Orthonama vittatum,Orthonama,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ourapteryx sambucaria,Ourapteryx sambucaria,ncbi,Ourapteryx sambucaria,Ourapteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pachycnemia hippocastanaria,Pachycnemia hippocastanaria,ncbi,Pachycnemia hippocastanaria,Pachycnemia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Parectropis similaria,Parectropis similaria,ncbi,Parectropis similaria,Parectropis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pasiphila debiliata,Pasiphila debiliata,ncbi,Pasiphila debiliata,Pasiphila,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pasiphila rectangulata,Pasiphila rectangulata,ncbi,Pasiphila rectangulata,Pasiphila,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pelurga comitata,Pelurga comitata,ncbi,Pelurga comitata,Pelurga,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perconia strigillaria,Perconia strigillaria,ncbi,Perconia strigillaria,Perconia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Peribatodes rhomboidaria,Peribatodes rhomboidaria,ncbi,Peribatodes rhomboidaria,Peribatodes,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perizoma,Perizoma didymata,ncbi,NA,Perizoma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perizoma affinitata,Perizoma affinitata,ncbi,Perizoma affinitatum,Perizoma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perizoma albulata,Perizoma albulata,ncbi,Perizoma albulatum,Perizoma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perizoma alchemillata,Perizoma alchemillata,ncbi,Perizoma alchemillatum,Perizoma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Perizoma flavofasciata,Perizoma flavofasciata,ncbi,Perizoma flavofasciatum,Perizoma,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Petrophora chlorosata,Petrophora chlorosata,ncbi,Petrophora chlorosata,Petrophora,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Plagodis dolabraria,Plagodis dolabraria,ncbi,Plagodis dolabraria,Plagodis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Plagodis pulveraria,Plagodis pulveraria,ncbi,Plagodis pulveraria,Plagodis,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scopula floslactata,Scopula floslactata,ncbi,Scopula floslactata,Scopula,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scopula imitaria,Scopula imitaria,ncbi,Scopula imitaria,Scopula,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scopula marginepunctata,Scopula marginepunctata,ncbi,Scopula marginepunctata,Scopula,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scopula ternata,Scopula ternata,ncbi,Scopula ternata,Scopula,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scotopteryx chenopodiata,Scotopteryx chenopodiata,ncbi,Scotopteryx chenopodiata,Scotopteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scotopteryx luridata,Scotopteryx luridata,ncbi,Scotopteryx luridata,Scotopteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Scotopteryx mucronata,Scotopteryx mucronata,ncbi,Scotopteryx mucronata,Scotopteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Selenia dentaria,Selenia dentaria,ncbi,Selenia dentaria,Selenia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Selenia lunularia,Selenia lunularia,ncbi,Selenia lunularia,Selenia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Selenia tetralunaria,Selenia tetralunaria,ncbi,Selenia tetralunaria,Selenia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thera britannica,Thera britannica,ncbi,Thera britannica,Thera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thera firmata,Thera firmata,ncbi,Thera firmata,Thera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thera juniperata,Thera juniperata,ncbi,Thera juniperata,Thera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thera obeliscata,Thera obeliscata,ncbi,Thera obeliscata,Thera,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Theria primaria,Theria primaria,ncbi,Theria primaria,Theria,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Timandra comae,Timandra comae,ncbi,Timandra comae,Timandra,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Trichopteryx carpinata,Trichopteryx carpinata,ncbi,Trichopteryx carpinata,Trichopteryx,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Venusia cambrica,Venusia cambrica,ncbi,Venusia cambrica,Venusia,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe decoloraria,Xanthorhoe decoloraria,ncbi,Xanthorhoe decoloraria,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe designata,Xanthorhoe designata,ncbi,Xanthorhoe designata,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe ferrugata,Xanthorhoe ferrugata,ncbi,Xanthorhoe ferrugata,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe fluctuata,Xanthorhoe fluctuata,ncbi,Xanthorhoe fluctuata,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe montanata,Xanthorhoe montanata,ncbi,Xanthorhoe montanata,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe quadrifasciata,Xanthorhoe quadrifasciata,ncbi,Xanthorhoe quadrifasciata,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthorhoe spadicearia,Xanthorhoe spadicearia,ncbi,Xanthorhoe spadicearia,Xanthorhoe,Geometridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Phyllonorycter messaniella,Phyllonorycter messaniella,ncbi,Phyllonorycter messaniella,Phyllonorycter,Gracillariidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Korscheltellus lupulinus,Hepialus lupulinus,ncbi,Korscheltellus lupulinus,Korscheltellus,Hepialidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pharmacis fusconebulosa,Pharmacis fusconebulosa,ncbi,Pharmacis fusconebulosa,Pharmacis,Hepialidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hepialus sylvina,Hepialus sylvina,ncbi,Triodia sylvina,Triodia,Hepialidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Atalopedes campestris,Atalopedes campestris,ncbi,Atalopedes campestris,Atalopedes,Hesperiidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ochlodes venata,Ochlodes venata,ncbi,Ochlodes venata,Ochlodes,Hesperiidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euthrix potatoria,Euthrix potatoria,ncbi,Euthrix potatoria,Euthrix,Lasiocampidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Malacosoma neustria,Malacosoma neustria,ncbi,Malacosoma neustria,Malacosoma,Lasiocampidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Poecilocampa populi,Poecilocampa populi,ncbi,Poecilocampa populi,Poecilocampa,Lasiocampidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Trichiura crataegi,Trichiura crataegi,ncbi,Trichiura crataegi,Trichiura,Lasiocampidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Celastrina argiolus,Celastrina argiolus,ncbi,Celastrina argiolus,Celastrina,Lycaenidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Leptotes pirithous,Leptotes pirithous,ncbi,Leptotes pirithous,Leptotes,Lycaenidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lycaena phlaeas,Lycaena phlaeas,ncbi,Lycaena phlaeas,Lycaena,Lycaenidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Plebejus argus,Plebejus argus,ncbi,Plebejus argus,Plebejus,Lycaenidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Polyommatus icarus,Polyommatus icarus,ncbi,Polyommatus icarus,Polyommatus,Lycaenidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Abrostola tripartita,Abrostola tripartita,ncbi,Abrostola tripartita,Abrostola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Acronicta menyanthidis,Acronicta menyanthidis,ncbi,Acronicta menyanthidis,Acronicta,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola circellaris,Agrochola circellaris,ncbi,Agrochola circellaris,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola helvola,Agrochola helvola,ncbi,Agrochola helvola,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola litura,Agrochola litura,ncbi,Agrochola litura,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola lota,Agrochola lota,ncbi,Agrochola lota,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola lychnidis,Agrochola lychnidis,ncbi,Agrochola lychnidis,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrochola macilenta,Agrochola macilenta,ncbi,Agrochola macilenta,Agrochola,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrotis clavis,Agrotis clavis,ncbi,Agrotis clavis,Agrotis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrotis exclamationis,Agrotis exclamationis,ncbi,Agrotis exclamationis,Agrotis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrotis puta,Agrotis puta,ncbi,Agrotis puta,Agrotis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agrotis ripae,Agrotis ripae,ncbi,Agrotis ripae,Agrotis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Allophyes oxyacanthae,Allophyes oxyacanthae,ncbi,Allophyes oxyacanthae,Allophyes,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipoea,Amphipoea,ncbi,NA,Amphipoea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipoea crinanensis,Amphipoea crinanensis,ncbi,Amphipoea crinanensis,Amphipoea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipoea fucosa,Amphipoea fucosa,ncbi,Amphipoea fucosa,Amphipoea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipoea lucens,Amphipoea lucens,ncbi,Amphipoea lucens,Amphipoea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipoea oculea,Amphipoea oculea,ncbi,Amphipoea oculea,Amphipoea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Amphipyra tragopoginis,Amphipyra tragopoginis,ncbi,Amphipyra tragopoginis,Amphipyra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Anaplectoides prasina,Anaplectoides prasina,ncbi,Anaplectoides prasina,Anaplectoides,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Discestra trifolii,Discestra trifolii,ncbi,Anarta trifolii,Anarta,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apamea anceps,Apamea anceps,ncbi,Apamea anceps,Apamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apamea crenata,Apamea crenata,ncbi,Apamea crenata,Apamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apamea monoglypha,Apamea monoglypha,ncbi,Apamea monoglypha,Apamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apamea remissa,Apamea remissa,ncbi,Apamea remissa,Apamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apamea scolopacina,Apamea scolopacina,ncbi,Apamea scolopacina,Apamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aporophyla lutulenta,Aporophyla lutulenta,ncbi,Aporophyla lutulenta,Aporophyla,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aporophyla nigra,Aporophyla nigra,ncbi,Aporophyla nigra,Aporophyla,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Asteroscopus sphinx,Asteroscopus sphinx,ncbi,Asteroscopus sphinx,Asteroscopus,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Atethmia centrago,Atethmia centrago,ncbi,Atethmia centrago,Atethmia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Autographa gamma,Autographa gamma,ncbi,Autographa gamma,Autographa,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Autographa pulchrina,Autographa pulchrina,ncbi,Autographa pulchrina,Autographa,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Axylia putris,Axylia putris,ncbi,Axylia putris,Axylia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Brachylomia viminalis,Brachylomia viminalis,ncbi,Brachylomia viminalis,Brachylomia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Caradrina morpheus,Caradrina morpheus,ncbi,Caradrina morpheus,Caradrina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Celaena haworthii,Celaena haworthii,ncbi,Celaena haworthii,Celaena,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ceramica pisi,Melanchra pisi,ncbi,Ceramica pisi,Ceramica,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cerapteryx graminis,Cerapteryx graminis,ncbi,Cerapteryx graminis,Cerapteryx,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cerastis rubricosa,Cerastis rubricosa,ncbi,Cerastis rubricosa,Cerastis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Charanyca trigrammica,Charanyca trigrammica,ncbi,Charanyca trigrammica,Charanyca,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Rusina ferruginea,Rusina ferruginea,ncbi,Charanyca ferruginea,Charanyca,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chortodes fluxa,Chortodes fluxa,ncbi,Chortodes fluxus,Chortodes,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Chortodes pygmina,Chortodes pygmina,ncbi,Chortodes pygminus,Chortodes,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Coenophila subrosea,Coenophila subrosea,ncbi,Coenophila subrosea,Coenophila,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colocasia coryli,Colocasia coryli,ncbi,Colocasia coryli,Colocasia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Conistra vaccinii,Conistra vaccinii,ncbi,Conistra vaccinii,Conistra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cosmia pyralina,Cosmia pyralina,ncbi,Cosmia pyralina,Cosmia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cosmia trapezina,Cosmia trapezina,ncbi,Cosmia trapezina,Cosmia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cryphia domestica,Cryphia domestica,ncbi,Cryphia domestica,Cryphia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Dasypolia templi,Dasypolia templi,ncbi,Dasypolia templi,Dasypolia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diachrysia chrysitis,Diachrysia chrysitis,ncbi,Diachrysia chrysitis,Diachrysia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diarsia brunnea,Diarsia brunnea,ncbi,Diarsia brunnea,Diarsia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diarsia dahlii,Diarsia dahlii,ncbi,Diarsia dahlii,Diarsia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diarsia mendica,Diarsia mendica,ncbi,Diarsia mendica,Diarsia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diarsia rubi,Diarsia rubi,ncbi,Diarsia rubi,Diarsia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Diloba caeruleocephala,Diloba caeruleocephala,ncbi,Diloba caeruleocephala,Diloba,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Dryobotodes eremita,Dryobotodes eremita,ncbi,Dryobotodes eremita,Dryobotodes,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eugnorisma glareosa,Eugnorisma glareosa,ncbi,Eugnorisma glareosa,Eugnorisma,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euplexia lucipara,Euplexia lucipara,ncbi,Euplexia lucipara,Euplexia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Eupsilia transversa,Eupsilia transversa,ncbi,Eupsilia transversa,Eupsilia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Euxoa nigricans,Euxoa nigricans,ncbi,Euxoa nigricans,Euxoa,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Graphiphora augur,Graphiphora augur,ncbi,Graphiphora augur,Graphiphora,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hada plebeja,Hada plebeja,ncbi,Hada plebeja,Hada,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Celaena leucostigma,Celaena leucostigma,ncbi,Helotropha leucostigma,Helotropha,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hoplodrina,Hoplodrina,ncbi,NA,Hoplodrina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hoplodrina ambigua,Hoplodrina ambigua,ncbi,Hoplodrina ambigua,Hoplodrina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hoplodrina blanda,Hoplodrina blanda,ncbi,Hoplodrina blanda,Hoplodrina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hoplodrina octogenaria,Hoplodrina alsines,ncbi,Hoplodrina octogenaria,Hoplodrina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hydraecia micacea,Hydraecia micacea,ncbi,Hydraecia micacea,Hydraecia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lacanobia oleracea,Lacanobia oleracea,ncbi,Lacanobia oleracea,Lacanobia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lacanobia suasa,Lacanobia suasa,ncbi,Lacanobia suasa,Lacanobia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lacanobia thalassina,Lacanobia thalassina,ncbi,Lacanobia thalassina,Lacanobia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Leucania comma,Mythimna comma,ncbi,Leucania comma,Leucania,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Luperina testacea,Luperina testacea,ncbi,Luperina testacea,Luperina,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Lycophotia porphyrea,Lycophotia porphyrea,ncbi,Lycophotia porphyrea,Lycophotia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mamestra brassicae,Mamestra brassicae,ncbi,Mamestra brassicae,Mamestra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Melanchra persicariae,Melanchra persicariae,ncbi,Melanchra persicariae,Melanchra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mesapamea secalis,Mesapamea secalis,ncbi,Mesapamea secalis,Mesapamea,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mesoligia furuncula,Mesoligia furuncula,ncbi,Mesoligia furuncula,Mesoligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mniotype adusta,Mniotype adusta,ncbi,Mniotype adusta,Mniotype,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna conigera,Mythimna conigera,ncbi,Mythimna conigera,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna ferrago,Mythimna ferrago,ncbi,Mythimna ferrago,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna impura,Mythimna impura,ncbi,Mythimna impura,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna pallens,Mythimna pallens,ncbi,Mythimna pallens,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna pudorina,Mythimna pudorina,ncbi,Mythimna pudorina,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Mythimna turca,Mythimna turca,ncbi,Mythimna turca,Mythimna,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Noctua comes,Noctua comes,ncbi,Noctua comes,Noctua,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Noctua janthe,Noctua janthe,ncbi,Noctua janthe,Noctua,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Noctua pronuba,Noctua pronuba,ncbi,Noctua pronuba,Noctua,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ochropleura plecta,Ochropleura plecta,ncbi,Ochropleura plecta,Ochropleura,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Oligia,Oligia,ncbi,NA,Oligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Oligia fasciuncula,Oligia fasciuncula,ncbi,Oligia fasciuncula,Oligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Oligia latruncula,Oligia latruncula,ncbi,Oligia latruncula,Oligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Oligia strigilis,Oligia strigilis,ncbi,Oligia strigilis,Oligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Oligia versicolor,Oligia versicolor,ncbi,Oligia versicolor,Oligia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Omphaloscelis lunosa,Omphaloscelis lunosa,ncbi,Omphaloscelis lunosa,Omphaloscelis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia,Orthosia munda,ncbi,NA,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia cerasi,Orthosia cerasi,ncbi,Orthosia cerasi,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia cruda,Orthosia cruda,ncbi,Orthosia cruda,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia gothica,Orthosia gothica,ncbi,Orthosia gothica,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia gracilis,Orthosia gracilis,ncbi,Orthosia gracilis,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia incerta,Orthosia incerta,ncbi,Orthosia incerta,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Orthosia miniosa,Orthosia miniosa,ncbi,Orthosia miniosa,Orthosia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Panolis flammea,Panolis flammea,ncbi,Panolis flammea,Panolis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Papestra biren,Papestra biren,ncbi,Papestra biren,Papestra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Phlogophora meticulosa,Phlogophora meticulosa,ncbi,Phlogophora meticulosa,Phlogophora,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Photedes minima,Photedes minima,ncbi,Photedes minima,Photedes,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Polymixis lichenea,Polymixis lichenea,ncbi,Polymixis lichenea,Polymixis,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Protodeltote pygarga,Protodeltote pygarga,ncbi,Protodeltote pygarga,Protodeltote,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Thalpophila matura,Thalpophila matura,ncbi,Thalpophila matura,Thalpophila,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tholera decimalis,Tholera decimalis,ncbi,Tholera decimalis,Tholera,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthia,Xanthia aurago,ncbi,NA,Xanthia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthia icteritia,Xanthia icteritia,ncbi,Xanthia icteritia,Xanthia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xanthia togata,Xanthia togata,ncbi,Xanthia togata,Xanthia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia agathina,Xestia agathina,ncbi,Xestia agathina,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia baja,Xestia baja,ncbi,Xestia baja,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia c-nigrum,Xestia c-nigrum,ncbi,Xestia c-nigrum,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia ditrapezium,Xestia ditrapezium,ncbi,Xestia ditrapezium,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia sexstrigata,Xestia sexstrigata,ncbi,Xestia sexstrigata,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia triangulum,Xestia triangulum,ncbi,Xestia triangulum,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xestia xanthographa,Xestia xanthographa,ncbi,Xestia xanthographa,Xestia,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Xylocampa areola,Xylocampa areola,ncbi,Xylocampa areola,Xylocampa,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Nola confusalis,Nola confusalis,ncbi,Nola confusalis,Nola,Nolidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Nola cucullatella,Nola cucullatella,ncbi,Nola cucullatella,Nola,Nolidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Drymonia dodonaea,Drymonia dodonaea,ncbi,Drymonia dodonaea,Drymonia,Notodontidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Peridea anceps,Peridea anceps,ncbi,Peridea anceps,Peridea,Notodontidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Phalera bucephala,Phalera bucephala,ncbi,Phalera bucephala,Phalera,Notodontidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pheosia gnoma,Pheosia gnoma,ncbi,Pheosia gnoma,Pheosia,Notodontidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ptilodon capucina,Ptilodon capucina,ncbi,Ptilodon capucinus,Ptilodon,Notodontidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Apatura iris,Apatura iris,ncbi,Apatura iris,Apatura,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Coenonympha pamphilus,Coenonympha pamphilus,ncbi,Coenonympha pamphilus,Coenonympha,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Melanargia lachesis,Melanargia lachesis,ncbi,Melanargia lachesis,Melanargia,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Aglais urticae,Aglais urticae,ncbi,Nymphalis urticae,Nymphalis,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Inachis io,Inachis io,ncbi,Nymphalis io,Nymphalis,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Polygonia c-album,Polygonia c-album,ncbi,Nymphalis c-album,Nymphalis,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pararge aegeria,Pararge aegeria,ncbi,Pararge aegeria,Pararge,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cynthia cardui,Cynthia cardui,ncbi,Vanessa cardui,Vanessa,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Vanessa atalanta,Vanessa atalanta,ncbi,Vanessa atalanta,Vanessa,Nymphalidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hofmannophila pseudospretella,Hofmannophila pseudospretella,ncbi,Hofmannophila pseudospretella,Hofmannophila,Oecophoridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Carcina quercana,Carcina quercana,ncbi,Carcina quercana,Carcina,Peleopodidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Anthocharis cardamines,Anthocharis cardamines,ncbi,Anthocharis cardamines,Anthocharis,Pieridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Colias croceus,Colias croceus,ncbi,Colias croceus,Colias,Pieridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Gonepteryx rhamni,Gonepteryx rhamni,ncbi,Gonepteryx rhamni,Gonepteryx,Pieridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pieris napi,Pieris napi,ncbi,Pieris napi,Pieris,Pieridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pieris rapae,Pieris rapae,ncbi,Pieris rapae,Pieris,Pieridae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Plutella xylostella,Plutella xylostella,ncbi,Plutella xylostella,Plutella,Plutellidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Endotricha flammealis,Endotricha flammealis,ncbi,Endotricha flammealis,Endotricha,Pyralidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hypsopygia costalis,Hypsopygia costalis,ncbi,Hypsopygia costalis,Hypsopygia,Pyralidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tinea semifulvella,Tinea semifulvella,ncbi,Tinea semifulvella,Tinea,Tineidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Acleris laterana,Acleris laterana,ncbi,Acleris laterana,Acleris,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Acleris rhombana,Acleris rhombana,ncbi,Acleris rhombana,Acleris,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Acleris variegana,Acleris variegana,ncbi,Acleris variegana,Acleris,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Agapeta hamana,Agapeta hamana,ncbi,Agapeta hamana,Agapeta,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Ancylis badiana,Ancylis badiana,ncbi,Ancylis badiana,Ancylis,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Archips oporana,Archips oporana,ncbi,Archips oporana,Archips,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Celypha lacunana,Celypha lacunana,ncbi,Celypha lacunana,Celypha,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Celypha striana,Celypha striana,ncbi,Celypha striana,Celypha,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Clepsis consimilana,Clepsis consimilana,ncbi,Clepsis consimilana,Clepsis,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Cnephasia incertana,Cnephasia incertana,ncbi,Cnephasia incertana,Cnephasia,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Epiphyas postvittana,Epiphyas postvittana,ncbi,Epiphyas postvittana,Epiphyas,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Hedya nubiferana,Hedya nubiferana,ncbi,Hedya nubiferana,Hedya,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Notocelia cynosbatella,Notocelia cynosbatella,ncbi,Notocelia cynosbatella,Notocelia,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Notocelia roborana,Notocelia roborana,ncbi,Notocelia roborana,Notocelia,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Notocelia rosaecolana,Notocelia rosaecolana,ncbi,Notocelia rosaecolana,Notocelia,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Pandemis heparana,Pandemis heparana,ncbi,Pandemis heparana,Pandemis,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tortricodes alternella,Tortricodes alternella,ncbi,Tortricodes alternella,Tortricodes,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Tortrix viridana,Tortrix viridana,ncbi,Tortrix viridana,Tortrix,Tortricidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Sialis lutaria,Sialis lutaria,ncbi,Sialis lutaria,Sialis,Sialidae,Megaloptera,Insecta,Arthropoda,Metazoa
+Frankliniella fusca,Thysanoptera,ncbi,Frankliniella fusca,Frankliniella,Thripidae,Thysanoptera,Insecta,Arthropoda,Metazoa
+Engraulis japonicus,Engraulis japonicus,ncbi,Engraulis japonicus,Engraulis,Engraulidae,Clupeiformes,Actinopteri,Chordata,Metazoa
+Rutilus rutilus,Rutilus rutilus,ncbi,Rutilus rutilus,Rutilus,Leuciscidae,Cypriniformes,Actinopteri,Chordata,Metazoa
+Perca fluviatilis,Perca fluviatilis,ncbi,Perca fluviatilis,Perca,Percidae,Perciformes,Actinopteri,Chordata,Metazoa
+Oncorhynchus gorbuscha,Oncorhynchus gorbuscha,ncbi,Oncorhynchus gorbuscha,Oncorhynchus,Salmonidae,Salmoniformes,Actinopteri,Chordata,Metazoa
+Salmo salar,Salmo salar,ncbi,Salmo salar,Salmo,Salmonidae,Salmoniformes,Actinopteri,Chordata,Metazoa
+Salmo trutta,Salmo trutta,ncbi,Salmo trutta,Salmo,Salmonidae,Salmoniformes,Actinopteri,Chordata,Metazoa
+Ammodytes marinus,Ammodytes marinus,ncbi,Ammodytes marinus,Ammodytes,Ammodytidae,Uranoscopiformes,Actinopteri,Chordata,Metazoa
+Bufo boreas,Bufo boreas,ncbi,Anaxyrus boreas,Anaxyrus,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo fowleri,Bufo fowleri,ncbi,Anaxyrus fowleri,Anaxyrus,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo terrestris,Bufo terrestris,ncbi,Anaxyrus terrestris,Anaxyrus,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo woodhousii,Bufo woodhousii,ncbi,Anaxyrus woodhousii,Anaxyrus,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo bufo,Bufo bufo,ncbi,Bufo bufo,Bufo,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo calamita,Bufo calamita,ncbi,Epidalea calamita,Epidalea,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Bufo valliceps,Bufo valliceps,ncbi,Incilius valliceps,Incilius,Bufonidae,Anura,Amphibia,Chordata,Metazoa
+Acris crepitans,Acris crepitans,ncbi,Acris crepitans,Acris,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Hyla cinerea,Hyla cinerea,ncbi,Dryophytes cinereus,Dryophytes,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Hyla versicolor,Hyla versicolor,ncbi,Dryophytes versicolor,Dryophytes,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Pseudacris crucifer,Pseudacris crucifer,ncbi,Pseudacris crucifer,Pseudacris,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Pseudacris maculata,Pseudacris maculata,ncbi,Pseudacris maculata,Pseudacris,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Pseudacris ornata,Pseudacris ornata,ncbi,Pseudacris ornata,Pseudacris,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Pseudacris triseriata,Pseudacris triseriata,ncbi,Pseudacris triseriata,Pseudacris,Hylidae,Anura,Amphibia,Chordata,Metazoa
+Gastrophryne carolinensis,Gastrophryne carolinensis,ncbi,Gastrophryne carolinensis,Gastrophryne,Microhylidae,Anura,Amphibia,Chordata,Metazoa
+Scaphiopus holbrookii,Scaphiopus holbrookii,ncbi,Scaphiopus holbrookii,Scaphiopus,Pelobatidae,Anura,Amphibia,Chordata,Metazoa
+Lithobates catesbeianus,Rana catesbeiana,ncbi,Lithobates catesbeianus,Lithobates,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Lithobates clamitans,Rana clamitans,ncbi,Lithobates clamitans,Lithobates,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Lithobates palustris,Rana palustris,ncbi,Lithobates palustris,Lithobates,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Lithobates sphenocephala,Rana sphenocephala,ncbi,Lithobates sphenocephalus,Lithobates,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Pelophylax lessonae,Rana esculenta,ncbi,Pelophylax lessonae,Pelophylax,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Rana cascadae,Rana cascadae,ncbi,Rana cascadae,Rana,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Zhangixalus arboreus,Rhacophorus arboreus,ncbi,Zhangixalus arboreus,Zhangixalus,Rhacophoridae,Anura,Amphibia,Chordata,Metazoa
+Ambystoma opacum,Ambystoma opacum,ncbi,Ambystoma opacum,Ambystoma,Ambystomatidae,Caudata,Amphibia,Chordata,Metazoa
+Ambystoma talpoideum,Ambystoma talpoideum,ncbi,Ambystoma talpoideum,Ambystoma,Ambystomatidae,Caudata,Amphibia,Chordata,Metazoa
+Ambystoma tigrinum,Ambystoma tigrinum,ncbi,Ambystoma tigrinum,Ambystoma,Ambystomatidae,Caudata,Amphibia,Chordata,Metazoa
+Hynobius tokyoensis,Hynobius tokyoensis,ncbi,Hynobius tokyoensis,Hynobius,Hynobiidae,Caudata,Amphibia,Chordata,Metazoa
+Eurycea quadridigitata,Eurycea quadridigitata,ncbi,Eurycea quadridigitata,Eurycea,Plethodontidae,Caudata,Amphibia,Chordata,Metazoa
+Triturus alpestris,Triturus alpestris,ncbi,Ichthyosaura alpestris,Ichthyosaura,Salamandridae,Caudata,Amphibia,Chordata,Metazoa
+Triturus helveticus,Triturus helveticus,ncbi,Lissotriton helveticus,Lissotriton,Salamandridae,Caudata,Amphibia,Chordata,Metazoa
+Triturus vulgaris,Triturus vulgaris,ncbi,Lissotriton vulgaris,Lissotriton,Salamandridae,Caudata,Amphibia,Chordata,Metazoa
+Triturus cristatus,Triturus cristatus,ncbi,Triturus cristatus,Triturus,Salamandridae,Caudata,Amphibia,Chordata,Metazoa
+Accipiter nisus,Accipiter nisus,ncbi,Accipiter nisus,Accipiter,Accipitridae,Accipitriformes,Aves,Chordata,Metazoa
+Accipiter striatus,Accipiter striatus,ncbi,Accipiter striatus,Accipiter,Accipitridae,Accipitriformes,Aves,Chordata,Metazoa
+Milvus migrans,Milvus migrans,ncbi,Milvus migrans,Milvus,Accipitridae,Accipitriformes,Aves,Chordata,Metazoa
+Chen caerulescens,Chen caerulescens,ncbi,Anser caerulescens,Anser,Anatidae,Anseriformes,Aves,Chordata,Metazoa
+Branta canadensis,Branta canadensis,ncbi,Branta canadensis,Branta,Anatidae,Anseriformes,Aves,Chordata,Metazoa
+Bucephala clangula,Bucephala clangula,ncbi,Bucephala clangula,Bucephala,Anatidae,Anseriformes,Aves,Chordata,Metazoa
+Somateria mollissima,Somateria mollissima,ncbi,Somateria mollissima,Somateria,Anatidae,Anseriformes,Aves,Chordata,Metazoa
+Anas querquedula,Anas querquedula,ncbi,Spatula querquedula,Spatula,Anatidae,Anseriformes,Aves,Chordata,Metazoa
+Apus apus,Apus apus,ncbi,Apus apus,Apus,Apodidae,Apodiformes,Aves,Chordata,Metazoa
+Hirundapus caudacutus,Hirundapus caudacutus,ncbi,Hirundapus caudacutus,Hirundapus,Apodidae,Apodiformes,Aves,Chordata,Metazoa
+Selasphorus platycercus,Selasphorus platycercus,ncbi,Selasphorus platycercus,Selasphorus,Trochilidae,Apodiformes,Aves,Chordata,Metazoa
+Alca torda,Alca torda,ncbi,Alca torda,Alca,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Alle alle,Alle alle,ncbi,Alle alle,Alle,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Cerorhinca monocerata,Cerorhinca monocerata,ncbi,Cerorhinca monocerata,Cerorhinca,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Fratercula arctica,Fratercula arctica,ncbi,Fratercula arctica,Fratercula,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Fratercula cirrhata,Fratercula cirrhata,ncbi,Fratercula cirrhata,Fratercula,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Ptychoramphus aleuticus,Ptychoramphus aleuticus,ncbi,Ptychoramphus aleuticus,Ptychoramphus,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Uria aalge,Uria aalge,ncbi,Uria aalge,Uria,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Uria aalge,Guillemots,ncbi,Uria aalge,Uria,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Uria lomvia,Uria lomvia,ncbi,Uria lomvia,Uria,Alcidae,Charadriiformes,Aves,Chordata,Metazoa
+Charadrius bicinctus,Charadrius bicinctus,ncbi,Charadrius bicinctus,Charadrius,Charadriidae,Charadriiformes,Aves,Chordata,Metazoa
+Pluvialis apricaria,Pluvialis apricaria,ncbi,Pluvialis apricaria,Pluvialis,Charadriidae,Charadriiformes,Aves,Chordata,Metazoa
+Vanellus vanellus,Vanellus vanellus,ncbi,Vanellus vanellus,Vanellus,Charadriidae,Charadriiformes,Aves,Chordata,Metazoa
+Larus argentatus,Larus argentatus,ncbi,Larus argentatus,Larus,Laridae,Charadriiformes,Aves,Chordata,Metazoa
+Rissa tridactyla,Rissa tridactyla,ncbi,Rissa tridactyla,Rissa,Laridae,Charadriiformes,Aves,Chordata,Metazoa
+Sterna hirundo,Sterna hirundo,ncbi,Sterna hirundo,Sterna,Laridae,Charadriiformes,Aves,Chordata,Metazoa
+Sterna paradisaea,Sterna paradisaea,ncbi,Sterna paradisaea,Sterna,Laridae,Charadriiformes,Aves,Chordata,Metazoa
+Thalasseus sandvicensis,Thalasseus sandvicensis,ncbi,Thalasseus sandvicensis,Thalasseus,Laridae,Charadriiformes,Aves,Chordata,Metazoa
+Actitis hypoleucos,Actitis hypoleucos,ncbi,Actitis hypoleucos,Actitis,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Calidris alba,Calidris alba,ncbi,Calidris alba,Calidris,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Calidris canutus,Calidris canutus,ncbi,Calidris canutus,Calidris,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Calidris ferruginea,Calidris ferruginea,ncbi,Calidris ferruginea,Calidris,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Numenius arquata,Numenius arquata,ncbi,Numenius arquata,Numenius,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Scolopax rusticola,Scolopax rusticola,ncbi,Scolopax rusticola,Scolopax,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Tringa erythropus,Tringa erythropus,ncbi,Tringa erythropus,Tringa,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Tringa flavipes,Tringa flavipes,ncbi,Tringa flavipes,Tringa,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Tringa glareola,Tringa glareola,ncbi,Tringa glareola,Tringa,Scolopacidae,Charadriiformes,Aves,Chordata,Metazoa
+Catharacta maccormicki,Catharacta maccormicki,ncbi,Stercorarius maccormicki,Stercorarius,Stercorariidae,Charadriiformes,Aves,Chordata,Metazoa
+Ciconia ciconia,Ciconia ciconia,ncbi,Ciconia ciconia,Ciconia,Ciconiidae,Ciconiiformes,Aves,Chordata,Metazoa
+Todiramphus sanctus,Todiramphus sanctus,ncbi,Todiramphus sanctus,Todiramphus,Alcedinidae,Coraciiformes,Aves,Chordata,Metazoa
+Merops ornatus,Merops ornatus,ncbi,Merops ornatus,Merops,Meropidae,Coraciiformes,Aves,Chordata,Metazoa
+Clamator glandarius,Clamator glandarius,ncbi,Clamator glandarius,Clamator,Cuculidae,Cuculiformes,Aves,Chordata,Metazoa
+Cuculus canorus,Cuculus canorus,ncbi,Cuculus canorus,Cuculus,Cuculidae,Cuculiformes,Aves,Chordata,Metazoa
+Cuculus pallidus,Cuculus pallidus,ncbi,Cuculus pallidus,Cuculus,Cuculidae,Cuculiformes,Aves,Chordata,Metazoa
+Eudynamys scolopacea,Eudynamys scolopacea,ncbi,Eudynamys scolopaceus,Eudynamys,Cuculidae,Cuculiformes,Aves,Chordata,Metazoa
+Scythrops novaehollandiae,Scythrops novaehollandiae,ncbi,Scythrops novaehollandiae,Scythrops,Cuculidae,Cuculiformes,Aves,Chordata,Metazoa
+Falco subbuteo,Falco subbuteo,ncbi,Falco subbuteo,Falco,Falconidae,Falconiformes,Aves,Chordata,Metazoa
+Lagopus leucurus,Lagopus leucurus,ncbi,Lagopus leucura,Lagopus,Phasianidae,Galliformes,Aves,Chordata,Metazoa
+Tetrao tetrix,Tetrao tetrix,ncbi,Lyrurus tetrix,Lyrurus,Phasianidae,Galliformes,Aves,Chordata,Metazoa
+Tetrao urogallus,Tetrao urogallus,ncbi,Tetrao urogallus,Tetrao,Phasianidae,Galliformes,Aves,Chordata,Metazoa
+Grus grus,Grus grus,ncbi,Grus grus,Grus,Gruidae,Gruiformes,Aves,Chordata,Metazoa
+Gerygone olivacea,Gerygone olivacea,ncbi,Gerygone olivacea,Gerygone,Acanthizidae,Passeriformes,Aves,Chordata,Metazoa
+Alauda arvensis,Alauda arvensis,ncbi,Alauda arvensis,Alauda,Alaudidae,Passeriformes,Aves,Chordata,Metazoa
+Certhia americana,Certhia americana,ncbi,Certhia americana,Certhia,Certhiidae,Passeriformes,Aves,Chordata,Metazoa
+Troglodytes troglodytes,Troglodytes troglodytes,ncbi,Troglodytes troglodytes,Troglodytes,Certhiidae,Passeriformes,Aves,Chordata,Metazoa
+Corvus frugilegus,Corvus frugilegus,ncbi,Corvus frugilegus,Corvus,Corvidae,Passeriformes,Aves,Chordata,Metazoa
+Perisoreus canadensis,Perisoreus canadensis,ncbi,Perisoreus canadensis,Perisoreus,Corvidae,Passeriformes,Aves,Chordata,Metazoa
+Pica pica,Pica pica,ncbi,Pica pica,Pica,Corvidae,Passeriformes,Aves,Chordata,Metazoa
+Carduelis carduelis,Carduelis carduelis,ncbi,Carduelis carduelis,Carduelis,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Carpodacus erythrinus,Carpodacus erythrinus,ncbi,Carpodacus erythrinus,Carpodacus,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Chloris chloris,Chloris chloris,ncbi,Chloris chloris,Chloris,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Coccothraustes coccothraustes,Coccothraustes coccothraustes,ncbi,Coccothraustes coccothraustes,Coccothraustes,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Emberiza citrinella,Emberiza citrinella,ncbi,Emberiza citrinella,Emberiza,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Emberiza schoeniclus,Emberiza schoeniclus,ncbi,Emberiza schoeniclus,Emberiza,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Emberiza spodocephala,Emberiza spodocephala,ncbi,Emberiza spodocephala,Emberiza,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Miliaria calandra,Miliaria calandra,ncbi,Emberiza calandra,Emberiza,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Fringilla coelebs,Fringilla coelebs,ncbi,Fringilla coelebs,Fringilla,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Fringilla montifringilla,Fringilla montifringilla,ncbi,Fringilla montifringilla,Fringilla,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Cannabina ,Cannabina cannabina,ncbi,cannabina,Linaria,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Pheucticus ludovicianus,Pheucticus ludovicianus,ncbi,Pheucticus ludovicianus,Pheucticus,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Pyrrhula pyrrhula,Pyrrhula pyrrhula,ncbi,Pyrrhula pyrrhula,Pyrrhula,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Spinus spinus,Spinus spinus,ncbi,Spinus spinus,Spinus,Fringillidae,Passeriformes,Aves,Chordata,Metazoa
+Delichon urbicum,Delichon urbicum,ncbi,Delichon urbicum,Delichon,Hirundinidae,Passeriformes,Aves,Chordata,Metazoa
+Hirundo rustica,Hirundo rustica,ncbi,Hirundo rustica,Hirundo,Hirundinidae,Passeriformes,Aves,Chordata,Metazoa
+Riparia riparia,Riparia riparia,ncbi,Riparia riparia,Riparia,Hirundinidae,Passeriformes,Aves,Chordata,Metazoa
+Tachycineta bicolor,Tachycineta bicolor,ncbi,Tachycineta bicolor,Tachycineta,Hirundinidae,Passeriformes,Aves,Chordata,Metazoa
+Agelaius phoeniceus,Agelaius phoeniceus,ncbi,Agelaius phoeniceus,Agelaius,Icteridae,Passeriformes,Aves,Chordata,Metazoa
+Quiscalus quiscula,Quiscalus quiscula,ncbi,Quiscalus quiscula,Quiscalus,Icteridae,Passeriformes,Aves,Chordata,Metazoa
+Lanius collurio,Lanius collurio,ncbi,Lanius collurio,Lanius,Laniidae,Passeriformes,Aves,Chordata,Metazoa
+Locustella fluviatilis,Locustella fluviatilis,ncbi,Locustella fluviatilis,Locustella,Locustellidae,Passeriformes,Aves,Chordata,Metazoa
+Monarcha melanopsis,Monarcha melanopsis,ncbi,Monarcha melanopsis,Monarcha,Monarchidae,Passeriformes,Aves,Chordata,Metazoa
+Myiagra rubecula,Myiagra rubecula,ncbi,Myiagra rubecula,Myiagra,Monarchidae,Passeriformes,Aves,Chordata,Metazoa
+Anthus pratensis,Anthus pratensis,ncbi,Anthus pratensis,Anthus,Motacillidae,Passeriformes,Aves,Chordata,Metazoa
+Anthus trivialis,Anthus trivialis,ncbi,Anthus trivialis,Anthus,Motacillidae,Passeriformes,Aves,Chordata,Metazoa
+Motacilla alba,Motacilla alba,ncbi,Motacilla alba,Motacilla,Motacillidae,Passeriformes,Aves,Chordata,Metazoa
+Motacilla flava,Motacilla flava,ncbi,Motacilla flava,Motacilla,Motacillidae,Passeriformes,Aves,Chordata,Metazoa
+Ficedula albicollis,Ficedula albicollis,ncbi,Ficedula albicollis,Ficedula,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Ficedula hypoleuca,Ficedula hypoleuca,ncbi,Ficedula hypoleuca,Ficedula,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Ficedula parva,Ficedula parva,ncbi,Ficedula parva,Ficedula,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Muscicapa striata,Muscicapa striata,ncbi,Muscicapa striata,Muscicapa,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Oenanthe oenanthe,Oenanthe oenanthe,ncbi,Oenanthe oenanthe,Oenanthe,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Phoenicurus auroreus,Phoenicurus auroreus,ncbi,Phoenicurus auroreus,Phoenicurus,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Phoenicurus ochruros,Phoenicurus ochruros,ncbi,Phoenicurus ochruros,Phoenicurus,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Phoenicurus phoenicurus,Phoenicurus phoenicurus,ncbi,Phoenicurus phoenicurus,Phoenicurus,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Saxicola rubetra,Saxicola rubetra,ncbi,Saxicola rubetra,Saxicola,Muscicapidae,Passeriformes,Aves,Chordata,Metazoa
+Pachycephala rufiventris,Pachycephala rufiventris,ncbi,Pachycephala rufiventris,Pachycephala,Pachycephalidae,Passeriformes,Aves,Chordata,Metazoa
+Cyanistes caeruleus,Cyanistes caeruleus,ncbi,Cyanistes caeruleus,Cyanistes,Paridae,Passeriformes,Aves,Chordata,Metazoa
+Parus caeruleus,Parus caeruleus,ncbi,Cyanistes caeruleus,Cyanistes,Paridae,Passeriformes,Aves,Chordata,Metazoa
+Parus major,Parus major,ncbi,Parus major,Parus,Paridae,Passeriformes,Aves,Chordata,Metazoa
+Parus ater,Parus ater,ncbi,Periparus ater,Periparus,Paridae,Passeriformes,Aves,Chordata,Metazoa
+Poecile montanus,Poecile montanus,ncbi,Poecile montanus,Poecile,Paridae,Passeriformes,Aves,Chordata,Metazoa
+Geothlypis trichas,Geothlypis trichas,ncbi,Geothlypis trichas,Geothlypis,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Mniotilta varia,Mniotilta varia,ncbi,Mniotilta varia,Mniotilta,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Seiurus aurocapilla,Seiurus aurocapilla,ncbi,Seiurus aurocapilla,Seiurus,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga coronata,Setophaga coronata,ncbi,Setophaga coronata,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga fusca,Setophaga fusca,ncbi,Setophaga fusca,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga magnolia,Setophaga magnolia,ncbi,Setophaga magnolia,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga palmarum,Setophaga palmarum,ncbi,Setophaga palmarum,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga petechia,Setophaga petechia,ncbi,Setophaga petechia,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga ruticilla,Setophaga ruticilla,ncbi,Setophaga ruticilla,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga striata,Setophaga striata,ncbi,Setophaga striata,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Setophaga virens,Setophaga virens,ncbi,Setophaga virens,Setophaga,Parulidae,Passeriformes,Aves,Chordata,Metazoa
+Passerella iliaca,Passerella iliaca,ncbi,Passerella iliaca,Passerella,Passerellidae,Passeriformes,Aves,Chordata,Metazoa
+Pipilo erythrophthalmus,Pipilo erythrophthalmus,ncbi,Pipilo erythrophthalmus,Pipilo,Passerellidae,Passeriformes,Aves,Chordata,Metazoa
+Zonotrichia albicollis,Zonotrichia albicollis,ncbi,Zonotrichia albicollis,Zonotrichia,Passerellidae,Passeriformes,Aves,Chordata,Metazoa
+Passer domesticus,Passer domesticus,ncbi,Passer domesticus,Passer,Passeridae,Passeriformes,Aves,Chordata,Metazoa
+Passer italiae,Passer italiae,ncbi,Passer italiae,Passer,Passeridae,Passeriformes,Aves,Chordata,Metazoa
+Passer montanus,Passer montanus,ncbi,Passer montanus,Passer,Passeridae,Passeriformes,Aves,Chordata,Metazoa
+Prunella modularis,Prunella modularis,ncbi,Prunella modularis,Prunella,Passeridae,Passeriformes,Aves,Chordata,Metazoa
+Phylloscopus collybita,Phylloscopus collybita,ncbi,Phylloscopus collybita,Phylloscopus,Phylloscopidae,Passeriformes,Aves,Chordata,Metazoa
+Phylloscopus sibilatrix,Phylloscopus sibilatrix,ncbi,Phylloscopus sibilatrix,Phylloscopus,Phylloscopidae,Passeriformes,Aves,Chordata,Metazoa
+Phylloscopus trochiloides,Phylloscopus trochiloides,ncbi,Phylloscopus trochiloides,Phylloscopus,Phylloscopidae,Passeriformes,Aves,Chordata,Metazoa
+Phylloscopus trochilus,Phylloscopus trochilus,ncbi,Phylloscopus trochilus,Phylloscopus,Phylloscopidae,Passeriformes,Aves,Chordata,Metazoa
+Sitta europaea,Sitta europaea,ncbi,Sitta europaea,Sitta,Sittidae,Passeriformes,Aves,Chordata,Metazoa
+Sturnus vulgaris,Sturnus vulgaris,ncbi,Sturnus vulgaris,Sturnus,Sturnidae,Passeriformes,Aves,Chordata,Metazoa
+Acrocephalus arundinaceus,Acrocephalus arundinaceus,ncbi,Acrocephalus arundinaceus,Acrocephalus,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Acrocephalus schoenobaenus,Acrocephalus schoenobaenus,ncbi,Acrocephalus schoenobaenus,Acrocephalus,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Acrocephalus scirpaceus,Acrocephalus scirpaceus,ncbi,Acrocephalus scirpaceus,Acrocephalus,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Sylvia curruca,Sylvia curruca,ncbi,Curruca curruca,Curruca,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Hippolais icterina,Hippolais icterina,ncbi,Hippolais icterina,Hippolais,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Sylvia atricapilla,Sylvia atricapilla,ncbi,Sylvia atricapilla,Sylvia,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Sylvia borin,Sylvia borin,ncbi,Sylvia borin,Sylvia,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Sylvia communis,Sylvia communis,ncbi,Sylvia communis,Sylvia,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Sylvia nisoria,Sylvia nisoria,ncbi,Sylvia nisoria,Sylvia,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Erithacus rubecula,Erithacus rubecula,ncbi,Erithacus rubecula,Erithacus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Luscinia luscinia,Luscinia luscinia,ncbi,Luscinia luscinia,Luscinia,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Luscinia megarhynchos,Luscinia megarhynchos,ncbi,Luscinia megarhynchos,Luscinia,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus eunomus,Turdus eunomus,ncbi,Turdus eunomus,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus iliacus,Turdus iliacus,ncbi,Turdus iliacus,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus merula,Turdus merula,ncbi,Turdus merula,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus migratorius,Turdus migratorius,ncbi,Turdus migratorius,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus pallidus,Turdus pallidus,ncbi,Turdus pallidus,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus philomelos,Turdus philomelos,ncbi,Turdus philomelos,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Turdus pilaris,Turdus pilaris,ncbi,Turdus pilaris,Turdus,Turdidae,Passeriformes,Aves,Chordata,Metazoa
+Empidonax minimus,Empidonax minimus,ncbi,Empidonax minimus,Empidonax,Tyrannidae,Passeriformes,Aves,Chordata,Metazoa
+Sayornis phoebe,Sayornis phoebe,ncbi,Sayornis phoebe,Sayornis,Tyrannidae,Passeriformes,Aves,Chordata,Metazoa
+Phalacrocorax aristotelis,Phalacrocorax aristotelis,ncbi,Phalacrocorax aristotelis,Phalacrocorax,Phalacrocoracidae,Pelecaniformes,Aves,Chordata,Metazoa
+Colaptes auratus,Colaptes auratus,ncbi,Colaptes auratus,Colaptes,Picidae,Piciformes,Aves,Chordata,Metazoa
+Picoides borealis,Picoides borealis,ncbi,Picoides borealis,Picoides,Picidae,Piciformes,Aves,Chordata,Metazoa
+Oceanites oceanicus,Oceanites oceanicus,ncbi,Oceanites oceanicus,Oceanites,Hydrobatidae,Procellariiformes,Aves,Chordata,Metazoa
+Daption capense,Daption capense,ncbi,Daption capense,Daption,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Fulmarus glacialis,Fulmarus glacialis,ncbi,Fulmarus glacialis,Fulmarus,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Fulmarus glacialoides,Fulmarus glacialoides,ncbi,Fulmarus glacialoides,Fulmarus,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Macronectes giganteus,Macronectes giganteus,ncbi,Macronectes giganteus,Macronectes,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Pagodroma nivea,Pagodroma nivea,ncbi,Pagodroma nivea,Pagodroma,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Thalassoica antarctica,Thalassoica antarctica,ncbi,Thalassoica antarctica,Thalassoica,Procellariidae,Procellariiformes,Aves,Chordata,Metazoa
+Aptenodytes forsteri,Aptenodytes forsteri,ncbi,Aptenodytes forsteri,Aptenodytes,Spheniscidae,Sphenisciformes,Aves,Chordata,Metazoa
+Pygoscelis adeliae,Pygoscelis adeliae,ncbi,Pygoscelis adeliae,Pygoscelis,Spheniscidae,Sphenisciformes,Aves,Chordata,Metazoa
+Pygoscelis antarcticus,Pygoscelis antarcticus,ncbi,Pygoscelis antarcticus,Pygoscelis,Spheniscidae,Sphenisciformes,Aves,Chordata,Metazoa
+Pygoscelis papua,Pygoscelis papua,ncbi,Pygoscelis papua,Pygoscelis,Spheniscidae,Sphenisciformes,Aves,Chordata,Metazoa
+Upupa epops,Upupa epops,ncbi,Upupa epops,Upupa,Upupidae,Upupiformes,Aves,Chordata,Metazoa
+Bos taurus,Bos taurus,ncbi,Bos taurus,Bos,Bovidae,Artiodactyla,Mammalia,Chordata,Metazoa
+Rangifer tarandus,Rangifer tarandus,ncbi,Rangifer tarandus,Rangifer,Cervidae,Artiodactyla,Mammalia,Chordata,Metazoa
+Glis glis,Glis glis,ncbi,Glis glis,Glis,Gliridae,Rodentia,Mammalia,Chordata,Metazoa
+Marmota flaviventris,Marmota flaviventris,ncbi,Marmota flaviventris,Marmota,Sciuridae,Rodentia,Mammalia,Chordata,Metazoa
+Urocitellus columbianus,Urocitellus columbianus,ncbi,Urocitellus columbianus,Urocitellus,Sciuridae,Rodentia,Mammalia,Chordata,Metazoa
+Caretta caretta,Caretta caretta,ncbi,Caretta caretta,Caretta,Cheloniidae,Testudines,Reptilia,Chordata,Metazoa
+Beroe gracilis,Beroe gracilis,ncbi,Beroe gracilis,Beroe,Beroidae,Beroida,Nuda,Ctenophora,Metazoa
+Beroe pileus,Pleurobrachia pileus,ncbi,Pleurobrachia pileus,Beroe,Beroidae,Beroida,Nuda,Ctenophora,Metazoa
+Mnemiopsis leidyi,Mnemiopsis leidyi,ncbi,Mnemiopsis leidyi,Mnemiopsis,Bolinopsidae,Lobata,Tentaculata,Ctenophora,Metazoa
+Rhopalomyzus lonicerae,Rhopalomyzus lonicerae,ncbi,Rhopalomyzus lonicerae,Rhopalomyzus,Aphididae,Hemiptera,Insecta,Arthropoda,Metazoa
+Rhizedra lutosa,Rhizedra lutosa,ncbi,Rhizedra lutosa,Rhizedra,Noctuidae,Lepidoptera,Insecta,Arthropoda,Metazoa
+Rana ornativentris,Rana ornativentris,ncbi,Rana ornativentris,Rana,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Rana temporaria,Rana temporaria,ncbi,Rana temporaria,Rana,Ranidae,Anura,Amphibia,Chordata,Metazoa
+Regulus calendula,Regulus calendula,ncbi,Regulus calendula,Regulus,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Regulus regulus,Regulus regulus,ncbi,Regulus regulus,Regulus,Sylviidae,Passeriformes,Aves,Chordata,Metazoa
+Macoma balthica,Macoma balthica,ncbi,Limecola balthica,Limecola,Tellinidae,Cardiida,Bivalvia,Mollusca,Metazoa
+Keratella,Keratella,ncbi,NA,Keratella,Brachionidae,Ploima,Eurotatoria,Rotifera,Metazoa
+Keratella cochlearis,Keratella cochlearis,ncbi,Keratella cochlearis,Keratella,Brachionidae,Ploima,Eurotatoria,Rotifera,Metazoa
+Cyclotella,Cyclotella,ncbi,NA,Cyclotella,Stephanodiscaceae,Thalassiosirales,Coscinodiscophyceae,Bacillariophyta,Chromista
+Asterionella,Asterionella,ncbi,NA,Asterionella,Fragilariaceae,Fragilariales,Fragilariophyceae,Bacillariophyta,Chromista
+Asterionella formosa,Asterionella formosa,ncbi,Asterionella formosa,Asterionella,Fragilariaceae,Fragilariales,Fragilariophyceae,Bacillariophyta,Chromista
+Asterionella formosa,Diatom,ncbi,Asterionella formosa,Asterionella,Fragilariaceae,Fragilariales,Fragilariophyceae,Bacillariophyta,Chromista
+Fragilaria,Fragilaria,ncbi,NA,Fragilaria,Fragilariaceae,Fragilariales,Fragilariophyceae,Bacillariophyta,Chromista
+Trachelomonas,Trachelomonas,ncbi,NA,Trachelomonas,Euglenaceae,Euglenales,Euglenida,Euglenozoa,Protozoa
+Chlamydomonas,Chlamydomonas,ncbi,NA,Chlamydomonas,Chlamydomonadaceae,Chlamydomonadales,Chlorophyceae,Chlorophyta,Viridiplantae
+Pseudosphaerocystis,Pseudosphaerocystis,ncbi,Pseudosphaerocystis lacustris,Pseudosphaerocystis,Palmellopsidaceae,Chlamydomonadales,Chlorophyceae,Chlorophyta,Viridiplantae
+Eudorina,Eudorina,ncbi,NA,Eudorina,Volvocaceae,Chlamydomonadales,Chlorophyceae,Chlorophyta,Viridiplantae
+Radiococcus,Coenococcus,ncbi,Radiococcus,Radiococcus,Radiococcaceae,Sphaeropleales,Chlorophyceae,Chlorophyta,Viridiplantae
+Radiococcus,Radiococcus,ncbi,NA,Radiococcus,Radiococcaceae,Sphaeropleales,Chlorophyceae,Chlorophyta,Viridiplantae
+Crucigenia,Crucigenia,ncbi,NA,Crucigenia,Scenedesmaceae,Sphaeropleales,Chlorophyceae,Chlorophyta,Viridiplantae
+Kirchneriella,Kirchneriella,ncbi,NA,Kirchneriella,Selenastraceae,Sphaeropleales,Chlorophyceae,Chlorophyta,Viridiplantae
+Monoraphidium,Monoraphidium,ncbi,NA,Monoraphidium,Selenastraceae,Sphaeropleales,Chlorophyceae,Chlorophyta,Viridiplantae
+Paulschulzia,Paulschulzia,ncbi,NA,Paulschulzia,Tetrasporaceae,Tetrasporales,Chlorophyceae,Chlorophyta,Viridiplantae
+Chlorella vulgaris,Chlorella,ncbi,Chlorella vulgaris,Chlorella,Chlorellaceae,Chlorellales,Trebouxiophyceae,Chlorophyta,Viridiplantae
+Dictyosphaerium,Dictyosphaerium,ncbi,NA,Dictyosphaerium,Chlorellaceae,Chlorellales,Trebouxiophyceae,Chlorophyta,Viridiplantae
+Geminella,Geminella,ncbi,NA,Geminella,Chlorellaceae,Chlorellales,Trebouxiophyceae,Chlorophyta,Viridiplantae
+Coenochloris,Coenochloris fottii,ncbi,NA,Coenochloris,Oocystaceae,Chlorellales,Trebouxiophyceae,Chlorophyta,Viridiplantae
+Oocystis,Oocystis,ncbi,NA,Oocystis,Oocystaceae,Chlorellales,Trebouxiophyceae,Chlorophyta,Viridiplantae
+Elakatothrix,Elakatothrix,ncbi,NA,Elakatothrix,Elakatotrichaceae,Klebsormidiales,Klebsormidiophyceae,Streptophyta,Viridiplantae
+Aegopodium podagraria,Aegopodium podagraria,ncbi,Aegopodium podagraria,Aegopodium,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Aethusa cynapium,Aethusa cynapium,ncbi,Aethusa cynapium,Aethusa,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Anthriscus sylvestris,Anthriscus sylvestris,ncbi,Anthriscus sylvestris,Anthriscus,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Chaerophyllum temulentum,Chaerophyllum temulentum,ncbi,Chaerophyllum temulum,Chaerophyllum,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Conium maculatum,Conium maculatum,ncbi,Conium maculatum,Conium,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Conopodium majus,Conopodium majus,ncbi,Conopodium majus,Conopodium,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Daucus carota,Daucus carota,ncbi,Daucus carota,Daucus,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Heracleum sphondylium,Heracleum sphondylium,ncbi,Heracleum sphondylium,Heracleum,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Pastinaca sativa,Pastinaca sativa,ncbi,Pastinaca sativa,Pastinaca,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Sanicula europaea,Sanicula europaea,ncbi,Sanicula europaea,Sanicula,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Sison amomum,Sison amomum,ncbi,Sison amomum,Sison,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Torilis japonica,Torilis japonica,ncbi,Torilis japonica,Torilis,Apiaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Hedera helix,Hedera helix,ncbi,Hedera helix,Hedera,Araliaceae,Apiales,Magnoliopsida,Streptophyta,Viridiplantae
+Ilex aquifolium,Ilex aquifolium,ncbi,Ilex aquifolium,Ilex,Aquifoliaceae,Aquifoliales,Magnoliopsida,Streptophyta,Viridiplantae
+Galanthus nivalis,Galanthus nivalis,ncbi,Galanthus nivalis,Galanthus,Amaryllidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Narcissus pseudonarcissus,Narcissus pseudonarcissus,ncbi,Narcissus pseudonarcissus,Narcissus,Amaryllidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Hyacinthoides,Hyacinthoides,ncbi,NA,Hyacinthoides,Hyacinthaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Hyacinthoides non-scripta,Hyacinthoides non-scripta,ncbi,Hyacinthoides non-scripta,Hyacinthoides,Hyacinthaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Crocus,Crocus,ncbi,NA,Crocus,Iridaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Iris pseudacorus,Iris pseudacorus,ncbi,Iris pseudacorus,Iris,Iridaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Anacamptis pyramidalis,Anacamptis pyramidalis,ncbi,Anacamptis pyramidalis,Anacamptis,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Cephalanthera damasonium,Cephalanthera damasonium,ncbi,Cephalanthera damasonium,Cephalanthera,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Coeloglossum viride,Coeloglossum viride,ncbi,Dactylorhiza viridis,Dactylorhiza,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Dactylorhiza fuchsii,Dactylorhiza fuchsii,ncbi,Dactylorhiza fuchsii,Dactylorhiza,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Dactylorhiza incarnata,Dactylorhiza incarnata,ncbi,Dactylorhiza incarnata,Dactylorhiza,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Dactylorhiza praetermissa,Dactylorhiza praetermissa,ncbi,Dactylorhiza praetermissa,Dactylorhiza,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Epipactis helleborine,Epipactis helleborine,ncbi,Epipactis helleborine,Epipactis,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Epipactis purpurata,Epipactis purpurata,ncbi,Epipactis purpurata,Epipactis,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Gymnadenia conopsea,Gymnadenia conopsea,ncbi,Gymnadenia conopsea,Gymnadenia,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Listera ovata,Listera ovata,ncbi,Neottia ovata,Neottia,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Neottia nidus-avis,Neottia nidus-avis,ncbi,Neottia nidus-avis,Neottia,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Ophrys apifera,Ophrys apifera,ncbi,Ophrys apifera,Ophrys,Orchidaceae,Asparagales,Magnoliopsida,Streptophyta,Viridiplantae
+Achillea millefolium,Achillea millefolium,ncbi,Achillea millefolium,Achillea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Achillea ptarmica,Achillea ptarmica,ncbi,Achillea ptarmica,Achillea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Arctium lappa,Arctium lappa,ncbi,Arctium lappa,Arctium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Arctium minus,Arctium minus,ncbi,Arctium minus,Arctium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Artemisia vulgaris,Artemisia vulgaris,ncbi,Artemisia vulgaris,Artemisia,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Bellis perennis,Plant,ncbi,Bellis perennis,Bellis,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Carduus acanthoides,Carduus acanthoides,ncbi,Carduus acanthoides,Carduus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Carduus nutans,Carduus nutans,ncbi,Carduus nutans,Carduus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Carlina vulgaris,Carlina vulgaris,ncbi,Carlina vulgaris,Carlina,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Centaurea nigra,Centaurea nigra,ncbi,Centaurea nigra,Centaurea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Centaurea scabiosa,Centaurea scabiosa,ncbi,Centaurea scabiosa,Centaurea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cicerbita macrophylla,Cicerbita macrophylla,ncbi,Cicerbita macrophylla,Cicerbita,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Mycelis muralis,Mycelis muralis,ncbi,Cicerbita muralis,Cicerbita,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cichorium intybus,Cichorium intybus,ncbi,Cichorium intybus,Cichorium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cirsium acaule,Cirsium acaule,ncbi,Cirsium acaule,Cirsium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cirsium arvense,Cirsium arvense,ncbi,Cirsium arvense,Cirsium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cirsium dissectum,Cirsium dissectum,ncbi,Cirsium dissectum,Cirsium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cirsium eriophorum,Cirsium eriophorum,ncbi,Cirsium eriophorum,Cirsium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Cirsium vulgare,Cirsium vulgare,ncbi,Cirsium vulgare,Cirsium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Crepis biennis,Crepis biennis,ncbi,Crepis biennis,Crepis,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Crepis capillaris,Crepis capillaris,ncbi,Crepis capillaris,Crepis,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Crepis vesicaria,Crepis vesicaria,ncbi,Crepis vesicaria,Crepis,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Dittrichia viscosa,Dittrichia viscosa,ncbi,Dittrichia viscosa,Dittrichia,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Erigeron acer,Erigeron acer,ncbi,Erigeron acris,Erigeron,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Eupatorium cannabinum,Eupatorium cannabinum,ncbi,Eupatorium cannabinum,Eupatorium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Helminthotheca echioides,Helminthotheca echioides,ncbi,Helminthotheca echioides,Helminthotheca,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Hieracium sabaudum,Hieracium sabaudum,ncbi,Hieracium sabaudum,Hieracium,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Hypochaeris radicata,Hypochaeris radicata,ncbi,Hypochaeris radicata,Hypochaeris,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Inula conyzae,Inula conyzae,ncbi,Inula conyza,Inula,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Senecio erucifolius,Senecio erucifolius,ncbi,Jacobaea erucifolia,Jacobaea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Senecio jacobaea,Senecio jacobaea,ncbi,Jacobaea vulgaris,Jacobaea,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Lactuca serriola,Lactuca serriola,ncbi,Lactuca serriola,Lactuca,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Lapsana communis,Lapsana communis,ncbi,Lapsana communis,Lapsana,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Leontodon hispidus,Leontodon hispidus,ncbi,Leontodon hispidus,Leontodon,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Leucanthemum vulgare,Leucanthemum vulgare,ncbi,Leucanthemum vulgare,Leucanthemum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Matricaria discoidea,Matricaria discoidea,ncbi,Matricaria discoidea,Matricaria,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Matricaria recutita,Matricaria recutita,ncbi,Matricaria chamomilla,Matricaria,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Taraxacum officianle,Taraxacum campylodes,ncbi,Taraxacum officinale,Taraxacum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Petasites hybridus,Petasites hybridus,ncbi,Petasites hybridus,Petasites,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Picris hieracioides,Picris hieracioides,ncbi,Picris hieracioides,Picris,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Pilosella officinarum,Pilosella officinarum,ncbi,Pilosella officinarum,Pilosella,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Pulicaria dysenterica,Pulicaria dysenterica,ncbi,Pulicaria dysenterica,Pulicaria,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Leontodon autumnalis,Leontodon autumnalis,ncbi,Scorzoneroides autumnalis,Scorzoneroides,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Senecio squalidus,Senecio squalidus,ncbi,Senecio squalidus,Senecio,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Solidago canadensis,Solidago canadensis,ncbi,Solidago canadensis,Solidago,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Sonchus aquatilis,Sonchus aquatilis,ncbi,Sonchus aquatilis,Sonchus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Sonchus arvensis,Sonchus arvensis,ncbi,Sonchus arvensis,Sonchus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Sonchus asper,Sonchus asper,ncbi,Sonchus asper,Sonchus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Sonchus oleraceus,Sonchus oleraceus,ncbi,Sonchus oleraceus,Sonchus,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Aster novi-belgii,Aster novi-belgii,ncbi,Symphyotrichum novi-belgii,Symphyotrichum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Tanacetum parthenium,Tanacetum parthenium,ncbi,Tanacetum parthenium,Tanacetum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Tanacetum vulgare,Tanacetum vulgare,ncbi,Tanacetum vulgare,Tanacetum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Taraxacum erythrosperma,Taraxacum sect. Erythrosperma,ncbi,Taraxacum erythrospermum,Taraxacum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Tragopogon pratensis,Tragopogon pratensis,ncbi,Tragopogon pratensis,Tragopogon,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Tripleurospermum inodorum,Tripleurospermum inodorum,ncbi,Tripleurospermum maritimum,Tripleurospermum,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Tussilago farfara,Tussilago farfara,ncbi,Tussilago farfara,Tussilago,Asteraceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Campanula glomerata,Campanula glomerata,ncbi,Campanula glomerata,Campanula,Campanulaceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Campanula trachelium,Campanula trachelium,ncbi,Campanula trachelium,Campanula,Campanulaceae,Asterales,Magnoliopsida,Streptophyta,Viridiplantae
+Myosotis arvensis,Myosotis arvensis,ncbi,Myosotis arvensis,Myosotis,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Myosotis scorpioides,Myosotis scorpioides,ncbi,Myosotis scorpioides,Myosotis,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Myosotis sylvatica,Myosotis sylvatica,ncbi,Myosotis sylvatica,Myosotis,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Pentaglottis sempervirens,Pentaglottis sempervirens,ncbi,Pentaglottis sempervirens,Pentaglottis,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Symphytum officinale,Symphytum officinale,ncbi,Symphytum officinale,Symphytum,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Symphytum x uplandicum,Symphytum x uplandicum,ncbi,Symphytum x uplandicum,Symphytum,Boraginaceae,Boraginales,Magnoliopsida,Streptophyta,Viridiplantae
+Alliaria petiolata,Alliaria petiolata,ncbi,Alliaria petiolata,Alliaria,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Arabidopsis thaliana,Arabidopsis thaliana,ncbi,Arabidopsis thaliana,Arabidopsis,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Armoracia rusticana,Armoracia rusticana,ncbi,Armoracia rusticana,Armoracia,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Barbarea vulgaris,Barbarea vulgaris,ncbi,Barbarea vulgaris,Barbarea,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Brassica nigra,Brassica nigra,ncbi,Brassica nigra,Brassica,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Brassica rapa,Brassica rapa,ncbi,Brassica rapa,Brassica,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Cardamine hirsuta,Cardamine hirsuta,ncbi,Cardamine hirsuta,Cardamine,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Cardamine pratensis,Cardamine pratensis,ncbi,Cardamine pratensis,Cardamine,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Diplotaxis erucoides,Diplotaxis erucoides,ncbi,Diplotaxis erucoides,Diplotaxis,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Erysimum cheiri,Erysimum cheiri,ncbi,Erysimum cheiri,Erysimum,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Hesperis matronalis,Hesperis matronalis,ncbi,Hesperis matronalis,Hesperis,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Lepidium draba,Lepidium draba,ncbi,Lepidium draba,Lepidium,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Lunaria annua,Lunaria annua,ncbi,Lunaria annua,Lunaria,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Rorippa nasturtium-aquaticum,Rorippa nasturtium-aquaticum,ncbi,Nasturtium officinale,Nasturtium,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Rorippa amphibia,Rorippa amphibia,ncbi,Rorippa amphibia,Rorippa,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Sinapis alba,Sinapis alba,ncbi,Sinapis alba,Sinapis,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Sisymbrium officinale,Sisymbrium officinale,ncbi,Sisymbrium officinale,Sisymbrium,Brassicaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Cerastium fontanum,Cerastium fontanum,ncbi,Cerastium fontanum,Cerastium,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Cerastium glomeratum,Cerastium glomeratum,ncbi,Cerastium glomeratum,Cerastium,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Moehringia trinervia,Moehringia trinervia,ncbi,Moehringia trinervia,Moehringia,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Sagina procumbens,Sagina procumbens,ncbi,Sagina procumbens,Sagina,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Lychnis flos-cuculi,Lychnis flos-cuculi,ncbi,Silene flos-cuculi,Silene,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Silene dioica,Silene dioica,ncbi,Silene dioica,Silene,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Silene latifolia,Silene latifolia,ncbi,Silene latifolia,Silene,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Silene vulgaris,Silene vulgaris,ncbi,Silene vulgaris,Silene,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Stellaria graminea,Stellaria graminea,ncbi,Stellaria graminea,Stellaria,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Stellaria holostea,Stellaria holostea,ncbi,Stellaria holostea,Stellaria,Caryophyllaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Atriplex prostrata,Atriplex prostrata,ncbi,Atriplex prostrata,Atriplex,Chenopodiaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Chenopodium album,Chenopodium album,ncbi,Chenopodium album,Chenopodium,Chenopodiaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Limonium vulgare,Limonium vulgare,ncbi,Limonium vulgare,Limonium,Plumbaginaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Fallopia convolvulus,Fallopia convolvulus,ncbi,Fallopia convolvulus,Fallopia,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Persicaria lapathifolia,Persicaria lapathifolia,ncbi,Persicaria lapathifolia,Persicaria,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Polygonum aviculare,Polygonum aviculare,ncbi,Polygonum aviculare,Polygonum,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Fallopia japonica,Fallopia japonica,ncbi,Reynoutria japonica,Reynoutria,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex acetosa,Rumex acetosa,ncbi,Rumex acetosa,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex acetosella,Rumex acetosella,ncbi,Rumex acetosella,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex conglomeratus,Rumex conglomeratus,ncbi,Rumex conglomeratus,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex crispus,Rumex crispus,ncbi,Rumex crispus,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex hydrolapathum,Rumex hydrolapathum,ncbi,Rumex hydrolapathum,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex obtusifolius,Rumex obtusifolius,ncbi,Rumex obtusifolius,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Rumex sanguineus,Rumex sanguineus,ncbi,Rumex sanguineus,Rumex,Polygonaceae,Caryophyllales,Magnoliopsida,Streptophyta,Viridiplantae
+Euonymus europaeus,Euonymus europaeus,ncbi,Euonymus europaeus,Euonymus,Celastraceae,Celastrales,Magnoliopsida,Streptophyta,Viridiplantae
+Cornus sanguinea,Cornus sanguinea,ncbi,Cornus sanguinea,Cornus,Cornaceae,Cornales,Magnoliopsida,Streptophyta,Viridiplantae
+Bryonia dioica,Bryonia dioica,ncbi,Bryonia dioica,Bryonia,Cucurbitaceae,Cucurbitales,Magnoliopsida,Streptophyta,Viridiplantae
+Tamus communis,Tamus communis,ncbi,Dioscorea communis,Dioscorea,Dioscoreaceae,Dioscoreales,Magnoliopsida,Streptophyta,Viridiplantae
+Adoxa moschatellina,Adoxa moschatellina,ncbi,Adoxa moschatellina,Adoxa,Adoxaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Sambucus nigra,Sambucus nigra,ncbi,Sambucus nigra,Sambucus,Adoxaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Viburnum lantana,Viburnum lantana,ncbi,Viburnum lantana,Viburnum,Adoxaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Viburnum opulus,Viburnum opulus,ncbi,Viburnum opulus,Viburnum,Adoxaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Knautia arvensis,Knautia arvensis,ncbi,Knautia arvensis,Knautia,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Lonicera periclymenum,Lonicera periclymenum,ncbi,Lonicera periclymenum,Lonicera,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Scabiosa columbaria,Scabiosa columbaria,ncbi,Scabiosa columbaria,Scabiosa,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Symphoricarpos albus,Symphoricarpos rivularis,ncbi,Symphoricarpos albus,Symphoricarpos,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Valerianella dentata,Valerianella dentata,ncbi,Valerianella dentata,Valerianella,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Valerianella locusta,Valerianella locusta,ncbi,Valerianella locusta,Valerianella,Caprifoliaceae,Dipsacales,Magnoliopsida,Streptophyta,Viridiplantae
+Impatiens glandulifera,Impatiens glandulifera,ncbi,Impatiens glandulifera,Impatiens,Balsaminaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Impatiens parviflora,Impatiens parviflora,ncbi,Impatiens parviflora,Impatiens,Balsaminaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Calluna vulgaris,Calluna vulgaris,ncbi,Calluna vulgaris,Calluna,Ericaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Vaccinium myrtillus,Vaccinium myrtillus,ncbi,Vaccinium myrtillus,Vaccinium,Ericaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Anagallis arvensis,Anagallis arvensis,ncbi,Anagallis arvensis,Anagallis,Primulaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Primula veris,Primula veris,ncbi,Primula veris,Primula,Primulaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Primula vulgaris,Primula vulgaris,ncbi,Primula vulgaris,Primula,Primulaceae,Ericales,Magnoliopsida,Streptophyta,Viridiplantae
+Galega officinalis,Galega officinalis,ncbi,Galega officinalis,Galega,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Laburnum,Laburnum,ncbi,NA,Laburnum,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Lathyrus latifolius,Lathyrus latifolius,ncbi,Lathyrus latifolius,Lathyrus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Lathyrus pratensis,Lathyrus pratensis,ncbi,Lathyrus pratensis,Lathyrus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Lotus corniculatus,Lotus corniculatus,ncbi,Lotus corniculatus,Lotus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Lotus pedunculatus,Lotus pedunculatus,ncbi,Lotus pedunculatus,Lotus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Medicago lupulina,Medicago lupulina,ncbi,Medicago lupulina,Medicago,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Melilotus albus,Melilotus albus,ncbi,Melilotus albus,Melilotus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Melilotus altissimus,Melilotus altissimus,ncbi,Melilotus altissimus,Melilotus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Melilotus officinalis,Melilotus officinalis,ncbi,Melilotus officinalis,Melilotus,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Onobrychis viciifolia,Onobrychis viciifolia,ncbi,Onobrychis viciifolia,Onobrychis,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Ononis repens,Ononis repens,ncbi,Ononis repens,Ononis,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium campestre,Trifolium campestre,ncbi,Trifolium campestre,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium dubium,Trifolium dubium,ncbi,Trifolium dubium,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium fragiferum,Trifolium fragiferum,ncbi,Trifolium fragiferum,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium medium,Trifolium medium,ncbi,Trifolium medium,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium pratense,Trifolium pratense,ncbi,Trifolium pratense,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Trifolium repens,Trifolium repens,ncbi,Trifolium repens,Trifolium,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Vicia cracca,Vicia cracca,ncbi,Vicia cracca,Vicia,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Vicia sepium,Vicia sepium,ncbi,Vicia sepium,Vicia,Fabaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Polygala calcarea,Polygala calcarea,ncbi,Polygala calcarea,Polygala,Polygalaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Polygala serpyllifolia,Polygala serpyllifolia,ncbi,Polygala serpyllifolia,Polygala,Polygalaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Polygala vulgaris,Polygala vulgaris,ncbi,Polygala vulgaris,Polygala,Polygalaceae,Fabales,Magnoliopsida,Streptophyta,Viridiplantae
+Alnus glutinosa,Alnus glutinosa,ncbi,Alnus glutinosa,Alnus,Betulaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Betula,Betula,ncbi,NA,Betula,Betulaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Betula pendula,Betula pendula,ncbi,Betula pendula,Betula,Betulaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Carpinus betulus,Carpinus betulus,ncbi,Carpinus betulus,Carpinus,Betulaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Corylus avellana,Corylus avellana,ncbi,Corylus avellana,Corylus,Betulaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Fagus sylvatica,Fagus sylvatica,ncbi,Fagus sylvatica,Fagus,Fagaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Quercus,Quercus,ncbi,NA,Quercus,Fagaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Quercus robur,Quercus robur,ncbi,Quercus robur,Quercus,Fagaceae,Fagales,Magnoliopsida,Streptophyta,Viridiplantae
+Vinca minor,Vinca minor,ncbi,Vinca minor,Vinca,Apocynaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Gentianella amarella,Gentianella amarella,ncbi,Gentianella amarella,Gentianella,Gentianaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Gentianella germanica,Gentianella germanica,ncbi,Gentianella germanica,Gentianella,Gentianaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Asperula cynanchica,Asperula cynanchica,ncbi,Asperula cynanchica,Asperula,Rubiaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Galium aparine,Galium aparine,ncbi,Galium aparine,Galium,Rubiaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Galium odoratum,Galium odoratum,ncbi,Galium odoratum,Galium,Rubiaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Galium saxatile,Galium saxatile,ncbi,Galium saxatile,Galium,Rubiaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Galium uliginosum,Galium uliginosum,ncbi,Galium uliginosum,Galium,Rubiaceae,Gentianales,Magnoliopsida,Streptophyta,Viridiplantae
+Geranium dissectum,Geranium dissectum,ncbi,Geranium dissectum,Geranium,Geraniaceae,Geraniales,Magnoliopsida,Streptophyta,Viridiplantae
+Geranium phaeum,Geranium phaeum,ncbi,Geranium phaeum,Geranium,Geraniaceae,Geraniales,Magnoliopsida,Streptophyta,Viridiplantae
+Geranium pyrenaicum,Geranium pyrenaicum,ncbi,Geranium pyrenaicum,Geranium,Geraniaceae,Geraniales,Magnoliopsida,Streptophyta,Viridiplantae
+Geranium robertianum,Geranium robertianum,ncbi,Geranium robertianum,Geranium,Geraniaceae,Geraniales,Magnoliopsida,Streptophyta,Viridiplantae
+Ajuga reptans,Ajuga reptans,ncbi,Ajuga reptans,Ajuga,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Ballota nigra,Ballota nigra,ncbi,Ballota nigra,Ballota,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Stachys officinalis,Stachys officinalis,ncbi,Betonica officinalis,Betonica,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Clinopodium vulgare,Clinopodium vulgare,ncbi,Clinopodium vulgare,Clinopodium,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Glechoma hederacea,Glechoma hederacea,ncbi,Glechoma hederacea,Glechoma,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Lamiastrum galeobdolon,Lamiastrum galeobdolon,ncbi,Lamium galeobdolon,Lamium,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Lamium album,Lamium album,ncbi,Lamium album,Lamium,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Lamium hybridum,Lamium hybridum,ncbi,Lamium purpureum,Lamium,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Lycopus europaeus,Lycopus europaeus,ncbi,Lycopus europaeus,Lycopus,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Mentha aquatica,Mentha aquatica,ncbi,Mentha aquatica,Mentha,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Mentha arvensis,Mentha arvensis,ncbi,Mentha arvensis,Mentha,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Origanum vulgare,Origanum vulgare,ncbi,Origanum vulgare,Origanum,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunella vulgaris,Prunella vulgaris,ncbi,Prunella vulgaris,Prunella,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Stachys palustris,Stachys palustris,ncbi,Stachys palustris,Stachys,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Stachys sylvatica,Stachys sylvatica,ncbi,Stachys sylvatica,Stachys,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Thymus polytrichus,Thymus polytrichus,ncbi,Thymus praecox,Thymus,Lamiaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Fraxinus excelsior,Fraxinus excelsior,ncbi,Fraxinus excelsior,Fraxinus,Oleaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Ligustrum vulgare,Ligustrum vulgare,ncbi,Ligustrum vulgare,Ligustrum,Oleaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Castilleja tenuiflora,Castilleja tenuiflora,ncbi,Castilleja tenuiflora,Castilleja,Orobanchaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Odontites verna,Odontites verna,ncbi,Odontites vernus,Odontites,Orobanchaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Antirrhinum majus,Antirrhinum majus,ncbi,Antirrhinum majus,Antirrhinum,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Cymbalaria muralis,Cymbalaria muralis,ncbi,Cymbalaria muralis,Cymbalaria,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Digitalis purpurea,Digitalis purpurea,ncbi,Digitalis purpurea,Digitalis,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Linaria repens,Linaria repens,ncbi,Linaria repens,Linaria,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Linaria vulgaris,Linaria vulgaris,ncbi,Linaria vulgaris,Linaria,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Plantago lanceolata,Plantago lanceolata,ncbi,Plantago lanceolata,Plantago,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Plantago major,Plantago major,ncbi,Plantago major,Plantago,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Plantago media,Plantago media,ncbi,Plantago media,Plantago,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica arvensis,Veronica arvensis,ncbi,Veronica arvensis,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica beccabunga,Veronica beccabunga,ncbi,Veronica beccabunga,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica chamaedrys,Veronica chamaedrys,ncbi,Veronica chamaedrys,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica filiformis,Veronica filiformis,ncbi,Veronica filiformis,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica hederifolia,Veronica hederifolia,ncbi,Veronica hederifolia,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica montana,Veronica montana,ncbi,Veronica montana,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica officinalis,Veronica officinalis,ncbi,Veronica officinalis,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Veronica serpyllifolia,Veronica serpyllifolia,ncbi,Veronica serpyllifolia,Veronica,Plantaginaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Buddleia davidii,Buddleia davidii,ncbi,Buddleja davidii,Buddleja,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Scrophularia auriculata,Scrophularia auriculata,ncbi,Scrophularia auriculata,Scrophularia,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Scrophularia nodosa,Scrophularia nodosa,ncbi,Scrophularia nodosa,Scrophularia,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Scrophularia vernalis,Scrophularia vernalis,ncbi,Scrophularia vernalis,Scrophularia,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Verbascum nigrum,Verbascum nigrum,ncbi,Verbascum nigrum,Verbascum,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Verbascum thapsus,Verbascum thapsus,ncbi,Verbascum thapsus,Verbascum,Scrophulariaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Erythronium grandiflorum,Erythronium grandiflorum,ncbi,Erythronium grandiflorum,Erythronium,Liliaceae,Liliales,Magnoliopsida,Streptophyta,Viridiplantae
+Euphorbia amygdaloides,Euphorbia amygdaloides,ncbi,Euphorbia amygdaloides,Euphorbia,Euphorbiaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Euphorbia exigua,Euphorbia exigua,ncbi,Euphorbia exigua,Euphorbia,Euphorbiaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Euphorbia helioscopia,Euphorbia helioscopia,ncbi,Euphorbia helioscopia,Euphorbia,Euphorbiaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Mercurialis perennis,Mercurialis perennis,ncbi,Mercurialis perennis,Mercurialis,Euphorbiaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Hypericum hirsutum,Hypericum hirsutum,ncbi,Hypericum hirsutum,Hypericum,Hypericaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Hypericum perforatum,Hypericum perforatum,ncbi,Hypericum perforatum,Hypericum,Hypericaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Hypericum pulchrum,Hypericum pulchrum,ncbi,Hypericum pulchrum,Hypericum,Hypericaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Linum catharticum,Linum catharticum,ncbi,Linum catharticum,Linum,Linaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Populus nigra,Populus nigra,ncbi,Populus nigra,Populus,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Populus tremula,Populus tremula,ncbi,Populus tremula,Populus,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Populus x canescens,Populus x canescens,ncbi,Populus tremula x Populus alba,Populus,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Salix caprea,Salix caprea,ncbi,Salix caprea,Salix,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Salix fragilis,Salix fragilis,ncbi,Salix fragilis,Salix,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Salix purpurea,Salix purpurea,ncbi,Salix purpurea,Salix,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Salix triandra,Salix triandra,ncbi,Salix triandra,Salix,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Salix viminalis,Salix viminalis,ncbi,Salix viminalis,Salix,Salicaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Viola hirta,Viola hirta,ncbi,Viola hirta,Viola,Violaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Viola odorata,Viola odorata,ncbi,Viola odorata,Viola,Violaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Viola reichenbachiana,Viola reichenbachiana,ncbi,Viola reichenbachiana,Viola,Violaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Viola riviniana,Viola riviniana,ncbi,Viola riviniana,Viola,Violaceae,Malpighiales,Magnoliopsida,Streptophyta,Viridiplantae
+Helianthemum nummularium,Helianthemum nummularium,ncbi,Helianthemum nummularium,Helianthemum,Cistaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Malva moschata ,Malva moschata ,ncbi,Malva moschata,Malva,Malvaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Malva sylvestris,Malva sylvestris,ncbi,Malva sylvestris,Malva,Malvaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Tilia x europaea,Tilia x europaea,ncbi,Tilia x europaea,Tilia,Malvaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Daphne laureola ,Daphne laureola ,ncbi,Daphne laureola,Daphne,Thymelaeaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Daphne mezereum,Daphne mezereum,ncbi,Daphne mezereum,Daphne,Thymelaeaceae,Malvales,Magnoliopsida,Streptophyta,Viridiplantae
+Lythrum salicaria,Lythrum salicaria,ncbi,Lythrum salicaria,Lythrum,Lythraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Chamaenerion angustifolium,Chamaenerion angustifolium,ncbi,Chamaenerion angustifolium,Chamaenerion,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Circaea lutetiana,Circaea lutetiana,ncbi,Circaea lutetiana,Circaea,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Epilobium ciliatum,Epilobium ciliatum,ncbi,Epilobium ciliatum,Epilobium,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Epilobium hirsutum,Epilobium hirsutum,ncbi,Epilobium hirsutum,Epilobium,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Epilobium montanum,Epilobium montanum,ncbi,Epilobium montanum,Epilobium,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Epilobium parviflorum,Epilobium parviflorum,ncbi,Epilobium parviflorum,Epilobium,Onagraceae,Myrtales,Magnoliopsida,Streptophyta,Viridiplantae
+Oxalis acetosella,Oxalis acetosella,ncbi,Oxalis acetosella,Oxalis,Oxalidaceae,Oxalidales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex acutiformis,Carex acutiformis,ncbi,Carex acutiformis,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex caryophyllea,Carex caryophyllea,ncbi,Carex caryophyllea,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex disticha,Carex disticha,ncbi,Carex disticha,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex hirta,Carex hirta,ncbi,Carex hirta,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex panicea,Carex panicea,ncbi,Carex panicea,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex paniculata ,Carex paniculata ,ncbi,Carex paniculata,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Carex sylvatica,Carex sylvatica,ncbi,Carex sylvatica,Carex,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Schoenoplectus lacustris,Schoenoplectus lacustris,ncbi,Schoenoplectus lacustris,Schoenoplectus,Cyperaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Juncus effusus,Juncus effusus,ncbi,Juncus effusus,Juncus,Juncaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Juncus inflexus,Juncus inflexus,ncbi,Juncus inflexus,Juncus,Juncaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Juncus subnodulosus,Juncus subnodulosus,ncbi,Juncus subnodulosus,Juncus,Juncaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Luzula campestris,Luzula campestris,ncbi,Luzula campestris,Luzula,Juncaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Luzula pilosa,Luzula pilosa,ncbi,Luzula pilosa,Luzula,Juncaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Alopecurus geniculatus,Alopecurus geniculatus,ncbi,Alopecurus geniculatus,Alopecurus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Alopecurus myosuroides,Alopecurus myosuroides,ncbi,Alopecurus myosuroides,Alopecurus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Alopecurus pratensis,Alopecurus pratensis,ncbi,Alopecurus pratensis,Alopecurus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Anthoxanthum odoratum,Anthoxanthum odoratum,ncbi,Anthoxanthum odoratum,Anthoxanthum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Arrhenatherum elatius,Arrhenatherum elatius,ncbi,Arrhenatherum elatius,Arrhenatherum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Avena fatua,Avena fatua,ncbi,Avena fatua,Avena,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Avena sativa,Avena sativa,ncbi,Avena sativa,Avena,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Deschampsia flexuosa,Deschampsia flexuosa,ncbi,Avenella flexuosa,Avenella,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Helictotrichon pubescens,Helictotrichon pubescens,ncbi,Avenula pubescens,Avenula,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Brachypodium pinnatum,Brachypodium pinnatum,ncbi,Brachypodium pinnatum,Brachypodium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Brachypodium sylvaticum ,Brachypodium sylvaticum ,ncbi,Brachypodium sylvaticum,Brachypodium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Briza media,Briza media,ncbi,Briza media,Briza,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Anisantha sterilis,Anisantha sterilis,ncbi,Bromus sterilis,Bromus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Bromus erectus,Bromus erectus,ncbi,Bromus erectus,Bromus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Bromus hordeaceus,Bromus hordeaceus,ncbi,Bromus hordeaceus,Bromus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Cynosurus cristatus,Cynosurus cristatus,ncbi,Cynosurus cristatus,Cynosurus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Deschampsia cespitosa,Deschampsia cespitosa,ncbi,Deschampsia cespitosa,Deschampsia,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Elymus caninus,Elymus caninus,ncbi,Elymus caninus,Elymus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Elytrigia repens,Elytrigia repens,ncbi,Elymus repens,Elymus,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Festuca pratensis,Festuca pratensis,ncbi,Festuca pratensis,Festuca,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Festuca rubra,Festuca rubra,ncbi,Festuca rubra,Festuca,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Glyceria fluitans,Glyceria fluitans,ncbi,Glyceria fluitans,Glyceria,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Glyceria maxima,Glyceria maxima,ncbi,Glyceria maxima,Glyceria,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Helictotrichon pratense,Helictotrichon pratense,ncbi,Helictochloa pratensis,Helictochloa,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Hordeum murinum,Hordeum murinum,ncbi,Hordeum murinum,Hordeum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Hordeum secalinum,Hordeum secalinum,ncbi,Hordeum secalinum,Hordeum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Koeleria macrantha,Koeleria macrantha,ncbi,Koeleria macrantha,Koeleria,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Festuca arundinacea,Festuca arundinacea,ncbi,Lolium arundinaceum,Lolium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Festuca gigantea ,Festuca gigantea ,ncbi,Lolium giganteum,Lolium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Lolium perenne,Lawn,ncbi,Lolium perenne,Lolium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Melica uniflora,Melica uniflora,ncbi,Melica uniflora,Melica,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Milium effusum,Milium effusum,ncbi,Milium effusum,Milium,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Phleum bertolonii,Phleum bertolonii,ncbi,Phleum pratense,Phleum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Phleum pratense,Phleum pratense,ncbi,Phleum pratense,Phleum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Phragmites australis,Phragmites australis,ncbi,Phragmites australis,Phragmites,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Poa angustifolia,Poa angustifolia,ncbi,Poa pratensis,Poa,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Poa nemoralis,Poa nemoralis,ncbi,Poa nemoralis,Poa,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Poa pratensis,Poa pratensis,ncbi,Poa pratensis,Poa,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Poa trivialis,Poa trivialis,ncbi,Poa trivialis,Poa,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Trisetum flavescens,Trisetum flavescens,ncbi,Trisetum flavescens,Trisetum,Poaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Typha latifolia,Typha latifolia,ncbi,Typha latifolia,Typha,Typhaceae,Poales,Magnoliopsida,Streptophyta,Viridiplantae
+Mahonia aquifolium,Mahonia aquifolium,ncbi,Berberis aquifolium,Berberis,Berberidaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Chelidonium majus,Chelidonium majus,ncbi,Chelidonium majus,Chelidonium,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Corydalis ambigua,Corydalis ambigua,ncbi,Corydalis ambigua,Corydalis,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Fumaria officinalis,Fumaria officinalis,ncbi,Fumaria officinalis,Fumaria,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Papaver dubium,Papaver dubium,ncbi,Papaver dubium,Papaver,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Papaver rhoeas,Papaver rhoeas,ncbi,Papaver rhoeas,Papaver,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Papaver somniferum,Papaver somniferum,ncbi,Papaver somniferum,Papaver,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Pseudofumaria lutea,Pseudofumaria lutea,ncbi,Pseudofumaria lutea,Pseudofumaria,Papaveraceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Anemone nemorosa,Anemone nemorosa,ncbi,Anemone nemorosa,Anemone,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Caltha palustris,Caltha palustris,ncbi,Caltha palustris,Caltha,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Clematis vitalba,Clematis vitalba,ncbi,Clematis vitalba,Clematis,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Delphinium nuttallianum,Delphinium nuttallianum,ncbi,Delphinium nuttallianum,Delphinium,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Eranthis hyemalis,Eranthis hyemalis,ncbi,Eranthis hyemalis,Eranthis,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Helleborus viridis,Helleborus viridis,ncbi,Helleborus viridis,Helleborus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Agrimonia eupatoria,Agrimonia eupatoria,ncbi,Agrimonia eupatoria,Agrimonia,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Crataegus monogyna,Crataegus monogyna,ncbi,Crataegus monogyna,Crataegus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Filipendula ulmaria,Filipendula ulmaria,ncbi,Filipendula ulmaria,Filipendula,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Fragaria ananassa,Fragaria ananassa,ncbi,Fragaria x ananassa,Fragaria,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Geum urbanum,Geum urbanum,ncbi,Geum urbanum,Geum,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Malus domestica,Malus domestica,ncbi,Malus domestica,Malus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Potentilla anserina,Potentilla anserina,ncbi,Potentilla anserina,Potentilla,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Potentilla erecta,Potentilla erecta,ncbi,Potentilla erecta,Potentilla,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Potentilla reptans,Potentilla reptans,ncbi,Potentilla reptans,Potentilla,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Potentilla sterilis,Potentilla sterilis,ncbi,Potentilla sterilis,Potentilla,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunus avium,Prunus avium,ncbi,Prunus avium,Prunus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunus cerasifera,Prunus cerasifera,ncbi,Prunus cerasifera,Prunus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunus communis,Prunus communis,ncbi,Prunus dulcis,Prunus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunus domestica,Prunus domestica,ncbi,Prunus domestica,Prunus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Prunus spinosa,Prunus spinosa,ncbi,Prunus spinosa,Prunus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rosa arvensis,Rosa arvensis,ncbi,Rosa arvensis,Rosa,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rosa canina,Rosa canina,ncbi,Rosa canina,Rosa,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rosa tomentosa,Rosa tomentosa,ncbi,Rosa tomentosa,Rosa,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rubus caesius,Rubus caesius,ncbi,Rubus caesius,Rubus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rubus fruticosus,Rubus fruticosus,ncbi,Rubus plicatus,Rubus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rubus idaeus,Rubus idaeus,ncbi,Rubus idaeus,Rubus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Rubus ulmifolius,Rubus ulmifolius,ncbi,Rubus ulmifolius,Rubus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Sanguisorba minor,Sanguisorba minor,ncbi,Sanguisorba minor,Sanguisorba,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Sorbus aria,Sorbus aria,ncbi,Sorbus aria,Sorbus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Sorbus aucuparia,Sorbus aucuparia,ncbi,Sorbus aucuparia,Sorbus,Rosaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Ulmus glabra,Ulmus glabra,ncbi,Ulmus glabra,Ulmus,Ulmaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Urtica dioica,Urtica dioica,ncbi,Urtica dioica,Urtica,Urticaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Acer campestre,Acer campestre,ncbi,Acer campestre,Acer,Sapindaceae,Sapindales,Magnoliopsida,Streptophyta,Viridiplantae
+Acer platanoides,Acer platanoides,ncbi,Acer platanoides,Acer,Sapindaceae,Sapindales,Magnoliopsida,Streptophyta,Viridiplantae
+Acer pseudoplatanus,Acer pseudoplatanus,ncbi,Acer pseudoplatanus,Acer,Sapindaceae,Sapindales,Magnoliopsida,Streptophyta,Viridiplantae
+Aesculus hippocastanum,Aesculus hippocastanum,ncbi,Aesculus hippocastanum,Aesculus,Sapindaceae,Sapindales,Magnoliopsida,Streptophyta,Viridiplantae
+Sedum acre,Sedum acre,ncbi,Sedum acre,Sedum,Crassulaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Ribes nigrum,Ribes nigrum,ncbi,Ribes nigrum,Ribes,Grossulariaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Ribes rubrum,Ribes rubrum,ncbi,Ribes rubrum,Ribes,Grossulariaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Ribes uva-crispa,Ribes uva-crispa,ncbi,Ribes uva-crispa,Ribes,Grossulariaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Chrysosplenium oppositifolium,Chrysosplenium oppositifolium,ncbi,Chrysosplenium oppositifolium,Chrysosplenium,Saxifragaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Saxifraga tridactylites,Saxifraga tridactylites,ncbi,Saxifraga tridactylites,Saxifraga,Saxifragaceae,Saxifragales,Magnoliopsida,Streptophyta,Viridiplantae
+Convolvulus arvensis,Convolvulus arvensis,ncbi,Convolvulus arvensis,Convolvulus,Convolvulaceae,Solanales,Magnoliopsida,Streptophyta,Viridiplantae
+Calystegia sepium,Calystegia sepium,ncbi,Calystegia sepium,Calystegia,Convolvulaceae,Solanales,Magnoliopsida,Streptophyta,Viridiplantae
+Atropa bella-donna,Atropa bella-donna,ncbi,Atropa belladonna,Atropa,Solanaceae,Solanales,Magnoliopsida,Streptophyta,Viridiplantae
+Solanum dulcamara,Solanum dulcamara,ncbi,Solanum dulcamara,Solanum,Solanaceae,Solanales,Magnoliopsida,Streptophyta,Viridiplantae
+Larix decidua,Larix decidua,ncbi,Larix decidua,Larix,Pinaceae,Pinales,Pinopsida,Streptophyta,Viridiplantae
+Taxus baccata,Taxus baccata,ncbi,Taxus baccata,Taxus,Taxaceae,Pinales,Pinopsida,Streptophyta,Viridiplantae
+Equisetum palustre,Equisetum palustre,ncbi,Equisetum palustre,Equisetum,Equisetaceae,Equisetales,Polypodiopsida,Streptophyta,Viridiplantae
+Equisetum telmateia,Equisetum telmateia,ncbi,Equisetum telmateia,Equisetum,Equisetaceae,Equisetales,Polypodiopsida,Streptophyta,Viridiplantae
+Pteridium aquilinum,Pteridium aquilinum,ncbi,Pteridium aquilinum,Pteridium,Dennstaedtiaceae,Polypodiales,Polypodiopsida,Streptophyta,Viridiplantae
+Dryopteris dilatata,Dryopteris dilatata,ncbi,Dryopteris dilatata,Dryopteris,Dryopteridaceae,Polypodiales,Polypodiopsida,Streptophyta,Viridiplantae
+Dryopteris filix-mas,Dryopteris filix-mas,ncbi,Dryopteris filix-mas,Dryopteris,Dryopteridaceae,Polypodiales,Polypodiopsida,Streptophyta,Viridiplantae
+Reseda lutea,Reseda lutea,ncbi,Reseda lutea,Reseda,Resedaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Reseda luteola,Reseda luteola,ncbi,Reseda luteola,Reseda,Resedaceae,Brassicales,Magnoliopsida,Streptophyta,Viridiplantae
+Rhinanthus minor,Rhinanthus minor,ncbi,Rhinanthus minor,Rhinanthus,Orobanchaceae,Lamiales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus acris,Ranunculus acris,ncbi,Ranunculus acris,Ranunculus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus auricomus,Ranunculus auricomus,ncbi,Ranunculus auricomus,Ranunculus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus bulbosus,Ranunculus bulbosus,ncbi,Ranunculus bulbosus,Ranunculus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus ficaria,Ranunculus ficaria,ncbi,Ficaria verna,Ficaria,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus repens,Ranunculus repens,ncbi,Ranunculus repens,Ranunculus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Ranunculus sardous,Ranunculus sardous,ncbi,Ranunculus sardous,Ranunculus,Ranunculaceae,Ranunculales,Magnoliopsida,Streptophyta,Viridiplantae
+Rhamnus catharticus,Rhamnus catharticus,ncbi,Rhamnus cathartica,Rhamnus,Rhamnaceae,Rosales,Magnoliopsida,Streptophyta,Viridiplantae
+Closterium,Closterium,ncbi,NA,Closterium,Closteriaceae,Desmidiales,Zygnemophyceae,Streptophyta,Viridiplantae
+Cosmarium,Cosmarium,ncbi,NA,Cosmarium,Desmidiaceae,Desmidiales,Zygnemophyceae,Streptophyta,Viridiplantae
+Spondylosium,Spondylosium,ncbi,NA,Spondylosium,Desmidiaceae,Desmidiales,Zygnemophyceae,Streptophyta,Viridiplantae
+Staurastrum,Staurastrum,ncbi,NA,Staurastrum,Desmidiaceae,Desmidiales,Zygnemophyceae,Streptophyta,Viridiplantae

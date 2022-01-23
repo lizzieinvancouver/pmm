@@ -27,12 +27,12 @@ functions {
 data {
   int N;    //total number of observations (e.g., N=120=3 observations in each plot x 4 plots per site x 10 sites )
   int Nspp;    //total number of plots/species 
-  int S;    //total number of sites/families
+  int Nfam;    //total number of sites/families
   vector[N] y;    // the data, y, is a vector of length N
   int sppnum[N];  // column of plot number identifiers for each obs
   int famnum[N];  // column of site number identifiers for each plot
   vector[N] x;        // vector of predictor X for each obs
-  matrix[S,S] Vphy;     // phylogeny
+  matrix[Nfam,Nfam] Vphy;     // phylogeny
   
   //priors
   real b_z_prior_mu;
@@ -48,8 +48,8 @@ data {
 parameters {
   vector[Nspp] a_spp;    //estimated intercept for each plot
   vector[Nspp] b_spp;    //estimated slope for each plot
-  vector[Nspp] a_fam;    //estimated intercept for each site
-  vector[Nspp] b_fam;    //estimated slope for each site
+  vector[Nfam] a_fam;    //estimated intercept for each site
+  vector[Nfam] b_fam;    //estimated slope for each site
   
   real b_z;
   
@@ -61,7 +61,7 @@ parameters {
   real mu_b;                    //mean slope across sites; 
       // the site slope are drawn from distribution with mean mu_b...
   real<lower=0> sig_b;          //...and standard deviation sig_b
-  real<lower=0> sig_y;          // observation error
+  real<lower=0> sig_y;         // observation error
   
   real<lower=0, upper=1> lam_interceptsb;       
   real<lower=0> sigma_interceptsb;    
@@ -70,14 +70,14 @@ parameters {
 model {
   real yhat[N];                 //vector of predicted y's (`ypred' for Lizzie)
   
-  matrix[S,S] vcv_b; 
+  matrix[Nfam, Nfam] vcv_b; 
   
   for (i in 1:N) {
     yhat[i] = a_spp[sppnum[i]] + b_spp[sppnum[i]]*x[i];
   }
 
   //For estimating a single value for all within-site variacnes
-  for (j in 1:S){
+  for (j in 1:Nspp){
     a_spp[j] ~ normal(a_fam[famnum[j]], sig_a_fam);
     b_spp[j] ~ normal(b_fam[famnum[j]], sig_b_fam);
   }
@@ -87,7 +87,7 @@ model {
   vcv_b = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb));
   
   a_fam ~ normal(mu_a,sig_a);
-  b_fam ~ multi_normal_cholesky(rep_vector(b_z, S), vcv_b);
+  b_fam ~ multi_normal_cholesky(rep_vector(b_z, Nfam), vcv_b);
   
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
   

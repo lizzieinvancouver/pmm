@@ -17,10 +17,10 @@ data {
   int<lower=1, upper= n_sp> sp[N];
   vector[N] y; 		// response
   vector[N] x1; 	// predictor
-  matrix[n_sp,n_sp]Vphy;     // phylogeny
+  matrix[n_sp,n_sp]Vphy;     //matrix
   // Priors
-  real a_z_prior_mu;
-  real a_z_prior_sigma;
+  //real a_z_prior_mu;
+  //real a_z_prior_sigma;
   real lam_interceptsa_prior_alpha;
   real lam_interceptsa_prior_beta;
   real sigma_interceptsa_prior_mu;
@@ -32,11 +32,8 @@ data {
   real sigma_interceptsbf_prior_mu;
   real sigma_interceptsbf_prior_sigma;
   real sigma_y_mu_prior;
-  real sigma_y_mu_sigma;  
-  real mu_prior_a_;
-  real sigma_prior_a_;
-  real mu_prior_b_;
-  real sigma_prior_b_;
+  real a_prior_mu;
+  real a_prior_sigma;
 
 }
 
@@ -46,21 +43,21 @@ transformed data {
 
 parameters {
   real<lower=0> sigma_y;    
-  real<lower=0, upper=1> lam_interceptsa;       
-  real<lower=0> sigma_interceptsa;
+  //real<lower=0, upper=1> lam_interceptsa;       
+ //real<lower=0> sigma_interceptsa;
   real<lower=0, upper=1> lam_interceptsbf;       
   real<lower=0> sigma_interceptsbf;    
-  //vector[n_sp] b_force; // slope of forcing effect
   real b_zf;
-  //vector[n_sp] a; // intercept
-  real a_z;
-  vector[n_sp] a_;
+  //real a_z;
+ // vector[n_sp] a_;
   vector[n_sp] b_;
+  
+  vector[n_sp] a; 
 	}
 
 transformed parameters {
-  vector[n_sp] a = a_z + sqrt(lam_interceptsa) * sigma_interceptsa * (L * a_); // implies: a_z ~ multi_normal
-  vector[n_sp] b = b_zf + sqrt(lam_interceptsbf) * sigma_interceptsbf * (L * b_); // implies: b_zf ~ multi_normal
+  //vector[n_sp] a = a_z + sqrt(lam_interceptsa) * sigma_interceptsa * (L * a_); 
+  vector[n_sp] b = b_zf + sqrt(lam_interceptsbf) * sigma_interceptsbf * (L * b_); 
 }
 
 
@@ -75,16 +72,16 @@ model {
   y ~ normal(yhat, sigma_y);
   
   // Priors
-  a_z ~ normal(a_z_prior_mu, a_z_prior_sigma);
-  lam_interceptsa ~ beta(lam_interceptsa_prior_alpha, lam_interceptsa_prior_beta);
-  sigma_interceptsa ~ normal(sigma_interceptsa_prior_mu, sigma_interceptsa_prior_sigma);
+  //a_z ~ normal(a_z_prior_mu, a_z_prior_sigma);
+  //lam_interceptsa ~ beta(lam_interceptsa_prior_alpha, lam_interceptsa_prior_beta);
+  //sigma_interceptsa ~ normal(sigma_interceptsa_prior_mu, sigma_interceptsa_prior_sigma);
   b_zf ~ normal(b_zf_prior_mu, b_zf_prior_sigma);
   lam_interceptsbf ~ beta(lam_interceptsbf_prior_alpha, lam_interceptsbf_prior_beta);
   sigma_interceptsbf ~ normal(sigma_interceptsbf_prior_mu, sigma_interceptsbf_prior_sigma);
-  sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_sigma);
+  sigma_y ~ normal(sigma_y_mu_prior, sigma_y_mu_prior);
 
- a_ ~ normal(mu_prior_a_, sigma_prior_a_);
-  b_ ~ normal(mu_prior_b_, sigma_prior_b_);
+ a ~ normal(0, a_prior_sigma);
+  b_ ~ normal(0, 1);
 
 }
 

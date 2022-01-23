@@ -52,7 +52,7 @@ dat.fin$study.fact <- as.numeric(as.factor(dat.fin$studyid))
 dat.fin$sppheno.fact <- as.numeric(as.factor(dat.fin$sp.pheno))
 
 # ################################################
-phylo <- read.csv("Input/taxonlvl_spname_Nov72021_edited.csv")
+phylo <- read.csv("Input/taxonlvl_spname.csv")
 
 phylo$species.name <- as.factor(phylo$species.name)
 phylo$species.y <- as.factor(phylo$sp)
