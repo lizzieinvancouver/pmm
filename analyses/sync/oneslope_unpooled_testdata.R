@@ -1,6 +1,9 @@
+rm(list=ls()) 
+options(stringsAsFactors = FALSE)
+options(mc.cores = parallel::detectCores())
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
-  setwd("~/Documents/github/pmm/analyses/sync")
+  setwd("~/Documents/github/pmm/analyses")
 } else if(length(grep("Lizzie", getwd())>0)) {
   setwd("~/Documents/git/teaching/stan/pmm/analyses")
 } else{
@@ -33,8 +36,8 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 param <- list(b_z = 0.9, # root value trait1 slope
               lam_interceptsb = 0.7, # lambda trait1
               sigma_interceptsb = 0.1, # rate of evolution trait1
-              # mu_a = 4, # root value intercept
-              # sigma_a = 1,
+              mu_a = 4, # root value intercept
+              sigma_a = 1,
               sigma_y = 0.01 # overall sigma
 )
 # Set priors
@@ -78,7 +81,7 @@ simu_inits <- function(chain_id) {
                 param))
 }
 
-test <- stan("stan/oneslope_unpooledint_testdata.stan", 
+test <- stan("sync/stan/oneslope_unpooledint_testdata.stan", 
                  #  control = list(max_treedepth =15),
                  data = append(list(N=nrow(dfhere),
                                     n_sp=nspecies,
@@ -96,10 +99,9 @@ test <- stan("stan/oneslope_unpooledint_testdata.stan",
 
 summary(test)$summary[c("b_z", "lam_interceptsb","sigma_interceptsb","sigma_y"),"mean"]; t(param)
 
-summary(test)$summary[c("b_z", "lam_interceptsb","sigma_interceptsb","sigma_y"),"mean"]; t(param)
 # save(test, file = "cholesky_fixed_noint.Rda")
 # 
-load("output/cholesky_fixed_noint.Rda")
+#load("sync/output/cholesky_fixed_noint.Rda")
 # # #load("analyses/output/cholesky_fixed.Rda")
 # 
 # # Compare to true values
@@ -155,13 +157,13 @@ pairs(test, pars = c("b_z","lam_interceptsb","sigma_interceptsb","sigma_y", "lp_
 #      ylab="Relative Effective Sample Size / Grad Eval (b)", ylim=c(0.01, 1))
 # axis(1, at=1:3, labels=c("1", "100", "10000"))
 # 
-# # # Compare to true values
-# # summary(testme)$summary[names(param), "mean"]
-# # t(param)
-# # ## summary(testme)$summary[names(param), "2.5%"]
-# # ## summary(testme)$summary[names(param), "97.5%"]
-# # ## summary(testme)$summary[names(param), "50%"]
-# # 
-# # # Compare to GEIGER-fitted model
-# # fitContinuous(spetree, intercepts, model="lambda")
-# # fitContinuous(spetree, slopes_bf, model="lambda")
+# # Compare to true values
+# summary(testme)$summary[names(param), "mean"]
+# t(param)
+# ## summary(testme)$summary[names(param), "2.5%"]
+# ## summary(testme)$summary[names(param), "97.5%"]
+# ## summary(testme)$summary[names(param), "50%"]
+# 
+# # Compare to GEIGER-fitted model
+# fitContinuous(spetree, intercepts, model="lambda")
+# fitContinuous(spetree, slopes_bf, model="lambda")
