@@ -23,10 +23,10 @@ data {
   vector[N] x1; 	// predictor
   matrix[n_sp,n_sp]Vphy;     // phylogeny
   // Priors
-  real mu_a_prior_mu;
-  real mu_a_prior_sigma;
-  real sigma_a_prior_mu;
-  real sigma_a_prior_sigma;
+  // real mu_a_prior_mu;
+  // real mu_a_prior_sigma;
+  real a_prior_sigma;
+  // real sigma_a_prior_sigma;
   real b_z_prior_mu;
   real b_z_prior_sigma;
   real lam_interceptsb_prior_alpha;
@@ -46,8 +46,8 @@ parameters {
   real b_z;
   
   vector[n_sp] a;
-  real mu_a;
-  real <lower = 0> sigma_a;
+  //real mu_a;
+  //real <lower = 0> sigma_a;
   	}
 
 model {
@@ -56,13 +56,13 @@ model {
             yhat[i] = a[sp[i]] + b_force[sp[i]] * x1[i];
 	}
   
-  a ~ normal(mu_a, sigma_a);
   b_force ~ multi_normal(rep_vector(b_z,n_sp), lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb)); 
   y ~ normal(yhat, sigma_y);
   
   // Priors
-  mu_a ~ normal(mu_a_prior_mu, mu_a_prior_sigma);
-  sigma_a ~ normal(sigma_a_prior_mu, sigma_a_prior_sigma);
+  a ~ normal(0, a_prior_sigma); 
+  // mu_a ~ normal(mu_a_prior_mu, mu_a_prior_sigma);
+  // sigma_a ~ normal(sigma_a_prior_mu, sigma_a_prior_sigma);
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
   lam_interceptsb ~ beta(lam_interceptsb_prior_alpha, lam_interceptsb_prior_beta);
   sigma_interceptsb ~ normal(sigma_interceptsb_prior_mu, sigma_interceptsb_prior_sigma);
