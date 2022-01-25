@@ -30,7 +30,7 @@ data {
   int Nfam;    //total number of sites/families
   vector[N] y;    // the data, y, is a vector of length N
   int sppnum[N];  // column of plot number identifiers for each obs
-  int famnum[N];  // column of site number identifiers for each plot
+  int famnum[Nspp];  // column of site number identifiers for each plot
   vector[N] x;        // vector of predictor X for each obs
   matrix[Nfam,Nfam] Vphy;     // phylogeny
   
