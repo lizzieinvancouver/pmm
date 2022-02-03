@@ -1,6 +1,7 @@
 ## Feb 2: I think we are close - want to double check that this model, with Geoff's edits and no phylogeny on the intercept
 # is actually giving us good values
-
+rm(list=ls()) 
+options(stringsAsFactors = FALSE)
 if(length(grep("deirdreloughnan", getwd())>0)) {
   setwd("~/Documents/github/pmm/analyses")
 } else if(length(grep("Lizzie", getwd())>0)) {
@@ -32,31 +33,31 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # Now set up the trait parameters
 param <- list(
-  mu_a = 4, # root value intercept
+  a_z = 4, # root value intercept
   sigma_a = 1,
-  #           lam_interceptsa = 0.4, # lambda intercept
-  #           sigma_interceptsa = 0.2, # rate of evolution intercept
-  b_zf = 0.6, # root value trait1 slope
-  lam_interceptsbf = 0.7, # lambda trait1
-  sigma_interceptsbf = 0.1, # rate of evolution trait1
+  lam_interceptsa = 0.4, # lambda intercept
+  sigma_interceptsa = 0.2, # rate of evolution intercept
+  b_f = 0.6, # root value trait1 slope
+  mu_b = 0.5,
+  sigma_b = 0.1,
+  # lam_interceptsbf = 0.7, # lambda trait1
+  # sigma_interceptsbf = 0.1, # rate of evolution trait1
   sigma_y = 0.01 # overall sigma
 )
 # Set priors
 phypriors <- list(
-  mu_a_prior_mu = 4, # true value
-  mu_a_prior_sigma = 1,
-  sigma_a_prior_mu = 0.5,
-  sigma_a_prior_sigma = 1,
-  # lam_interceptsa_prior_alpha = 4, # 
-  # lam_interceptsa_prior_beta = 6, # 
-  # sigma_interceptsa_prior_mu = 0.2, # true value
-  # sigma_interceptsa_prior_sigma = 0.2,
-  b_zf_prior_mu = 0.6, # true value
-  b_zf_prior_sigma = 1,
-  lam_interceptsbf_prior_alpha = 7, #
-  lam_interceptsbf_prior_beta = 3, # 
-  sigma_interceptsbf_prior_mu = 0.1, # true value
-  sigma_interceptsbf_prior_sigma = 0.1,
+  a_z_prior_mu = 4, # true value
+  a_z_prior_sigma = 1,
+  lam_interceptsa_prior_alpha = 4, #
+  lam_interceptsa_prior_beta = 6, #
+  sigma_interceptsa_prior_mu = 0.2, # true value
+  sigma_interceptsa_prior_sigma = 0.2,
+  b_f_prior_mu = 0.6, # true value
+  b_f_prior_sigma = 1,
+  # lam_interceptsbf_prior_alpha = 7, #
+  # lam_interceptsbf_prior_beta = 3, # 
+  # sigma_interceptsbf_prior_mu = 0.1, # true value
+  # sigma_interceptsbf_prior_sigma = 0.1,
   sigma_y_prior_mu = 0.01,
   sigma_y_prior_sigma = 1
   
@@ -64,17 +65,18 @@ phypriors <- list(
 )
 
 # Generate intercept
-intercepts <- rnorm(nspecies, 10, param[["sigma_a"]])
+scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
+intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
 
 # Generate bf slope
-scaledtree_bf <- rescale(spetree, model = "lambda", param[["lam_interceptsbf"]])         
-slopes_bf <- fastBM(scaledtree_bf, a = param[["b_zf"]], mu = 0, sig2 = param[["sigma_interceptsbf"]] ^ 2)
+
+slopes_bf <- rnorm(nspecies, param[["mu_b"]], param[["sigma_b"]])
 
 dfhere <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
 for (i in 1:nspecies){
   temp <- data.frame(sp = rep(i, nind),
                      intercept = rep(intercepts[i], nind),
-                     x1 = rnorm(n = nind, mean = 10, sd = 3),
+                     x1 = rnorm(n = nind, mean =  10, sd = 3),
                      trait1 = rep(slopes_bf[i], nind))
   dfhere <- rbind(dfhere, temp)
 }
@@ -83,15 +85,14 @@ dfhere$y <- rnorm(n = nrow(dfhere), mean = dfhere$mu, sd = param[["sigma_y"]])
 
 # Function for generating "good" initial values
 simu_inits <- function(chain_id) {
-  # a_z.temp <- rnorm(n = nspecies, mean = param[["a_z"]], sd = 1)
-  b_z.temp <- rnorm(n = nspecies, mean = param[["b_zf"]], sd = 1)
-  return(append(list(b_force = b_z.temp),
-                param))
+  a_z.temp <- rnorm(n = nspecies, mean = param[["a_z"]], sd = 1)
+ # b_z.temp <- rnorm(n = nspecies, mean = param[["b_zf"]], sd = 1)
+  return(append(list(a = a_z.temp), param))
 }
 
 # Fit model
 
-testme <- stan("stan/uber_oneSlope_noIntercept_cholesky.stan",
+testme <- stan("stan/uber_PhyloSlope_cholesky.stan",
                data = append(list(N=nrow(dfhere),
                                   n_sp=nspecies,
                                   sp=dfhere$sp,
