@@ -24,7 +24,7 @@ options(mc.cores = 4)
 # Set seed
 set.seed(2021)
 
-nspecies = 800
+nspecies = 200
 nind = 10
 
 # Simulate species tree with a pure birth model
@@ -34,7 +34,7 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 # Now set up the trait parameters
 param <- list(
   a_z = 4, # root value intercept
-  sigma_a = 1,
+  # sigma_a = 1,
   lam_interceptsa = 0.4, # lambda intercept
   sigma_interceptsa = 0.2, # rate of evolution intercept
   b_f = 0.6, # root value trait1 slope
@@ -92,7 +92,7 @@ simu_inits <- function(chain_id) {
 
 # Fit model
 
-testme <- stan("stan/uber_PhyloSlope_cholesky.stan",
+testme <- stan("stan/uber_PhyloIntercept_cholesky.stan",
                data = append(list(N=nrow(dfhere),
                                   n_sp=nspecies,
                                   sp=dfhere$sp,
@@ -110,3 +110,15 @@ save(testme, file = "output_phylo_cholesky_slopenoint.Rda")
 
 summary(testme)$summary[c("b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 # 
+load("output/output_phylo_cholesky_slopenoint.Rda")
+
+ssm <-  as.shinystan(testme)
+launch_shinystan(ssm)
+# # sigma_fp looks really bad, of all the sigma it is the one that is most squished up to one side
+# 
+summary(testme)$summary[c("a_z","b_f", "lam_interceptsa","sigma_interceptsa","sigma_y","sigma_force"),"mean"]
+t(param)
+# a_z               b_f   lam_interceptsa sigma_interceptsa           sigma_y       sigma_force 
+# 4.011298045       0.498800086       0.465053269       0.229498126       0.009908844       0.098386743 
+
+pairs(testme, pars = c("a_z", "b_f","lam_interceptsa","sigma_interceptsa","sigma_force", "sigma_y", "lp__"))
