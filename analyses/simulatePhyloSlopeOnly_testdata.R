@@ -38,32 +38,32 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # Now set up the trait parameters
 param <- list(
-     mu_a = 4, # root value intercept
+     mu_a = 15, # root value intercept
      sigma_a = 1,
     #           lam_interceptsa = 0.4, # lambda intercept
     #           sigma_interceptsa = 0.2, # rate of evolution intercept
-              b_zf = 0.6, # root value trait1 slope
+              b_zf = 0.5, # root value trait1 slope
               lam_interceptsbf = 0.7, # lambda trait1
               sigma_interceptsbf = 0.1, # rate of evolution trait1
               sigma_y = 0.01 # overall sigma
               )
 # Set priors
 phypriors <- list(
-    mu_a_prior_mu = 4, # true value
-    mu_a_prior_sigma = 1,
-    sigma_a_prior_mu = 0.5,
-    sigma_a_prior_sigma = 1,
+    mu_a_prior_mu = 20, 
+    mu_a_prior_sigma = 5,
+    sigma_a_prior_mu = 5,
+    sigma_a_prior_sigma = 10,
     # lam_interceptsa_prior_alpha = 4, # 
     # lam_interceptsa_prior_beta = 6, # 
-    # sigma_interceptsa_prior_mu = 0.2, # true value
+    # sigma_interceptsa_prior_mu = 0.2, 
     # sigma_interceptsa_prior_sigma = 0.2,
-    b_zf_prior_mu = 0.6, # true value
+    b_zf_prior_mu = 1,
     b_zf_prior_sigma = 1,
     lam_interceptsbf_prior_alpha = 7, #
     lam_interceptsbf_prior_beta = 3, # 
-    sigma_interceptsbf_prior_mu = 0.1, # true value
-    sigma_interceptsbf_prior_sigma = 0.1,
-    sigma_y_prior_mu = 0.01,
+    sigma_interceptsbf_prior_mu = 0.5, # true value
+    sigma_interceptsbf_prior_sigma = 1,
+    sigma_y_prior_mu = 1,
     sigma_y_prior_sigma = 1
     
    
@@ -113,7 +113,9 @@ testme <- stan("stan/uber_oneSlope_noIntercept_cholesky.stan",
                )
 save(testme, file = "output_phylo_cholesky_slopenoint.Rda")
 
-summary(testme)$summary[c("b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
+load("output/output_phylo_cholesky_slopenoint_800spp.Rda")
+
+summary(testme)$summary[c("mu_a","sigma_a","b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 # 
 
 
@@ -126,16 +128,18 @@ summary(testme)$summary[c("b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_
 # get_variables(mdl.b)
 # summary(mdl.b)$summary[c( "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y"),"mean"]; t(param)
 
-# pairs(test_new, pars = c("a_z","lam_interceptsa","sigma_interceptsa", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y", "lp__")) 
+pairs(testme, pars = c("mu_a","sigma_a", "b_zf","lam_interceptsbf","sigma_interceptsbf","sigma_y", "lp__"))
 # Summarize fit
 # trying to get the ESS based on code from: 
 # https://betanalpha.github.io/assets/case_studies/identifiability.html
 # step times plot:
-# stepsizes1 <- sapply(1:4, function(c) get_sampler_params(test_new, inc_warmup=FALSE)[[c]][,'stepsize__'][1])
+ stepsizes1 <- sapply(1:4, function(c) get_sampler_params(testme, inc_warmup=FALSE)[[c]][,'stepsize__'][1])
 # steps1 <- do.call(rbind, get_sampler_params(test_new, inc_warmup=FALSE))[,'n_leapfrog__']
 # table(steps1)
 # int_times1 <- unlist(lapply(1:4, function(c) stepsizes1[c] * steps1[(1000 * (c - 1) + 1): (1000 * c)]))
-# 
+ sumb <- summary(testme)$summary
+ range(sumb[, "n_eff"])
+ range(sumb[, "Rhat"])
 # int_time_breaks <- seq(-0.1, 8.1, 0.1)
 # 
 # hist(int_times1, breaks=int_time_breaks, main="N = 1",
