@@ -49,18 +49,18 @@ d$sp.pheno <- str_replace(d$sp.pheno, " ", "")
 class.dat<- read.csv("input/taxonlvl_spname.csv")
 class.dat <- class.dat[,c("species.name","class")]
 
-final.temp <- final.t[,c("species.name","sp.pheno")]
-final.temp$count <- 1
-final.mini <- aggregate(final.temp["count"], final.temp[c("species.name", "sp.pheno")], FUN = sum)
+data.temp <- data[,c("species.name","sp.pheno")]
+data.temp$count <- 1
+data.mini <- aggregate(data.temp["count"], data.temp[c("species.name", "sp.pheno")], FUN = sum)
 
-class <- merge(final.mini, class.dat, by = "species.name", all = T)
+class <- merge(data.mini, class.dat, by = "species.name", all = T)
 sort(unique(class$class)) # "Amphibia" "Aves" "Magnoliopsida" "Mammalia"
 
 amphibia <- subset(class, class == "Amphibia");
 amphibia.spp <- unique(amphibia$sp.pheno)
 
 # subset the data and prune the tree:
-amphib.dat <- final.t[final.t$sp.pheno %in% amphibia.spp,]
+amphib.dat <- data[data$sp.pheno %in% amphibia.spp,]
 amphib_tree <- keep.tip(tree, amphibia.spp)
 
 phymatch.amphib <- data.frame(sp.pheno = amphib_tree$tip.label, sppnum = c(1:length(amphib_tree$tip.label)))
@@ -135,7 +135,7 @@ save( mdl.amphib, file = "output/phylo_amphibians_grand_study.Rda")
 aves <- subset(class, class == "Aves");
 aves.spp <- unique(aves$sp.pheno)
 
-aves.dat <- final.t[final.t$sp.pheno %in% aves.spp,]
+aves.dat <- data[data$sp.pheno %in% aves.spp,]
 aves_tree <- keep.tip(tree, aves.spp)
 
 
