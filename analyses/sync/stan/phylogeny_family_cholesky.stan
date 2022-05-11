@@ -46,21 +46,20 @@ data {
 }
 
 parameters {
-  vector[Nspp] a_spp;    //estimated intercept for each plot
-  vector[Nspp] b_spp;    //estimated slope for each plot
-  vector[Nfam] a_fam;    //estimated intercept for each site
-  vector[Nfam] b_fam;    //estimated slope for each site
-  
+  vector[Nspp] a_spp;    
+  vector[Nspp] b_spp;    
+  vector[Nfam] a_fam;    
+  vector[Nfam] b_fam;    
   real b_z;
   
-  real<lower=0> sig_a_fam;  //variance in intercept across plots; 
-  real<lower=0> sig_b_fam;  //variance in slopes across plots; 
-  real mu_a;                    //mean intercept across sites; 
-      // the site intercept for site s is drawn from distribution with mean mu_a...
+  real<lower=0> sig_a_fam;  //variance in intercept across families; 
+  real<lower=0> sig_b_fam;  //variance in slopes across families; 
+  real mu_a;                    //mean intercept across species; 
+      // the species intercept for species s is drawn from distribution with mean mu_a...
   real<lower=0> sig_a;          //...and standard deviation sig_a
-  real mu_b;                    //mean slope across sites; 
-      // the site slope are drawn from distribution with mean mu_b...
-  real<lower=0> sig_b;          //...and standard deviation sig_b
+  real mu_b;                    //mean slope across species; 
+      // the species slope are drawn from distribution with mean mu_b...
+  //real<lower=0> sig_b;          //...and standard deviation sig_b
   real<lower=0> sig_y;         // observation error
   
   real<lower=0, upper=1> lam_interceptsb;       
@@ -89,6 +88,9 @@ model {
   a_fam ~ normal(mu_a,sig_a);
   b_fam ~ multi_normal_cholesky(rep_vector(b_z, Nfam), vcv_b);
   
+  sig_a ~ normal(0.5,1);
+  mu_a ~ normal(0, sig_a);
+ 
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
   
   lam_interceptsb ~ beta(lam_interceptsb_prior_alpha, lam_interceptsb_prior_beta);
