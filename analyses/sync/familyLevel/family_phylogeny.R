@@ -136,7 +136,7 @@ mdl.fam <- stan("..//stan/phylogeny_family_cholesky.stan",
 save( mdl.fam, file = "output/fam_phylo_nostudy.Rda")
 
 
-load("output/fam_phylo_nostudy.Rda")
+#load("output/fam_phylo_nostudy.Rda")
 # # 
 ssm <-  as.shinystan(mdl.fam)
 launch_shinystan(ssm)

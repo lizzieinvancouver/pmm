@@ -3,7 +3,7 @@ options(stringsAsFactors = FALSE)
 options(mc.cores = parallel::detectCores())
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
-  setwd("~/Documents/github/pmm/analyses/sync")
+  setwd("~/Documents/github/pmm/analyses/sync/familyLevel")
 } else if(length(grep("Lizzie", getwd())>0)) {
   setwd("~/Documents/git/teaching/stan/pmm/analyses")
 } else{
@@ -95,7 +95,7 @@ simu_inits <- function(chain_id) {
                 param))
 }
 
-test <- stan("stan/phylogeny_family_cholesky.stan", 
+test <- stan("..//stan/phylogeny_family_cholesky.stan", 
                  #  control = list(max_treedepth =15),
                  data = append(list(N=nrow(dfhere),
                                     Nfam= nfam,
