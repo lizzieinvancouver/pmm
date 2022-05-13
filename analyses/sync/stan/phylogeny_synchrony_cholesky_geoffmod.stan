@@ -1,4 +1,6 @@
 // Jan 15, 2022
+// Given that the NCP model that Ben Goodrich suggested ran faster on real data than with the fake data, I am testing whether Geoff's new code, which takes ~10 days to run on the test data also runs faster
+//this model is not ncp, Geoff also modified it by removing the sigma_mat from the function
 
 functions {
   matrix lambda_vcv(matrix vcv, real lambda, real sigma){ //input: vcv matrix (correl), lam, sig which are sampled from dist
@@ -13,7 +15,11 @@ functions {
 data {
   int<lower=1> N;
   int<lower=1> Nspp;
+  //int<lower=1> Nstudy;
+  //int species[N];
+  //int study[N];
   int<lower=1, upper= Nspp > species[N];
+  //int<lower=1, upper= Nstudy > study[N];
   vector[N] ypred; 		// response
   vector[N] year; 	// predictor (year)
   matrix[Nspp, Nspp] Vphy;     // phylogeny
@@ -21,6 +27,8 @@ data {
   
   real a_z_prior_mu; // mu_grand species intercept - w/o study
   real a_z_prior_sigma;
+  //real astudy_sigma_prior_mu;
+  //real astudy_sigma_prior_sigma;
   real lam_interceptsa_prior_alpha;
   real lam_interceptsa_prior_beta;
   real sigma_interceptsa_prior_mu;
@@ -33,7 +41,15 @@ data {
   real sigma_interceptsb_prior_sigma;
   real sigma_y_prior_mu;
   real sigma_y_prior_sigma;  	
+  //real a_prior_mu;
+  //real a_prior_sigma;
+  //real b_prior_mu;
+  //real b_prior_sigma;
 }
+
+// transformed data {
+//   matrix[Nspp, Nspp] L = cholesky_decompose(Vphy);
+// }
 
 parameters {
   real<lower=0> sigma_y;    
@@ -41,11 +57,20 @@ parameters {
   real<lower=0> sigma_interceptsa;
   real<lower=0, upper=1> lam_interceptsb;       
   real<lower=0> sigma_interceptsb;   
-  vector[Nspp] b; // slope 
+  vector[Nspp] b; // slope of forcing effect
   real b_z;
   vector[Nspp] a; // intercept
-  real a_z; 
+  real a_z;
+  // vector[Nspp] a_;
+  // vector[Nspp] b_;
+  //vector[Nstudy] astudy; // intercept
+  //real astudy_sigma; //study level effect offset from multinormal; not grand mean
 	}
+	
+// transformed parameters {
+//   vector[Nspp] a = a_z + sqrt(lam_interceptsa) * sigma_interceptsa * (L * a_); // implies: a ~ multi_normal
+//   vector[Nspp] b = b_z + sqrt(lam_interceptsb) * sigma_interceptsb * (L * b_); // implies: b ~ multi_normal
+// }
 
 model {
   real yhat[N];
@@ -63,10 +88,12 @@ model {
   b ~ multi_normal_cholesky(rep_vector(b_z, Nspp), vcv_b); 
   
    ypred ~ normal(yhat, sigma_y);
+  //astudy ~normal(0, astudy_sigma);
 
  // Prior
 
   a_z ~ normal(a_z_prior_mu, a_z_prior_sigma);
+  //astudy_sigma ~ normal(astudy_sigma_prior_mu, astudy_sigma_prior_sigma);
   lam_interceptsa ~ beta(lam_interceptsa_prior_alpha, lam_interceptsa_prior_beta);
   sigma_interceptsa ~ normal(sigma_interceptsa_prior_mu, sigma_interceptsa_prior_sigma);
   b_z ~ normal(b_z_prior_mu, b_z_prior_sigma);
