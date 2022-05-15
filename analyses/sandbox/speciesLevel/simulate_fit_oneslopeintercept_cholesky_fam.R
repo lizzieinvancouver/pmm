@@ -1,9 +1,7 @@
-## Started 13 Jan 2021 ##
-## Adapted from earlier code (ubermini_2.R)
-## Updated by Lizzie on 15 May 2022 ##
+## Started 15 May 2022 ##
+## Adapted from simulate_fit_oneslopeintercept_cholesky_dl
+## By Lizzie ##
 ## Generate test data for phylogeny Stan model ##
-
-## Modified by Deirdre (Dec 2021) to modify the code to increase model efficiency for large matricies.
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
     setwd("~/Documents/github/pmm/analyses/sync")
@@ -26,12 +24,13 @@ options(mc.cores = 4)
 # Set seed
 # set.seed(2021)
 
-nspecies = 90
+nfam = 50
+nspecies = 10
 nind = 10
 
 # Simulate species tree with a pure birth model
-spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
-spetree$tip.label <- paste("s", 1:nspecies, sep="")
+spetree <- pbtree(n=nfam, nsim=1, b=1, complete=FALSE,scale=1)
+spetree$tip.label <- paste("s", 1:nfam, sep="")
 
 # Now set up the trait parameters
 param <- list(a_z = 4, # root value intercept
@@ -42,8 +41,7 @@ param <- list(a_z = 4, # root value intercept
               sigma_interceptsb = 0.1, # rate of evolution trait1
               sigma_y = 0.01 # overall sigma
               )
-# Set priors ... some of these are alarmingly narrow ...
-# they need to be bigger before you can say your test data worked IMHO, but be careful to set properly for cholesky
+# Set priors
 phypriors <- list(
     a_z_prior_mu = 4, # true value
     a_z_prior_sigma = 3,
@@ -58,27 +56,33 @@ phypriors <- list(
     sigma_interceptsb_prior_mu = 0.1, # true value
     sigma_interceptsb_prior_sigma = 0.1,
     sigma_y_prior_mu = 0.01,
-    sigma_y_prior_sigma = 1
-    
-   
+    sigma_y_prior_sigma = 1  
 )
 
 # Generate intercept
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
-# Generate b slope
+# Generate slope
 scaledtree_b <- rescale(spetree, model = "lambda", param[["lam_interceptsb"]])         
 slopes_b <- fastBM(scaledtree_b, a = param[["b_z"]], mu = 0, sig2 = param[["sigma_interceptsb"]] ^ 2)
 
-dfhere <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
-for (i in 1:nspecies){
-    temp <- data.frame(sp = rep(i, nind),
+speciesinfamsig <- 1.5
+
+# Generate tree, same as before, but we'll call it the family-level tree
+dfhere <- data.frame(fam = c(), sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
+for (i in 1:nfam){
+    famhere <- rnorm(nspecies, 0, speciesinfamsig)
+    temp <- data.frame(fam = rep(i, nspecies*nind),
+                       sp = rep(1:nspecies, each=nind),
                        intercept = rep(intercepts[i], nind),
                        x1 = rnorm(n = nind, mean = 10, sd = 3),
-                       trait1 = rep(slopes_b[i], nind))
+                       trait1 = rep(slopes_b[i], nind),
+                       spadd = rep(famhere, each=nind))
     dfhere <- rbind(dfhere, temp)
 }
-dfhere$mu <- dfhere$intercept + dfhere$x1 * dfhere$trait1
+
+# set the intercept to zero to make my life easier ... 
+dfhere$mu <- 0 + (dfhere$x1+dfhere$spadd) * dfhere$trait1
 dfhere$y <- rnorm(n = nrow(dfhere), mean = dfhere$mu, sd = param[["sigma_y"]])
 
 # Function for generating "good" initial values
@@ -113,6 +117,6 @@ test <- stan("sandbox/stan/oneslopeinterceptcholforsync.stan",
 # Might be good to some day double-check this is true speed-up.
 
 summary(test)$summary[c("a_z","lam_interceptsa","sigma_interceptsa",
-                        "b_z","lam_interceptsbf","sigma_interceptsb",
+                        "b_z","lam_interceptsb","sigma_interceptsb",
                         "sigma_y"),"mean"]; t(param)
 
