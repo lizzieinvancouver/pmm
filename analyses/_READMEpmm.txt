@@ -1,5 +1,5 @@
 23 August 2020
-Updated 29 June 2021
+Updated 15 May 2022
 Lizzie finally making some notes on what's in the folder 
 
 Looking for Lemoine PGLS? 
@@ -16,6 +16,17 @@ simsmore folder -- work by Geoff L. in 2021, based off ubermini_2.R and related 
 
 *****
 ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **
+
+Geoff Legault added a ton of code in later 2021; much of it I believe duplicating what we already have, but de novo written by him with small tweaks. *We should check and clean this repo someday, as we now have too much code* but for now, here's some notes by Lizzie:
+
+
+uber_oneslope.stan -- very similar (I think -- need to check) to ubermini_2.stan but with some tweaks (esp. priors) by Geoff
+
+uber_oneslopeintercept.stan -- very similar (I think -- need to check) to ubermini_2.stan but with phylo on slope and intercept (by Geoff)
+
+uber_oneslopeintercept_cholesky.stan -- added cholesky uber_oneslopeintercept.stan (by Geoff)
+
+
 *****
 
 <><><><><><><><><>
