@@ -4,9 +4,9 @@ By Lizzie
 Notes on trying to get a family-level (with species partially pooled below) running with our phylo model
 This would take a while to build up, so we should start with test data.
 
+Working on simulate_fit_oneslopeintercept_cholesky_fam.R now... 
 
 Mike Betancourt provided some very QUICK and incomplete code: oneslopeinterceptcholforsync_withMike.stan
-
 
 Before that I did some sorting and flailing ... I edited:
 
@@ -26,7 +26,7 @@ I then flailed in the Stan code, with:
 
 
 So, what are reasonable options for next steps?
-1) Look at my general notes on nested models. Organize and improve them if I need to. DONE, see updated repo (and renamed): nestedmodels 
+1) Done: I looked at my general notes on nested models. Organized and improve them if I need to. See updated repo (and renamed): nestedmodels 
 2) Fix the R code so it does the nesting we want and leaves the intercept at 0 or such.
 3) Try again on the Stan code. 
 

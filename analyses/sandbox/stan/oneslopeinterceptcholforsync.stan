@@ -6,7 +6,8 @@
 2) Added lines to cholesky_decompose vcv (a and b)
 3) Changed from multi_normal to multi_normal_cholesky
 4) Geoff Legault removed sigma_mat from f(x), and just used sigma 
-Some/all of above 2-4 changes seemed to have sped things up */
+Some/all of above 2-4 changes seemed to have sped things up 
+5) Lizzie pulled out grand mean (a_z), 18 May 2022 */
 
 functions {
   matrix lambda_vcv(matrix vcv, real lambda, real sigma){ //input: vcv matrix (correl), lam, sig which are sampled from dist
@@ -65,12 +66,12 @@ model {
   
   for(i in 1:N){
     yhat[i] = 
-      a[species[i]] + b[species[i]] * year[i]; 
+      a_z + a[species[i]] + b[species[i]] * year[i]; 
 			     	}
   vcv_a = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa));
   vcv_b = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb));
  
-  a ~ multi_normal_cholesky(rep_vector(a_z,Nspp), vcv_a);
+  a ~ multi_normal_cholesky(rep_vector(0, Nspp), vcv_a);
   b ~ multi_normal_cholesky(rep_vector(b_z, Nspp), vcv_b); 
   
    ypred ~ normal(yhat, sigma_y);
