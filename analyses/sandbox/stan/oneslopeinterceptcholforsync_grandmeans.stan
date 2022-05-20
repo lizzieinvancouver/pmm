@@ -6,10 +6,8 @@
 2) Added lines to cholesky_decompose vcv (a and b)
 3) Changed from multi_normal to multi_normal_cholesky
 4) Geoff Legault removed sigma_mat from f(x), and just used sigma 
-Some/all of above 2-4 changes seemed to have sped things up */
-
-/* Notes and sample code here from Mike Betancourt */
-/* This code DOES NOT run, it's not complete. */
+Some/all of above 2-4 changes seemed to have sped things up 
+5) Lizzie pulled out grand means (a_z, b_z), 18 May 2022 */
 
 functions {
   matrix lambda_vcv(matrix vcv, real lambda, real sigma){ //input: vcv matrix (correl), lam, sig which are sampled from dist
@@ -65,46 +63,16 @@ model {
   real yhat[N];
   matrix[Nspp,Nspp] vcv_a;     // phylogeny
   matrix[Nspp,Nspp] vcv_b;     // phylogeny
-  /* START of Mike adding notes on how to make the phylogeny model have another level
-  ... but needs edits above (made in other files: oneinterceptcholforsyncfam.stan for now) to run. */
+  
   for(i in 1:N){
     yhat[i] = 
-      a_z + a[family[i]] + a_species[species[i]] + b[family[i]] * year[i]; 
+      a_z + a[species[i]] + (b_z + b[species[i]]) * year[i]; 
 			     	}
   vcv_a = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa));
   vcv_b = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb));
  
-  afamily ~ multi_normal_cholesky(rep_vector(0, Nspp), vcv_a);
-  bfamily ~ multi_normal_cholesky(rep_vector(0, Nspp), vcv_b); 
-  
-  for (s in 1:N_species) {
-    a_species[s] ~ normal(0, tau_family[family[s]])
-  }
-  
-  // Demo Start (by Mike of how to vectorize code)
-  int<lower=1> N;  // Number of observations
-  int<lower=1> K;  // Number of contexts
-  int<lower=1, upper=K> context[N]; // Observation to context mapping
-  
-  real y[N];
-  real theta[K];
-  
-  for (n in 1:N) {
-    y[n] ~ normal(theta[context[n]], sigma);
-  }
-  
-  theta[context[n]] -> real
-  theta[context]    -> array[N] real
-  
-  y ~ normal(theta[context], sigma)
-  
-  y ~ normal(alpha[context] + beta[context] .* year)
-  
-  
-  y ~ normal(alpha_family[family] + alpha_species[species], sigma);
-  y ~ normal(alpha_family[family[species]] + alpha_species[species], sigma);
-  
-  // Demo End
+  a ~ multi_normal_cholesky(rep_vector(0, Nspp), vcv_a);
+  b ~ multi_normal_cholesky(rep_vector(0, Nspp), vcv_b); 
   
    ypred ~ normal(yhat, sigma_y);
 
