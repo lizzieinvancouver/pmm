@@ -40,6 +40,9 @@ param <- list(a_z = 4, # root value intercept
               sigma_interceptsa = 0.2, # rate of evolution intercept
               sigma_y = 0.01 # overall sigma
               )
+
+speciesinfamsig = 1.5
+
 # Set priors
 phypriors <- list(
     a_z_prior_mu = 4, # true value
@@ -56,7 +59,7 @@ phypriors <- list(
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
 
-speciesinfamsig <- 1.5
+
 
 # Generate tree, same as before, but we'll call it the family-level tree
 dfhere <- data.frame(fam = c(), sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
@@ -87,8 +90,10 @@ simu_inits <- function(chain_id) {
 
 # Fit model
 
-test <- stan("sandbox/stan/oneinterceptcholforsync.stan",
+test <- stan("sandbox/stan/oneinterceptcholforsyncfam.stan",
                data = append(list(N = nrow(dfhere),
+                                  Nfam = nfam,
+                                  family = dfhere$fam,
                                   Nspp = nspecies,
                                   species = dfhere$famsp,
                                   ypred = dfhere$y,
@@ -97,16 +102,21 @@ test <- stan("sandbox/stan/oneinterceptcholforsync.stan",
                # init = simu_inits,
                iter = 3000,
                warmup = 2000,
-               chains = 4
-               # seed = 62921
+               chains = 4,
+               seed = 62921
              )
 
-# 15 May 2022: Notes by Lizzie
-# 70.68 seconds for the above with or without init turned off.
-# So this is no speed-up beyond way back when with ubermini_2.stan (I checked) ...
-# And we end up working in tranposed units (which is annoying)
-# Might be good to some day double-check this is true speed-up.
 
 summary(test)$summary[c("a_z","lam_interceptsa","sigma_interceptsa",
                         "sigma_y"),"mean"]; t(param)
+
+# I would like to figure out how to test the lower-level parameters ...
+# Can't tell if this is awful, or it's the cholesky
+sumer <- summary(test)$summary
+plot(intercepts-4, sumer[grep("a\\[", rownames(sumer)), "mean"])
+abline(a = 0, b = 1, lty = "dotted")
+# Really small values...
+hist(sumer[grep("a\\[", rownames(sumer)), "mean"])
+hist(sumer[grep("tau_family\\[", rownames(sumer)), "mean"])
+
 
