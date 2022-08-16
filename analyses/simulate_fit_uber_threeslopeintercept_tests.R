@@ -69,6 +69,35 @@ phypriors <- list(
     sigma_y_mu_sigma = 10
 )
 
+# Currently from ospree/analyses/phylogeny/phylo_ospree_compact3.R but I think this is wrong
+phypriorsNachomodel <- list(
+  a_z_prior_mu = 30,
+  a_z_prior_sigma = 10,
+  lam_interceptsa_prior_alpha = 1, # 
+  lam_interceptsa_prior_beta = 1, # 
+  sigma_interceptsa_prior_mu = 40,
+  sigma_interceptsa_prior_sigma = 20,
+  b_zf_prior_mu = -4,
+  b_zf_prior_sigma = 5,
+  lam_interceptsbf_prior_alpha = 1, #
+  lam_interceptsbf_prior_beta = 1, # 
+  sigma_interceptsbf_prior_mu = 5,
+  sigma_interceptsbf_prior_sigma = 5,
+  b_zc_prior_mu = -8,
+  b_zc_prior_sigma = 5,
+  lam_interceptsbc_prior_alpha = 1, #
+  lam_interceptsbc_prior_beta = 1, # 
+  sigma_interceptsbc_prior_mu = 5,
+  sigma_interceptsbc_prior_sigma = 5,
+  b_zp_prior_mu = -3,
+  b_zp_prior_sigma = 5,
+  lam_interceptsbp_prior_alpha = 1, #
+  lam_interceptsbp_prior_beta = 1, # 
+  sigma_interceptsbp_prior_mu = 5,
+  sigma_interceptsbp_prior_sigma = 5,
+  sigma_y_mu_prior = 20,
+  sigma_y_mu_sigma = 1)
+
 # Generate intercept
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
@@ -120,7 +149,7 @@ testme <- stan("stan/uber_threeslopeintercept.stan",
                                   x3=dfhere$x3,
                                   y=dfhere$y,
                                   Vphy=vcv(spetree, corr = TRUE)),
-                             phypriors),
+                             phypriorsNachomodel),
                init = simu_inits,
                iter = 2000,
                warmup = 1000,
