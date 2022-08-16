@@ -3,16 +3,18 @@
 ## Copy of ubermini_2.R for testing
 ## Generate test data for phylogeny Stan models ##
 
-## ALERT: UPDATE PATHS AND FILENAMES! (then delete this line)
-
 ## ADD intercept to estimate
 # y ~ a[phylo] +  b_force[phylo]*x + error
 
+set.seed(2021)
+
 # Setting working directory. Add in your own path in an if statement for your file structure
-if(length(grep("Ignacio", getwd())>0)) { 
-  setwd("~/GitHub/pmm/analyses/") 
-} else
-setwd("~/Documents/git/teaching/stan/pmm/analyses")
+if(length(grep("dindin", getwd())>0)) { 
+  setwd("/Users/dindin/Documents/work/pmm/analyses") 
+} else if(length(grep("mamatova", getwd())>0)) {
+  setwd("/home/mamatova/speedtests") 
+} else setwd("~/Documents/git/teaching/stan/pmm/analyses")
+
 
 ## load packages
 require(ape)
@@ -20,10 +22,10 @@ require(geiger)
 require(phytools)
 require(rstan)
 
-options(mc.cores = parallel::detectCores())
-## options(mc.cores = 4)
+#options(mc.cores = parallel::detectCores())
+options(mc.cores = 4)
 
-nspecies = 90
+nspecies = 50
 nind = 10
 
 # Simulate species tree with a pure birth model
@@ -41,6 +43,49 @@ slopez <- fastBM(scaledtree, a=m, mu=0, sig2=sigma_interceptsb ^ 2)
 phylosig(x=slopez, tree=spetree, method="lambda")
 
 # ADAPT here to include intercept also...
+# set up the intercept
+a_z = 4 # root value intercept
+lam_interceptsa = 0.4 # lambda intercept
+sigma_interceptsa = 0.2 # rate of evolution intercept
+
+# Generate intercept
+scaledtree_intercept <- rescale(spetree, model = "lambda", lam_interceptsa)         
+intercepts <- fastBM(scaledtree_intercept, a = a_z, mu = 0, sig2 = sigma_interceptsa ^ 2)
+phylosig(x=intercepts, tree=scaledtree_intercept, method="lambda")
+
+# Set up priors
+priors <- list(
+  
+  # a_z_prior_mu = 4, # true value # true val of intercept 
+  # a_z_prior_sigma = 1, # root value intercept sigma
+  # lam_interceptsa_prior_alpha = 4, # lambda intercept prior alpha
+  # lam_interceptsa_prior_beta = 6, # lambda intercept prior beta
+  # sigma_interceptsa_prior_mu = 0.2, # true value of mu for the rate of evolution intercept
+  # sigma_interceptsa_prior_sigma = 0.2, # rate of evloution prior 
+  # b_z_prior_mu = 0.6, # true value
+  # b_z_prior_sigma = 1,
+  # lam_interceptsb_prior_alpha = 7, #
+  # lam_interceptsb_prior_beta = 3, # 
+  # sigma_interceptsb_prior_mu = 0.1, # true value
+  # sigma_interceptsb_prior_sigma = 0.1,
+  # sigma_y_mu_prior = 0.01,
+  # sigma_y_mu_sigma = 1
+  
+  a_z_prior_mu = 4,
+  a_z_prior_sigma = 5,
+  lam_interceptsa_prior_alpha = 2,
+  lam_interceptsa_prior_beta = 2,
+  sigma_interceptsa_prior_mu = 0.2,
+  sigma_interceptsa_prior_sigma = 1,
+  b_z_prior_mu = 0.6,
+  b_z_prior_sigma = 1,
+  lam_interceptsb_prior_alpha = 2,
+  lam_interceptsb_prior_beta = 2,
+  sigma_interceptsb_prior_mu = 0.1,
+  sigma_interceptsb_prior_sigma = 1,
+  sigma_y_mu_prior = 0.01,
+  sigma_y_mu_sigma = 0.5
+)
 
 # for testing ...
 nulltree <- rescale(spetree, model="lambda", 0)
@@ -49,8 +94,9 @@ dfhere <- data.frame(x=numeric(), y=numeric())
 
 for (i in 1:length(slopez)){
     slopehere <- slopez[i]
+    intercpthere <- intercepts[i]
     xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
-    yhere <- xhere*slopehere # ADAPT here to include intercept
+    yhere <- intercpthere + xhere*slopehere # ADAPT here to include intercept
     dfadd <- data.frame(x=xhere, y=yhere)
     dfhere <- rbind(dfhere, dfadd)
 }
@@ -70,14 +116,22 @@ simu_inits <- function(chain_id) {
                 "b_force" = rnorm(n = nspecies, mean = b_z.temp, sd = sigma_interceptsb.temp)))
 }
 
+start_time <- Sys.time()
 # Fit model
-testme <- stan("stan/ubermini_2_biggerpriors.stan", # Or ubermini_2.stan
-               data=list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
+testme <- stan("stan/uberspeed.stan", # Or ubermini_2.stan
+               data = append(list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
                           x=dfhere$x, y=dfhere$yerr,
                          Vphy=vcv(spetree, corr = TRUE)), # Note: In this case corr=TRUE/FALSE produce same output
-               iter=2000, chains=4,
-               init = simu_inits
-               ) # seed=123456
+                         priors), 
+               iter=4000, chains=4,
+               seed = 123456,
+# Only used to fix the chain divergences
+               control = list(adapt_delta = 0.95)) # seed=123456
+end_time <- Sys.time()
+
+# Find time difference
+end_time - start_time
+
 # Summarize fit
 summary(testme)$summary
 summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"mean"]
@@ -85,7 +139,10 @@ summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"
 summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"25%"]
 summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"75%"]
 
+#pairs(testme, pars = c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb","sigma_interceptsb","sigma_y", "lp__")) 
+
 fitContinuous(spetree, slopez, model="lambda")
+fitContinuous(spetree, intercepts, model="lambda")
 
 # Compare true slopes to estimated slopes
 sumer <- summary(testme)$summary
@@ -94,3 +151,7 @@ sumer <- summary(testme)$summary
 
 plot(slopez, sumer[grep("b_force", rownames(sumer)), "mean"])
 abline(a = 0, b = 1, lty = "dotted")
+
+plot(intercepts, sumer[grep("a\\[(.*?)\\]", rownames(sumer)), "mean"])
+abline(a = 0, b = 1, lty = "dotted")
+
