@@ -2,6 +2,8 @@
 ## By Lizzie and Dinara Mamatova ##
 ## Copy of ubermini_2.R for testing
 ## Generate test data for phylogeny Stan models ##
+## This copy is used to test different seeds and parameters on model 
+## that has an new function, priors and Cholesky decomposition
 
 ## ADD intercept to estimate
 # y ~ a[phylo] +  b_force[phylo]*x + error
@@ -25,7 +27,8 @@ require(rstan)
 #options(mc.cores = parallel::detectCores())
 options(mc.cores = 4)
 
-nspecies = 10
+# was 50, but for now put 10
+nspecies = 50
 nind = 10
 
 # Simulate species tree with a pure birth model
@@ -93,12 +96,12 @@ nulltree <- rescale(spetree, model="lambda", 0)
 dfhere <- data.frame(x=numeric(), y=numeric())
 
 for (i in 1:length(slopez)){
-    slopehere <- slopez[i]
-    intercpthere <- intercepts[i]
-    xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
-    yhere <- intercpthere + xhere*slopehere # ADAPT here to include intercept
-    dfadd <- data.frame(x=xhere, y=yhere)
-    dfhere <- rbind(dfhere, dfadd)
+  slopehere <- slopez[i]
+  intercpthere <- intercepts[i]
+  xhere <- rnorm(nind, 10, 3) # these are experiments, no phylo structure in x 
+  yhere <- intercpthere + xhere*slopehere # ADAPT here to include intercept
+  dfadd <- data.frame(x=xhere, y=yhere)
+  dfhere <- rbind(dfhere, dfadd)
 }
 
 dfhere$sp <- rep(spetree$tip.label, each=nind)
@@ -107,51 +110,61 @@ dfhere$yerr <- dfhere$y + rnorm(nrow(dfhere), 0, sigma_y)
 
 # Function for generating "good" initial values
 simu_inits <- function(chain_id) {
-    b_z.temp <- rnorm(n = 1, mean = 0, sd = 3)
-    sigma_interceptsb.temp <- runif(n = 1, min = 0, max = 1)
-    return(list("sigma_y" = runif(n = 1, min = 0, max = 1),
-                "lam_interceptsb" = rbeta(n = 1, shape1 = 2, shape2 = 2),
-                "sigma_interceptsb" = sigma_interceptsb.temp,
-                "b_z" = b_z.temp,
-                "b_force" = rnorm(n = nspecies, mean = b_z.temp, sd = sigma_interceptsb.temp)))
+  b_z.temp <- rnorm(n = 1, mean = 0, sd = 3)
+  sigma_interceptsb.temp <- runif(n = 1, min = 0, max = 1)
+  return(list("sigma_y" = runif(n = 1, min = 0, max = 1),
+              "lam_interceptsb" = rbeta(n = 1, shape1 = 2, shape2 = 2),
+              "sigma_interceptsb" = sigma_interceptsb.temp,
+              "b_z" = b_z.temp,
+              "b_force" = rnorm(n = nspecies, mean = b_z.temp, sd = sigma_interceptsb.temp)))
 }
 
-start_time <- Sys.time()
-# Fit model
-testme <- stan("stan/uberspeed.stan", # Or ubermini_2.stan
-               data = append(list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
-                          x=dfhere$x, y=dfhere$yerr,
-                         Vphy=vcv(spetree, corr = TRUE)), # Note: In this case corr=TRUE/FALSE produce same output
-                         priors), 
-               iter=4000, chains=4,
-               seed = 123456,
-# Only used to fix the chain divergences
-               control = list(adapt_delta = 0.95)) # seed=123456
-end_time <- Sys.time()
+seeds <- c("255684", "861991", "483711", "961574",
+          "221879", "814471", "897848", "115016", "146879", "840995")
 
-# Find time difference
-end_time - start_time
+source("stan_utility.R")
 
-# Summarize fit
-summary(testme)$summary
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"mean"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"50%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"25%"]
-summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y"),"75%"]
+model_runs <- lapply(seeds, function(s) {
+  
+  start_time <- Sys.time()
+  
+  # Fit model
+  testme <- stan("try_seeds/stan/uberspeed_newfunc_withcholesky_withpriors.stan", # Or ubermini_2.stan
+                 data = append(list(N=nrow(dfhere), n_sp=nspecies, sp=dfhere$spnum,
+                                    x=dfhere$x, y=dfhere$yerr,
+                                    Vphy=vcv(spetree, corr = TRUE)), # Note: In this case corr=TRUE/FALSE produce same output
+                               priors), 
+                 iter=4000, chains=4,
+                 seed = s)
+  # Only used to fix the chain divergences
+  #control = list(adapt_delta = 0.95)) # seed=123456
+  end_time <- Sys.time()
+  
+  # Find time difference
+  runtime <- end_time - start_time
+  
+  # Summarize fit
+  df <- data.frame(summary(testme)$summary[c("lam_interceptsb","sigma_interceptsb","b_z", "sigma_y",
+                                             "lam_interceptsa", "sigma_interceptsa", "a_z"),
+                                           c("25%", "mean", "75%")])
+  
+  df$divergences <- capture.output(check_div(testme))[[1]]
+  df$Rhat <- capture.output(check_rhat(testme))[[1]]
+  
+  df$seed = s
+  df$runtime <- runtime
+  
+  return(df)
+})
 
-#pairs(testme, pars = c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb","sigma_interceptsb","sigma_y", "lp__")) 
+mr_df <- do.call(rbind, model_runs)
+mr_df$variable <- rownames(mr_df)
+rownames(mr_df) <- NULL
+mr_df$variable <- sub("[0-9]","", mr_df$variable)
+colnames(mr_df)[1] <- "first_quartile"
+colnames(mr_df)[3] <- "third_quartile"
+# extract percetage of divergent transitions inside parantheses
+mr_df$divergences <- gsub("(?<=\\()[^()]*(?=\\))(*SKIP)(*F)|.", "", mr_df$divergences, perl=T)
+mr_df$Rhat <- gsub(".* is ", "", mr_df$Rhat)
 
-fitContinuous(spetree, slopez, model="lambda")
-fitContinuous(spetree, intercepts, model="lambda")
-
-# Compare true slopes to estimated slopes
-sumer <- summary(testme)$summary
-# sumer[grep("b_force", rownames(sumer)), "mean"]
-# slopez
-
-plot(slopez, sumer[grep("b_force", rownames(sumer)), "mean"])
-abline(a = 0, b = 1, lty = "dotted")
-
-plot(intercepts, sumer[grep("a\\[(.*?)\\]", rownames(sumer)), "mean"])
-abline(a = 0, b = 1, lty = "dotted")
-
+write.csv(mr_df, "try_seeds/output/uberspeed_newfunc_withcholesky_withpriors_compare.csv")
