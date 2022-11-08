@@ -14,16 +14,24 @@ setwd("~/Documents/git/teaching/stan/pmm/analyses/")
 ## options(mc.cores = parallel::detectCores())
 options(mc.cores = 4)
 
+useOSPREEtree <- FALSE
+
 # Set seed
 set.seed(2021)
 
 # Simulate species tree with a pure birth model
+if(useOSPREEtree){
 spetree <- read.tree("input/ospreephylo.tre")
 dropspp <- sample(spetree$tip.label, 80)
 spetree <- drop.tip(spetree, dropspp)
 nspecies <- length(spetree$tip.label)
-spetree$tip.label <- paste("s", 1:nspecies, sep="")
+}
+if(!useOSPREEtree){
+nspecies = 100
+spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
+}
 
+spetree$tip.label <- paste("s", 1:nspecies, sep="")
 nind = 10
 
 # Now set up the trait parameters
@@ -144,3 +152,10 @@ fitContinuous(spetree, intercepts, model="lambda")
 fitContinuous(spetree, slopes_bf, model="lambda")
 fitContinuous(spetree, slopes_bc, model="lambda")
 fitContinuous(spetree, slopes_bp, model="lambda")
+
+if(useOSPREEtree){
+fitContinuous(multi2di(spetree), intercepts, model="lambda")
+fitContinuous(multi2di(spetree), slopes_bf, model="lambda")
+fitContinuous(multi2di(spetree), slopes_bc, model="lambda")
+fitContinuous(multi2di(spetree), slopes_bp, model="lambda")
+    }
