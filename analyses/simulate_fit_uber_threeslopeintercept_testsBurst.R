@@ -27,7 +27,7 @@ spetree <- drop.tip(spetree, dropspp)
 nspecies <- length(spetree$tip.label)
 }
 if(!useOSPREEtree){
-nspecies = 100
+nspecies = 200
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 }
 
@@ -41,13 +41,13 @@ param <- list(a_z = 30, # root value intercept
               lam_interceptsa = 1, # lambda intercept
               sigma_interceptsa = 1, # rate of evolution intercept
               b_zf = 5, # root value trait1
-              delta_interceptsbf = 2, # DELTA trait1
+              delta_interceptsbf = 1, # DELTA trait1
               sigma_interceptsbf = 1, # rate of evolution trait1
               b_zc = 5, # root value trait2
               lam_interceptsbc = 1, # lambda trait2
               sigma_interceptsbc = 1, # rate of evolution trait2
               b_zp = 5, # root value trait3
-              delta_interceptsbp = 0.5, # DELTA trait3
+              delta_interceptsbp = 1, # DELTA trait3
               sigma_interceptsbp = 1, # rate of evolution trait3
               sigma_y = 0.5 # overall sigma, is much higher in real data (~13)
               )
