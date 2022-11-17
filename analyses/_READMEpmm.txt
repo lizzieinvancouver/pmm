@@ -14,6 +14,8 @@ phlyo_opsree_compact3.R -- Fits a three trait (i.e., threeslope) model to the OS
 
 simsmore folder -- work by Geoff L. in 2021, based off ubermini_2.R and related Stan code to build up simulations with multiple slopes and an intercept (simulate_fit_oneslope is a slope-only model, so assuming an intercept of 0)
 
+burstdeltamodels folder -- work started in November 2022 to look at early/late burst models of evolution ... incl. what happens when use sigma/lambda models but set evolution as delta 
+
 *****
 ubermini_2.R -- Will's new attempt in late August 2020 with updates from Geoff to set initial conditions ** This one works! **
 
@@ -26,6 +28,12 @@ uber_oneslopeintercept.stan -- very similar (I think -- need to check) to ubermi
 
 uber_oneslopeintercept_cholesky.stan -- added cholesky uber_oneslopeintercept.stan (by Geoff)
 
+
+<><><><><><><><><>
+Work by Dinara Mamatova (summer 2022) to compare speed of different formulas
+See https://github.com/lizzieinvancouver/pmm/issues/19
+speedtests folder
+speedtests_viz folder (visualization)
 
 *****
 
