@@ -1,5 +1,6 @@
-## Started 13 Jan 2021 ##
-## Adapted from earlier code (ubermini_2.R)
+## Started 10 Nov 2022 ##
+## By Lizzie in Madrid ##
+## Adapted from earlier code ... see README ##
 ## Generate test data for phylogeny Stan model ##
 
 # Load packages
@@ -14,10 +15,11 @@ setwd("~/Documents/git/teaching/stan/pmm/analyses/")
 ## options(mc.cores = parallel::detectCores())
 options(mc.cores = 4)
 
-useOSPREEtree <- FALSE
+useOSPREEtree <- FALSE # can use our phylogeny if you prefer (instead of PB simulated tree)
+usefastslowdelta <- TRUE # Currently ... usefastslowdelta=TRUE, sets forcing delta=2 and photo delta=0.5 and usefastslowdelta=TRUE, sets all to 1 (same as lambda=1)
 
 # Set seed
-set.seed(2021)
+set.seed(2022)
 
 # Simulate species tree with a pure birth model
 if(useOSPREEtree){
@@ -35,22 +37,39 @@ spetree$tip.label <- paste("s", 1:nspecies, sep="")
 nind = 10
 
 # Now set up the trait parameters
-# But let's making photoperiod (delta=0.5) as early-burst and forcing as 'late-burst' (delta=2)
-# ... and make the other lambda values 1
+if(usefastslowdelta){ # Make photoperiod (delta=0.5) as early-burst and forcing as 'late-burst' (delta=2) ... and make the other lambda values 1
 param <- list(a_z = 30, # root value intercept
               lam_interceptsa = 1, # lambda intercept
-              sigma_interceptsa = 1, # rate of evolution intercept
+              sigma_interceptsa = 5, # rate of evolution intercept
               b_zf = 5, # root value trait1
-              delta_interceptsbf = 1, # DELTA trait1
-              sigma_interceptsbf = 1, # rate of evolution trait1
+              delta_interceptsbf = 2, # DELTA trait1
+              sigma_interceptsbf = 5, # rate of evolution trait1
               b_zc = 5, # root value trait2
               lam_interceptsbc = 1, # lambda trait2
-              sigma_interceptsbc = 1, # rate of evolution trait2
+              sigma_interceptsbc = 5, # rate of evolution trait2
+              b_zp = 5, # root value trait3
+              delta_interceptsbp = 0.5, # DELTA trait3
+              sigma_interceptsbp = 5, # rate of evolution trait3
+              sigma_y = 0.5 # overall sigma
+              )
+}
+
+if(!usefastslowdelta){ # Make everything lambda of 1 (which is also delta=1) 
+param <- list(a_z = 30, # root value intercept
+              lam_interceptsa = 1, # lambda intercept
+              sigma_interceptsa = 5, # rate of evolution intercept
+              b_zf = 5, # root value trait1
+              delta_interceptsbf = 1, # DELTA trait1
+              sigma_interceptsbf = 5, # rate of evolution trait1
+              b_zc = 5, # root value trait2
+              lam_interceptsbc = 1, # lambda trait2
+              sigma_interceptsbc = 5, # rate of evolution trait2
               b_zp = 5, # root value trait3
               delta_interceptsbp = 1, # DELTA trait3
-              sigma_interceptsbp = 1, # rate of evolution trait3
-              sigma_y = 0.5 # overall sigma, is much higher in real data (~13)
+              sigma_interceptsbp = 5, # rate of evolution trait3
+              sigma_y = 0.5 # overall sigma
               )
+    }
 
 # Set priors
 phypriors <- list(
@@ -78,7 +97,7 @@ phypriors <- list(
     lam_interceptsbp_prior_beta = 6,  
     sigma_interceptsbp_prior_mu = 10, 
     sigma_interceptsbp_prior_sigma = 10,
-    sigma_y_mu_prior = 10, 
+    sigma_y_mu_prior = 5, 
     sigma_y_mu_sigma = 10
 )
 
@@ -96,7 +115,8 @@ slopes_bc <- fastBM(scaledtree_bc, a = param[["b_zc"]], mu = 0, sig2 = param[["s
 scaledtree_bp <- rescale(spetree, model = "delta", param[["delta_interceptsbp"]])         
 slopes_bp <- fastBM(scaledtree_bp, a = param[["b_zp"]], mu = 0, sig2 = param[["sigma_interceptsbp"]] ^ 2)
 
-dfhere <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric(), x2 = numeric(), trait2 = numeric())
+dfhere <- data.frame(sp = c(), intercept = c(), x1=numeric(),
+                     trait1=numeric(), x2 = numeric(), trait2 = numeric())
 for (i in 1:nspecies){
     temp <- data.frame(sp = rep(i, nind),
                        intercept = rep(intercepts[i], nind),
@@ -132,8 +152,7 @@ testme <- stan("stan/uber_threeslopeintercept.stan",
                )
 
 # Summarize fit
-# summary(testme)$summary
-
+# list of actual parameters in Stan code
 stan.param <- c("a_z", "lam_interceptsa", "sigma_interceptsa",
                 "b_zf", "lam_interceptsbf" , "sigma_interceptsbf",
                 "b_zc", "lam_interceptsbc", "sigma_interceptsbc",
@@ -141,11 +160,9 @@ stan.param <- c("a_z", "lam_interceptsa", "sigma_interceptsa",
                 "sigma_y")
 
 # Compare to true values
-summary(testme)$summary[stan.param, c("mean", "2.5%", "25%", "75%", "97.5%")]
+summary(testme)$summary[stan.param, c("mean", "25%", "50%", "75%")]
 t(param)
-## summary(testme)$summary[names(param), "2.5%"]
-## summary(testme)$summary[names(param), "97.5%"]
-## summary(testme)$summary[names(param), "50%"]
+
 
 # Compare to GEIGER-fitted model
 fitContinuous(spetree, intercepts, model="lambda")
@@ -158,4 +175,22 @@ fitContinuous(multi2di(spetree), intercepts, model="lambda")
 fitContinuous(multi2di(spetree), slopes_bf, model="lambda")
 fitContinuous(multi2di(spetree), slopes_bc, model="lambda")
 fitContinuous(multi2di(spetree), slopes_bp, model="lambda")
-    }
+}
+
+# save output ...
+if(usefastslowdelta){
+    saveRDS(testme, "output/testsigmavarydelta.RDS")
+}
+
+if(!usefastslowdelta){
+    saveRDS(testme, "output/testsigmacontsantdelta.RDS")
+}
+
+# Plot posteriors of sigmas ... 
+testmepost <- extract(testme)
+xlim <- c(2, 8)
+ylim <- c(0, 2.1)
+plot(density(testmepost$sigma_interceptsbf), col="red", xlim=xlim, ylim=ylim,
+   main="", xlab="Sigmas") 
+lines(density(testmepost$sigma_interceptsbc), col="blue", xlim=xlim, ylim=ylim) 
+lines(density(testmepost$sigma_interceptsbp), col="orange", xlim=xlim, ylim=ylim) 
