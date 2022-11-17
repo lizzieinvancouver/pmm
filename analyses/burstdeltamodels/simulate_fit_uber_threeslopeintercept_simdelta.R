@@ -186,7 +186,8 @@ if(!usefastslowdelta){
     saveRDS(testme, "output/testsigmacontsantdelta.RDS")
 }
 
-# Plot posteriors of sigmas ... 
+# Plot posteriors of sigmas ...
+# saved as sigmadeltasim_constantdelta and sigmadeltasim_varydelta
 testmepost <- extract(testme)
 xlim <- c(2, 8)
 ylim <- c(0, 2.1)
