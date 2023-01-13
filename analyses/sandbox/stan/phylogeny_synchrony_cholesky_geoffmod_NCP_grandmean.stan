@@ -77,11 +77,11 @@ b = L_vcv_b * b_tilde;
 model {
   real yhat[N];
   //matrix[Nspp,Nspp] L_vcv_a;     // phylogeny
-  //matrix[Nspp,Nspp] L_vcv_b;     // phylogeny
+  //matrix[Nspp,Nspp] L_vcv_b;     // phylogeny 
   
   for(i in 1:N){
     yhat[i] = 
-      a_z + a[species[i]] + b_z + b[species[i]] * year[i]; //astudy[study[i]] +
+      a_z + a[species[i]] + (b_z + b[species[i]]) * year[i]; //astudy[study[i]] +
 			     	}
   //L_vcv_a = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa));
   //L_vcv_b = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsb, sigma_interceptsb));

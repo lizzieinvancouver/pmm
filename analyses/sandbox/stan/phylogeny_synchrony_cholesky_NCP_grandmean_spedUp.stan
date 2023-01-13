@@ -13,6 +13,7 @@ functions {
     // to set back to 1 (i,i)
     for (i in 1:rows(local_vcv))
       local_vcv[i,i] = vcv[i,i];
+      return(local_vcv);
   }
 }
 
@@ -66,11 +67,11 @@ transformed parameters {
                    * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsa)) * a_tilde;
                    
   vector[Nspp] b =   sigma_interceptsb
-                   * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsb)) *sigma_interceptsb_prior_mu        
+                   * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsb)) * b_tilde;        
 }
 	
 model {
-  real mu[N] = a_z + a[species] + t((b_z + b[species])) * year;
+  vector[N] mu = a_z + a[species] + ((b_z + b[species])).* year;
 
   a_z ~ normal(a_z_prior_mu, a_z_prior_sigma);
   a_tilde ~ normal(0, 1);
