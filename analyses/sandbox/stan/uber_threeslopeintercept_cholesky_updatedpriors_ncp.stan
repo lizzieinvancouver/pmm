@@ -1,97 +1,102 @@
-// Started January 12 by Deirdre
-// the purpose of this code is to test the new phylogeny model on the ospree phylogeny model:
-// 1. comment out the creation of sigma_mat from the function (line 16)
-// 2. creating the matrix for the intercept and each slope (84-87)
-// 3. add cholesky decomposition of the matricies line 95-98
-// 4. add use multi_normal_cholesky distribution and rep_vector to return a matrix of size n_sp consisting of copies of the vcv matrix (101-104)
-// Updated 23 Sep 2022 by Lizzie with better priors //
+// Jan 15, 2022
 
 functions {
-  matrix lambda_vcv(matrix vcv, real lambda, real sigma){
-    matrix[rows(vcv),cols(vcv)] local_vcv;
-   // matrix[rows(vcv),cols(vcv)] sigma_mat;  
-    local_vcv = vcv * lambda;
-    for(i in 1:rows(local_vcv))
+  // BETAN: This the old lambda_vcv but with sigma factored out
+  // input: vcv matrix (Phylogenetic correlation matrix)
+  // input: lam (???)
+   matrix unscaled_lambda_vcv(matrix vcv, real lambda){
+    // taking the correl matrix and multi by lambda - scales correl matrix;
+    // how far or close evo are things rel to phylo dist
+    matrix[rows(vcv), cols(vcv)] local_vcv = vcv * lambda;
+
+    //ensure dist on diag are rescaled to 1; undoing the multi of diagonals
+    // to set back to 1 (i,i)
+    for (i in 1:rows(local_vcv))
       local_vcv[i,i] = vcv[i,i];
-      return(quad_form_diag(local_vcv, rep_vector(sigma, rows(vcv))));
-    //sigma_mat = diag_matrix(rep_vector(sigma, rows(vcv)));
-    //return(sigma_mat * local_vcv * sigma_mat);
+      return(local_vcv);
   }
 }
 
 data {
   int<lower=1> N;
-  int<lower=1> n_sp;
-  int<lower=1, upper=n_sp> sp[N];
-  vector[N] y; 		// response
-  vector[N] x1; 	// predictor (springtemp)
-  matrix[n_sp,n_sp]Vphy;     // phylogeny
+  vector[N] yobs; 		// response
+  vector[N] x1; 	// predictor (year)
+  
+  int<lower=1> Nspp;
+  int<lower=1, upper= Nspp > species[N];
+  matrix[Nspp, Nspp] Vphy;     // phylogeny
+  
+  // Priors
+  // real a_z_prior_mu;
+  // real a_z_prior_sigma;
+  // real lam_interceptsa_prior_alpha;
+  // real lam_interceptsa_prior_beta;
+  // real sigma_interceptsa_prior_mu;
+  // real sigma_interceptsa_prior_sigma;
+  // real b_z_prior_mu;
+  // real b_z_prior_sigma;
+  // real lam_interceptsb_prior_alpha;
+  // real lam_interceptsb_prior_beta;
+  // real sigma_interceptsb_prior_mu;
+  // real sigma_interceptsb_prior_sigma;
+  // real sigma_y_prior_mu;
+  // real sigma_y_prior_sigma;  	
 }
+
 
 parameters {
+  //real mu_grand;
   real<lower=0> sigma_y;    
+  
+  real a_z; // grand mean
+  vector[Nspp] a_tilde; // intercept
+
   real<lower=0, upper=1> lam_interceptsa;       
   real<lower=0> sigma_interceptsa;
-  real<lower=0, upper=1> lam_interceptsbf;       
-  real<lower=0> sigma_interceptsbf;   
   
-  real b_zf; // 
-  vector[n_sp] a; // intercept
-  real a_z;
+  real b_z;
+  vector[Nspp] b_tilde; 
   
-  real mu_b_force;
-  vector[n_sp] b_force_ncp; // slope of forcing effect
-  real <lower=0> sigma_b_force;
-
-}
+  real<lower=0, upper=1> lam_interceptsb;       
+  real<lower=0> sigma_interceptsb;   
+	}
 
 transformed parameters {
-  vector[n_sp] b_force;
-  
-  b_force = mu_b_force + sigma_b_force*b_force_ncp;
+  // Add back in sigma scaling
+  vector[Nspp] a =   sigma_interceptsa
+                   * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsa)) * a_tilde;
+                   
+  vector[Nspp] b =   sigma_interceptsb
+                   * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsb)) * b_tilde;        
 }
-
+	
 model {
-       real yhat[N];
-       
-        matrix[n_sp,n_sp] vcv_a;     // phylogeny
-        matrix[n_sp,n_sp] vcv_bf;     // phylogeny
+  vector[N] yhat = a_z + a[species] + ((b_z + b[species])).* x1;
 
-       
-       	for(i in 1:N){
-            yhat[i] = 
-	      a[sp[i]] + b_force[sp[i]] * x1[i];
-			     	}
-			     	
-	vcv_a = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsa, sigma_interceptsa));
-  vcv_bf = cholesky_decompose(lambda_vcv(Vphy, lam_interceptsbf, sigma_interceptsbf));
-
-  a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), vcv_a); 
-  b_force ~ multi_normal_cholesky(rep_vector(b_zf,n_sp), vcv_bf); 
+  a_z ~ normal(100,10);
+  a_tilde ~ normal(0, 1);
   
-  y ~ normal(yhat, sigma_y);
-
- // Priors -- keep in Stan code, better for reproducibility and runs faster
-    a_z ~ normal(100, 10); // Same as before, seems okay
-    b_zf ~ normal(-2, 10); // updated prior ... I think we should also try 0, 10
-
-
-    // All below: same as before, seems okay
-    lam_interceptsa ~ beta(1, 1);
-    lam_interceptsbf ~ beta(1, 1);
+  lam_interceptsa ~ beta(1,1);
+  sigma_interceptsa ~ normal(30,20);
   
-
-    // I don't have a good sense of how to set these, so keeping a little wide
-    sigma_interceptsa ~ normal(30, 20);
-    sigma_interceptsbf ~ normal(1, 5);
-    
-    sigma_y ~ normal(10, 10); // updated prior
-    
-    //target += normal_lpdf(to_vector(b_force_ncp) | 0,1);
-    b_force_ncp ~ normal(0,1);
-    sigma_b_force ~ normal(0,10);
-    
+  b_z ~ normal(-2,10);
+  b_tilde ~ normal(0,1);
   
+  lam_interceptsb ~ beta(1,1);
+  sigma_interceptsb ~ normal(1,5);
+  
+  sigma_y ~ normal(10,10);
+
+  yobs ~ normal(yhat, sigma_y);
+  
+ 
 }
+
+
+
+
+
+
+
 
 
