@@ -19,12 +19,12 @@ functions {
 
 data {
   int<lower=1> N;
-  vector[N] yobs; 		// response
+  vector[N] y; 		// response
   vector[N] x1; 	// predictor (year)
   
-  int<lower=1> Nspp;
-  int<lower=1, upper= Nspp > species[N];
-  matrix[Nspp, Nspp] Vphy;     // phylogeny
+  int<lower=1> n_sp;
+  int<lower=1, upper= n_sp > sp[N];
+  matrix[n_sp, n_sp] Vphy;     // phylogeny
 }
 
 
@@ -33,13 +33,13 @@ parameters {
   real<lower=0> sigma_y;    
   
   real a_z; // grand mean
-  vector[Nspp] a_tilde; // intercept
+  vector[n_sp] a_tilde; // intercept
 
   real<lower=0, upper=1> lam_interceptsa;       
   real<lower=0> sigma_interceptsa;
   
   real b_z;
-  vector[Nspp] b_tilde; 
+  vector[n_sp] b_tilde; 
   
   real<lower=0, upper=1> lam_interceptsb;       
   real<lower=0> sigma_interceptsb;   
@@ -47,15 +47,15 @@ parameters {
 
 transformed parameters {
   // Add back in sigma scaling
-  vector[Nspp] a =   sigma_interceptsa
+  vector[n_sp] a =   sigma_interceptsa
                    * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsa)) * a_tilde;
                    
-  vector[Nspp] b =   sigma_interceptsb
+  vector[n_sp] b =   sigma_interceptsb
                    * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsb)) * b_tilde;        
 }
 	
 model {
-  vector[N] yhat = a_z + a[species] + ((b_z + b[species])).* x1;
+  vector[N] yhat = a_z + a[sp] + ((b_z + b[sp])).* x1;
 
   a_z ~ normal(100,10);
   a_tilde ~ normal(0, 1);
@@ -71,7 +71,7 @@ model {
   
   sigma_y ~ normal(10,10);
 
-  yobs ~ normal(yhat, sigma_y);
+  y ~ normal(yhat, sigma_y);
   
  
 }

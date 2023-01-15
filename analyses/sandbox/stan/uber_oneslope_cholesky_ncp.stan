@@ -19,12 +19,12 @@ functions {
 
 data {
   int<lower=1> N;
-  vector[N] yobs; 		// response
+  vector[N] y; 		// response
   vector[N] x1; 	// predictor (year)
   
-  int<lower=1> Nspp;
-  int<lower=1, upper= Nspp > species[N];
-  matrix[Nspp, Nspp] Vphy;     // phylogeny
+  int<lower=1> n_sp;
+  int<lower=1, upper= n_sp > sp[N];
+  matrix[n_sp, n_sp] Vphy;     // phylogeny
 }
 
 
@@ -33,13 +33,13 @@ parameters {
   real<lower=0> sigma_y;    
   
   real a_z; // grand mean
-  vector[Nspp] a; // intercept
+  vector[n_sp] a; // intercept
 
   real<lower=0, upper=1> lam_interceptsa;       
   real<lower=0> sigma_interceptsa;
   
   real b_z;
-  vector[Nspp] b_tilde; 
+  vector[n_sp] b_tilde; 
   
   real<lower=0, upper=1> lam_interceptsb;       
   real<lower=0> sigma_interceptsb;   
@@ -48,26 +48,24 @@ parameters {
 transformed parameters {
   // Add back in sigma scaling
                  
-  vector[Nspp] b =   sigma_interceptsb
+  vector[n_sp] b =   sigma_interceptsb
                    * cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsb)) * b_tilde;        
 }
 	
 model {
   vector[N] yhat;
        
-        matrix[Nspp,Nspp] vcv_a;     // phylogeny
+        matrix[n_sp,n_sp] vcv_a;     // phylogeny
      // phylogeny
 
        
        	for(i in 1:N){
             yhat[i] = 
-	      a[species[i]] + b[species[i]] * x1[i];
+	      a[sp[i]] + b[sp[i]] * x1[i];
 			     	}
 
-	      
-//  vector[N] yhat = a_z + a[species] + ((b_z + b[species])).* x1;
   vcv_a = cholesky_decompose(unscaled_lambda_vcv(Vphy, lam_interceptsa));
-  a ~ multi_normal_cholesky(rep_vector(a_z,Nspp), vcv_a); 
+  a ~ multi_normal_cholesky(rep_vector(a_z,n_sp), vcv_a); 
   
   a_z ~ normal(100, 10); // Same as before, seems okay
   
@@ -82,7 +80,7 @@ model {
   
   sigma_y ~ normal(10,10);
 
-  yobs ~ normal(yhat, sigma_y);
+  y ~ normal(yhat, sigma_y);
   
  
 }
