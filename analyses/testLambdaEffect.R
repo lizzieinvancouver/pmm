@@ -189,6 +189,12 @@ write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 # Plotting model output:
   # 1. Compare the sp estimates from the test data to the sp estimates from the model, extract the coefficients and Rsq
 
+x <- rnorm(100, 4, 5)
+y <- rnorm(100, 4, 5)
+mymodelinfo <- summary(lm(y~x))
+
+mymodelinfo["r.squared"]$r.squared
+
 
   # 2. Calculate the diff of the mean value from the true value for the parameters
 
