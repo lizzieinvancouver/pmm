@@ -7,11 +7,11 @@
 
 data {
   int<lower=1> N;
-  vector[N] yobs; 		// response
+  vector[N] y; 		// response
   vector[N] x1; 	// predictor (year)
   
-  int<lower=1> Nspp;
-  int<lower=1, upper= Nspp > species[N];
+  int<lower=1> n_sp;
+  int<lower=1, upper= n_sp > sp[N];
 }
 
 
@@ -20,20 +20,20 @@ parameters {
   real<lower=0> sigma_y;    
   
   real mu_a; // grand mean
-  vector[Nspp] a_sp; // intercept
+  vector[n_sp] a_sp; // intercept
   real<lower=0> sigma_a;
   
   real mu_b;
   real<lower=0> sigma_b;   
   
   
-  vector[Nspp] b; 
+  vector[n_sp] b; 
   
   	}
 
 	
 model {
-  vector[N] yhat = a_sp[species] + (( b[species])).* x1;
+  vector[N] yhat = a_sp[sp] + (( b[sp])).* x1;
 
   a_sp ~ normal(mu_a, sigma_a);
   mu_a ~ normal(0,50);
@@ -45,7 +45,7 @@ model {
   
   sigma_y ~ normal(10,10);
 
-  yobs ~ normal(yhat, sigma_y);
+  y ~ normal(yhat, sigma_y);
   
  
 }
