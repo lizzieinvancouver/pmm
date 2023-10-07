@@ -175,7 +175,7 @@ write.csv(sumDatLambOut, paste("output/mdlOutLambdaReppedTemp.csv", sep = ""))
 write.csv(sumDatNoOut, paste("output/mdlOutNoLambdaReppedTemp.csv", sep = ""))
 
 sumDatL <- cbind(sumDatL, sumDatLambOut)
-write.csv(sumDat, paste("output/mdlOutLambdaRepped.csv", sep = ""))
+write.csv(sumDatL, paste("output/mdlOutLambdaRepped.csv", sep = ""))
 
 sumDatN <- cbind(sumDatN, sumDatNoOut)
 write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
