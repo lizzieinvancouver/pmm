@@ -5,7 +5,7 @@
 # Testing different values lambda (lambda slope = lambda intercept): 0, 0.2,0.8
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
-    setwd("~/Documents/github/pmm/analyses/sandbox")
+    setwd("~/Documents/github/pmm/analyses")
 } else if(length(grep("Lizzie", getwd())>0)) {
     setwd("~/Documents/git/teaching/stan/pmm/sandbox")
 } else{
@@ -24,42 +24,56 @@ options(stringsAsFactors = FALSE)
 options(mc.cores = parallel::detectCores())
 
 ### Simulate data with and without lambda
-nspecies = 40
-nind = 10
+nspecies = 5
+nind = 5
 
 ndat <- nspecies*nind
+
 # Simulate species tree with a pure birth model
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # Now set up the trait parameters
+nruns <- 2
+nparamL <- 8 # number of parameters including lp__
+ntotL <- nparamL+2*nspecies
 
-nruns <- 10
-nout <- 88
-lambda = c(0,0,0,0, 0.2 ,0.2,0.2,0.2,0.8,0.8,0.8,0.8)
+nparamN <- 6 # no lambda parameters
+ntotN <- nparamN+2*nspecies
+lambda = c(0, 0.2 ,0.8)
 #lambda = c(0,0,0.8,0.8)
 nlambda <- length(lambda)
 
-sumDat <- data.frame(matrix(NA, nout*nruns*nlambda, 1))
-names(sumDat) <- c("rep")
-sumDat$rep <- rep(1:88, nlambda*nruns )
-sumDat$runs <- rep(1:nruns, each = nout)
-sumDat$lambda <- rep(lambda, each = nout*nruns)
+sumDatL <- data.frame(matrix(NA, ntotL*nruns*nlambda, 1))
+names(sumDatL) <- c("rep")
+sumDatL$rep <- rep(1:ntotL, nruns*nlambda )
+sumDatL$runs <- rep(1:nruns, each = ntotL)
+sumDatL$lambda <- rep(lambda, each = ntotL*nruns)
 
-sumDatOut <- vector()
+sumDatN <- data.frame(matrix(NA, ntotN*nruns*nlambda, 1))
+names(sumDatN) <- c("rep")
+sumDatN$rep <- rep(1:ntotN, nruns*nlambda )
+sumDatN$runs <- rep(1:nruns, each = ntotN)
+sumDatN$lambda <- rep(lambda, each = ntotN*nruns)
 
-for (i in 1:length(lambda)){
+sumDatLambOut <- vector()
+
+sumDatNoOut <- vector()
+
+for (l in 1:length(lambda)){
+  
+  for (j in 1:nruns){
 param <- list(a_z = 4, # root value intercept
-              lam_interceptsa = lambda[i], # lambda intercept
+              lam_interceptsa = lambda[l], # lambda intercept
               sigma_interceptsa = 0.2, # rate of evolution intercept
               b_zf = 0.6, # root value trait1 slope
-              lam_interceptsbf = lambda[i], # lambda trait1
+              lam_interceptsbf = lambda[l], # lambda trait1
               sigma_interceptsbf = 0.1, # rate of evolution trait1
               sigma_y = 0.01 # overall sigma
               )
-# param
+ param
 
-# Generate data for zero lambda dataset
+# Generate data for zero lambda data set
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
 # Generate bf slope
@@ -77,6 +91,8 @@ for (i in 1:nspecies){
 dfhere$mu <- dfhere$intercept + dfhere$x1 * dfhere$trait1
 dfhere$y <- rnorm(n = nrow(dfhere), mean = dfhere$mu, sd = param[["sigma_y"]])
 
+write.csv(dfhere, paste("output/simData", lambda[l], j, ".csv", sep =""))
+
 # Function for generating "good" initial values
 simu_inits <- function(chain_id) {
     a_z.temp <- rnorm(n = nspecies, mean = param[["a_z"]], sd = 1)
@@ -92,7 +108,7 @@ mdl.data <- list(y = dfhere$y,
                  x1=dfhere$x1,
                  Vphy=vcv(spetree, corr = TRUE))
                  
-test_new <- stan("stan/phyloMdlLambdaIntSlope.stan", 
+testLamb <- stan("stan/phyloMdlLambdaIntSlope.stan", 
                  #  control = list(max_treedepth =15),
                  data = mdl.data,
                  #init = simu_inits,
@@ -100,28 +116,48 @@ test_new <- stan("stan/phyloMdlLambdaIntSlope.stan",
                  warmup = 3000,
                  chains = 4)
 
-save(test_new, file = paste("output/testLambdaEffect_", lambda[i], i,".Rda", sep =""))
+save(testLamb, file = paste("output/testLambdaEffect_", lambda[l], j,".Rda", sep =""))
 
-sumer <- summary(test_new)$summary
-muTraitSp <- sumer[grep("a\\[", rownames(sumer))]
+#sumerL <- summary(testLamb)$summary
+
+sumerLdf <- data.frame(summary(testLamb)$summary)
+sumDatLambOut <- rbind(sumDatLambOut, sumerLdf)
+
+
+
+testNoLamb <- stan("stan/phyloMdlNoLambda.stan",
+                 #  control = list(max_treedepth =15),
+                 data = mdl.data,
+                 #init = simu_inits,
+                 iter = 4000,
+                 warmup = 3000,
+                 chains = 4)
+save(testNoLamb, file = paste("output/testNoLambdaEffect_", lambda[l], j,".Rda", sep =""))
+sumerN <- summary(testNoLamb)$summary
+
+sumerNdf <- data.frame(summary(testNoLamb)$summary)
+sumDatNoOut <- rbind(sumDatNoOut, sumerNdf)
+#muTraitSp <- sumer[grep("a\\[", rownames(sumer))]
 # pdf("LambdaSpComp0.2.pdf", height = 5, width = 5)
 # plot(muTraitSp ~ intercepts, xlab = "simulated muTraitSp", ylab = "mdl estimated muTraitSp")
 # abline(0,1)
 # dev.off()
 
-sumerdf <- data.frame(summary(test_new)$summary)
-sumDatOut <- rbind(sumDatOut, sumerdf)
-}
-write.csv(sumDatOut, paste("output/mdlOutLambdaReppedTemp.csv", sep = ""))
 
-sumDat <- cbind(sumDat, sumDatOut)
+  }
+}
+write.csv(sumDatLambOut, paste("output/mdlOutLambdaReppedTemp.csv", sep = ""))
+write.csv(sumDatNoOut, paste("output/mdlOutNoLambdaReppedTemp.csv", sep = ""))
+
+sumDatL <- cbind(sumDatL, sumDatLambOut)
 write.csv(sumDat, paste("output/mdlOutLambdaRepped.csv", sep = ""))
+
+sumDatN <- cbind(sumDatN, sumDatNoOut)
+write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 # sumer <- data.frame(summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y"),c("mean","2.5%","25%","50%", "75%","97.5%")])
 # sumer <- data.frame(sumer)
 # sumer$param <- do.call(rbind.data.frame, t(param))
 # colnames(sumer)[colnames(sumer) == "c.4..0..0.2..0.6..0..0.1..0.01."] <- "testValue"
-
-
 
 ##########################################################################################
 # Compare the above to a model without any lambda
