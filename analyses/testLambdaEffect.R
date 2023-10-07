@@ -24,8 +24,8 @@ options(stringsAsFactors = FALSE)
 options(mc.cores = parallel::detectCores())
 
 ### Simulate data with and without lambda
-nspecies = 5
-nind = 5
+nspecies = 40
+nind = 10
 
 ndat <- nspecies*nind
 
@@ -34,7 +34,7 @@ spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # Now set up the trait parameters
-nruns <- 2
+nruns <- 10
 nparamL <- 8 # number of parameters including lp__
 ntotL <- nparamL+2*nspecies
 
@@ -188,4 +188,21 @@ write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 
 # Plotting model output:
   # 1. Compare the sp estimates from the test data to the sp estimates from the model, extract the coefficients and Rsq
+
+
   # 2. Calculate the diff of the mean value from the true value for the parameters
+
+sumDatL$diffTrue <- sumDatL$mean - sumDatL$true
+sumDatL$paramName <- c(  "sigma_y",
+  "lam_interceptsa" ,
+  "sigma_interceptsa",
+  "lam_interceptsb",
+  "sigma_interceptsb",
+  slopes = paste("b", seq(1:nspecies), sep = "_"),
+ "b_z",
+  intercepts = paste("a", seq(1:nspecies), sep = "_"),
+  "a_z"," NA")
+
+ggplot(sumDatL, aes(x= paramName, y=diffTrue)) +
+  geom_boxplot(aes(col = as.factor(lambda)))
+  
