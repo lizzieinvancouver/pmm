@@ -33,9 +33,22 @@ spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
 spetree$tip.label <- paste("s", 1:nspecies, sep="")
 
 # Now set up the trait parameters
-lambda = c(0, 0.2, 0.8)
 
-i <- 3
+nruns <- 10
+nout <- 88
+lambda = c(0,0,0,0, 0.2 ,0.2,0.2,0.2,0.8,0.8,0.8,0.8)
+#lambda = c(0,0,0.8,0.8)
+nlambda <- length(lambda)
+
+sumDat <- data.frame(matrix(NA, nout*nruns*nlambda, 1))
+names(sumDat) <- c("rep")
+sumDat$rep <- rep(1:88, nlambda*nruns )
+sumDat$runs <- rep(1:nruns, each = nout)
+sumDat$lambda <- rep(lambda, each = nout*nruns)
+
+sumDatOut <- vector()
+
+for (i in 1:length(lambda)){
 param <- list(a_z = 4, # root value intercept
               lam_interceptsa = lambda[i], # lambda intercept
               sigma_interceptsa = 0.2, # rate of evolution intercept
@@ -44,7 +57,8 @@ param <- list(a_z = 4, # root value intercept
               sigma_interceptsbf = 0.1, # rate of evolution trait1
               sigma_y = 0.01 # overall sigma
               )
-param
+# param
+
 # Generate data for zero lambda dataset
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
@@ -86,18 +100,22 @@ test_new <- stan("stan/phyloMdlLambdaIntSlope.stan",
                  warmup = 3000,
                  chains = 4)
 
-save(test_new, file = paste("output/testLambdaEffect_", param$lam_interceptsa, ".Rda", sep =""))
+save(test_new, file = paste("output/testLambdaEffect_", lambda[i], i,".Rda", sep =""))
 
 sumer <- summary(test_new)$summary
 muTraitSp <- sumer[grep("a\\[", rownames(sumer))]
-pdf("LambdaSpComp0.2.pdf", height = 5, width = 5)
-plot(muTraitSp ~ intercepts, xlab = "simulated muTraitSp", ylab = "mdl estimated muTraitSp")
-abline(0,1)
-dev.off()
+# pdf("LambdaSpComp0.2.pdf", height = 5, width = 5)
+# plot(muTraitSp ~ intercepts, xlab = "simulated muTraitSp", ylab = "mdl estimated muTraitSp")
+# abline(0,1)
+# dev.off()
 
 sumerdf <- data.frame(summary(test_new)$summary)
-write.csv(sumerdf, paste("output/mdlOutLambda", param$lam_interceptsa,".csv", sep = ""))
+sumDatOut <- rbind(sumDatOut, sumerdf)
+}
+write.csv(sumDatOut, paste("output/mdlOutLambdaReppedTemp.csv", sep = ""))
 
+sumDat <- cbind(sumDat, sumDatOut)
+write.csv(sumDat, paste("output/mdlOutLambdaRepped.csv", sep = ""))
 # sumer <- data.frame(summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y"),c("mean","2.5%","25%","50%", "75%","97.5%")])
 # sumer <- data.frame(sumer)
 # sumer$param <- do.call(rbind.data.frame, t(param))
@@ -107,128 +125,128 @@ write.csv(sumerdf, paste("output/mdlOutLambda", param$lam_interceptsa,".csv", se
 
 ##########################################################################################
 # Compare the above to a model without any lambda
-intercepts <- rnorm(nspecies, param[["a_z"]], param[["sigma_interceptsa"]] )
-# Generate bf slope
-slopes_bf <- rnorm(nspecies, param[["b_zf"]],  param[["sigma_interceptsbf"]])
-
-dfNoLam <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
-for (i in 1:nspecies){
-    temp <- data.frame(sp = rep(i, nind),
-                       intercept = rep(intercepts[i], nind),
-                       x1 = rnorm(n = nind, mean = 10, sd = 3),
-                       trait1 = rep(slopes_bf[i], nind))
-    dfNoLam <- rbind(dfNoLam, temp)
-}
-dfNoLam$mu <- dfNoLam$intercept + dfNoLam$x1 * dfNoLam$trait1
-dfNoLam$y <- rnorm(n = nrow(dfNoLam), mean = dfNoLam$mu, sd = param[["sigma_y"]])
-
-
-
-mdl.data <- list(yobs = dfNoLam$y,
-                 N = nrow(dfNoLam),
-                 Nspp = nspecies,
-                 species =dfNoLam$sp,
-                 x1= dfNoLam$x1
-                 )
-
-test_new <- stan("sandbox/stan/phyloMdlNoLambda.stan", 
-                 #  control = list(max_treedepth =15),
-                 data = mdl.data,
-                 #init = simu_inits,
-                 iter = 4000,
-                 warmup = 3000,
-                 chains = 4)
-
-sumer <- summary(test_new)$summary
-save(test_new, file = paste("output/testLambdaEffect_noLambda.Rda", sep =""))
-
-
-muTraitSp <- sumer[grep("a_sp\\[", rownames(sumer))]
-pdf("noLambdaSpComp.pdf", height = 5, width = 5)
-plot(muTraitSp ~intercepts, xlab = "simulated muTraitSp", ylab = "mdl estimated muTraitSp")
-abline(0,1)
-dev.off()
-
-sumerdf <- data.frame(summary(test_new)$summary)
-write.csv(sumerdf, paste("output/mdlOutNoLambda.csv"))
-
-nolam <- read.csv("output/mdlOutNoLambda.csv")
-names(nolam) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
-
-paramNames <- c("mu_a", "mu_b","sigma_a","sigma_b","sigma_y")
-values <- c("mean","2.5%","25%","50%", "75%","97.5%")
-
-nolamSum <- nolam[nolam$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
-nolamSum$testV <- c(param[["sigma_y"]],param[["a_z"]],param[["sigma_interceptsa"]],param[["b_zf"]],param[["sigma_interceptsbf"]])
-nolamSum
-
-# sumer <- data.frame(summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y"),c("mean","2.5%","25%","50%", "75%","97.5%")])
-# sumer <- data.frame(sumer)
-# sumer$param <- do.call(rbind.data.frame, t(param))
-# colnames(sumer)[colnames(sumer) == "c.4..0..0.2..0.6..0..0.1..0.01."] <- "testValue"
-# write.table(sumer, file = paste("output/testLambdaEffect_", param$lam_interceptsa, ".csv"))
+# intercepts <- rnorm(nspecies, param[["a_z"]], param[["sigma_interceptsa"]] )
+# # Generate bf slope
+# slopes_bf <- rnorm(nspecies, param[["b_zf"]],  param[["sigma_interceptsbf"]])
 # 
-# save(test_new, file = paste("output/testLambdaEffect_", param$lam_interceptsa, ".Rda"))
-
-#######################################################################################
-
-# parameters
-param <- list(a_z = 4, # root value intercept
-              lam_interceptsa = 0, # lambda intercept
-              sigma_interceptsa = 0.2, # rate of evolution intercept
-              b_zf = 0.6, # root value trait1 slope
-              lam_interceptsbf = 0, # lambda trait1
-              sigma_interceptsbf = 0.1, # rate of evolution trait1
-              sigma_y = 0.01 # overall sigma
-)
-
-
-
-lam0 <- read.csv("output/mdlOutLambda0.csv")
-#head(lam0)
-names(lam0) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
-
-paramNames <- c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y")
-values <- c("mean","2.5%","25%","50%", "75%","97.5%")
-
-lam0Sum <- lam0[lam0$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
-lam0Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
-lam0Sum
-### Lambda = 0.2
-
-param <- list(a_z = 4, # root value intercept
-              lam_interceptsa = 0.2, # lambda intercept
-              sigma_interceptsa = 0.2, # rate of evolution intercept
-              b_zf = 0.6, # root value trait1 slope
-              lam_interceptsbf = 0.2, # lambda trait1
-              sigma_interceptsbf = 0.1, # rate of evolution trait1
-              sigma_y = 0.01 # overall sigma
-)
-
-lam0.2 <- read.csv("output/mdlOutLambda0.2.csv")
-names(lam0.2) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
-
-#head(lam0.2)
-lam0.2Sum <- lam0.2[lam0.2$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
-lam0.2Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
-lam0.2Sum
-### Lambda = 0.8
-
-param <- list(a_z = 4, # root value intercept
-              lam_interceptsa = 0.8, # lambda intercept
-              sigma_interceptsa = 0.2, # rate of evolution intercept
-              b_zf = 0.6, # root value trait1 slope
-              lam_interceptsbf = 0.8, # lambda trait1
-              sigma_interceptsbf = 0.1, # rate of evolution trait1
-              sigma_y = 0.01 # overall sigma
-)
-
-lam0.8 <- read.csv("output/mdlOutLambda0.8.csv")
-names(lam0.8) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
-
-lam0.8Sum <- lam0.8[lam0.8$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
-lam0.8Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
-lam0.8Sum
+# dfNoLam <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
+# for (i in 1:nspecies){
+#     temp <- data.frame(sp = rep(i, nind),
+#                        intercept = rep(intercepts[i], nind),
+#                        x1 = rnorm(n = nind, mean = 10, sd = 3),
+#                        trait1 = rep(slopes_bf[i], nind))
+#     dfNoLam <- rbind(dfNoLam, temp)
+# }
+# dfNoLam$mu <- dfNoLam$intercept + dfNoLam$x1 * dfNoLam$trait1
+# dfNoLam$y <- rnorm(n = nrow(dfNoLam), mean = dfNoLam$mu, sd = param[["sigma_y"]])
+# 
+# 
+# 
+# mdl.data <- list(yobs = dfNoLam$y,
+#                  N = nrow(dfNoLam),
+#                  Nspp = nspecies,
+#                  species =dfNoLam$sp,
+#                  x1= dfNoLam$x1
+#                  )
+# 
+# test_new <- stan("sandbox/stan/phyloMdlNoLambda.stan", 
+#                  #  control = list(max_treedepth =15),
+#                  data = mdl.data,
+#                  #init = simu_inits,
+#                  iter = 4000,
+#                  warmup = 3000,
+#                  chains = 4)
+# 
+# sumer <- summary(test_new)$summary
+# save(test_new, file = paste("output/testLambdaEffect_noLambda.Rda", sep =""))
+# 
+# 
+# muTraitSp <- sumer[grep("a_sp\\[", rownames(sumer))]
+# pdf("noLambdaSpComp.pdf", height = 5, width = 5)
+# plot(muTraitSp ~intercepts, xlab = "simulated muTraitSp", ylab = "mdl estimated muTraitSp")
+# abline(0,1)
+# dev.off()
+# 
+# sumerdf <- data.frame(summary(test_new)$summary)
+# write.csv(sumerdf, paste("output/mdlOutNoLambda.csv"))
+# 
+# nolam <- read.csv("output/mdlOutNoLambda.csv")
+# names(nolam) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
+# 
+# paramNames <- c("mu_a", "mu_b","sigma_a","sigma_b","sigma_y")
+# values <- c("mean","2.5%","25%","50%", "75%","97.5%")
+# 
+# nolamSum <- nolam[nolam$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
+# nolamSum$testV <- c(param[["sigma_y"]],param[["a_z"]],param[["sigma_interceptsa"]],param[["b_zf"]],param[["sigma_interceptsbf"]])
+# nolamSum
+# 
+# # sumer <- data.frame(summary(test_new)$summary[c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y"),c("mean","2.5%","25%","50%", "75%","97.5%")])
+# # sumer <- data.frame(sumer)
+# # sumer$param <- do.call(rbind.data.frame, t(param))
+# # colnames(sumer)[colnames(sumer) == "c.4..0..0.2..0.6..0..0.1..0.01."] <- "testValue"
+# # write.table(sumer, file = paste("output/testLambdaEffect_", param$lam_interceptsa, ".csv"))
+# # 
+# # save(test_new, file = paste("output/testLambdaEffect_", param$lam_interceptsa, ".Rda"))
+# 
+# #######################################################################################
+# 
+# # parameters
+# param <- list(a_z = 4, # root value intercept
+#               lam_interceptsa = 0, # lambda intercept
+#               sigma_interceptsa = 0.2, # rate of evolution intercept
+#               b_zf = 0.6, # root value trait1 slope
+#               lam_interceptsbf = 0, # lambda trait1
+#               sigma_interceptsbf = 0.1, # rate of evolution trait1
+#               sigma_y = 0.01 # overall sigma
+# )
+# 
+# 
+# 
+# lam0 <- read.csv("output/mdlOutLambda0.csv")
+# #head(lam0)
+# names(lam0) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
+# 
+# paramNames <- c("a_z","lam_interceptsa","sigma_interceptsa", "b_z","lam_interceptsb" ,"sigma_interceptsb","sigma_y")
+# values <- c("mean","2.5%","25%","50%", "75%","97.5%")
+# 
+# lam0Sum <- lam0[lam0$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
+# lam0Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
+# lam0Sum
+# ### Lambda = 0.2
+# 
+# param <- list(a_z = 4, # root value intercept
+#               lam_interceptsa = 0.2, # lambda intercept
+#               sigma_interceptsa = 0.2, # rate of evolution intercept
+#               b_zf = 0.6, # root value trait1 slope
+#               lam_interceptsbf = 0.2, # lambda trait1
+#               sigma_interceptsbf = 0.1, # rate of evolution trait1
+#               sigma_y = 0.01 # overall sigma
+# )
+# 
+# lam0.2 <- read.csv("output/mdlOutLambda0.2.csv")
+# names(lam0.2) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
+# 
+# #head(lam0.2)
+# lam0.2Sum <- lam0.2[lam0.2$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
+# lam0.2Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
+# lam0.2Sum
+# ### Lambda = 0.8
+# 
+# param <- list(a_z = 4, # root value intercept
+#               lam_interceptsa = 0.8, # lambda intercept
+#               sigma_interceptsa = 0.2, # rate of evolution intercept
+#               b_zf = 0.6, # root value trait1 slope
+#               lam_interceptsbf = 0.8, # lambda trait1
+#               sigma_interceptsbf = 0.1, # rate of evolution trait1
+#               sigma_y = 0.01 # overall sigma
+# )
+# 
+# lam0.8 <- read.csv("output/mdlOutLambda0.8.csv")
+# names(lam0.8) <- c("parameters","mean","se_mean", "sd","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")
+# 
+# lam0.8Sum <- lam0.8[lam0.8$parameters %in% paramNames, c("parameters","mean","X2.5.","X25.","X50.", "X75.","X97.5.","n_eff","Rhat")]
+# lam0.8Sum$testV <- c(param[["sigma_y"]],param[["lam_interceptsa"]],param[["sigma_interceptsa"]],param[["lam_interceptsbf"]],param[["sigma_interceptsbf"]],param[["b_zf"]],param[["a_z"]])
+# lam0.8Sum
 
 
 
