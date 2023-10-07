@@ -185,29 +185,53 @@ write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 # colnames(sumer)[colnames(sumer) == "c.4..0..0.2..0.6..0..0.1..0.01."] <- "testValue"
 
 ##########################################################################################
+sumDatL <- read.csv("output/mdlOutLambdaRepped.csv")
+sumDatL$paramName <- c(  "sigma_y",
+                         "lam_interceptsa" ,
+                         "sigma_interceptsa",
+                         "lam_interceptsb",
+                         "sigma_interceptsb",
+                         slopes = paste("b", seq(1:nspecies), sep = "_"),
+                         "b_z",
+                         intercepts = paste("a", seq(1:nspecies), sep = "_"),
+                         "a_z"," lp__")
 
+
+sumDatN <- read.csv("output/mdlOutNoLambdaRepped.csv")
+sumDatN$paramName <- c(  "sigma_y",
+                         "mu_a" ,intercepts = paste("a", seq(1:nspecies), sep = "_"),
+                         "sigma_a",
+                         "mu_b",
+                         slopes = paste("b", seq(1:nspecies), sep = "_"),
+                         "sigma_b",
+                         "lp__")
 # Plotting model output:
   # 1. Compare the sp estimates from the test data to the sp estimates from the model, extract the coefficients and Rsq
 
-x <- rnorm(100, 4, 5)
-y <- rnorm(100, 4, 5)
-mymodelinfo <- summary(lm(y~x))
+# lambda model, pooled all values of lambda
+slopesLamb <- sumDatL[grep("b\\[", sumDatL$X),]
 
-mymodelinfo["r.squared"]$r.squared
+mdlLamb <- summary(lm(true~mean, data = slopesLamb))
 
+mdlLamb["r.squared"]$r.squared # 0.9998574
+
+plot(slopesLamb$true ~ slopesLamb$mean)
+abline(lm(true~mean, data = slopesLamb))
+
+# NO lambda model
+slopesNone <- sumDatN[grep("b\\[", sumDatN$X),]
+
+mdlNone <- summary(lm(true~mean, data = slopesNone))
+
+mdlNone["r.squared"]$r.squared # 0.999858
+
+plot(slopesNone$true ~ slopesNone$mean)
+abline(lm(true~mean, data = slopesNone))
 
   # 2. Calculate the diff of the mean value from the true value for the parameters
 
 sumDatL$diffTrue <- sumDatL$mean - sumDatL$true
-sumDatL$paramName <- c(  "sigma_y",
-  "lam_interceptsa" ,
-  "sigma_interceptsa",
-  "lam_interceptsb",
-  "sigma_interceptsb",
-  slopes = paste("b", seq(1:nspecies), sep = "_"),
- "b_z",
-  intercepts = paste("a", seq(1:nspecies), sep = "_"),
-  "a_z"," NA")
+
 
 ggplot(sumDatL, aes(x= paramName, y=diffTrue)) +
   geom_boxplot(aes(col = as.factor(lambda)))
