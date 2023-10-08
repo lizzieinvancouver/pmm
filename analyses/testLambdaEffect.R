@@ -6,8 +6,8 @@
 
 if(length(grep("deirdreloughnan", getwd())>0)) {
     setwd("~/Documents/github/pmm/analyses")
-} else if(length(grep("Lizzie", getwd())>0)) {
-    setwd("~/Documents/git/teaching/stan/pmm/sandbox")
+} else if(length(grep("lizzie", getwd())>0)) {
+    setwd("~/Documents/git/teaching/stan/pmm/analyses")
 } else{
     setwd("/home/deirdre/pmm") # for midge
 }
@@ -23,11 +23,19 @@ rm(list=ls())
 options(stringsAsFactors = FALSE)
 options(mc.cores = parallel::detectCores())
 
+### Flags to run models or just load data
+runmodels <- FALSE
+
+if(runmodels){
 ### Simulate data with and without lambda
 nspecies = 40
 nind = 10
 
-ndat <- nspecies*nind
+nind <- rep(10, nspecies)
+# Or... make it more uneven ... 
+nind <- round(runif(nspecies, 1, 40))
+
+ndat <- sum(nind)
 
 # Simulate species tree with a pure birth model
 spetree <- pbtree(n=nspecies, nsim=1, b=1, complete=FALSE,scale=1)
@@ -40,7 +48,7 @@ ntotL <- nparamL+2*nspecies
 
 nparamN <- 6 # no lambda parameters
 ntotN <- nparamN+2*nspecies
-lambda = c(0, 0.2 ,0.8)
+lambda = c(0, 0.2 , 1)
 #lambda = c(0,0,0.8,0.8)
 nlambda <- length(lambda)
 
@@ -73,7 +81,7 @@ param <- list(a_z = 4, # root value intercept
               )
  param
 
-# Generate data for zero lambda data set
+# Generate one data set
 scaledtree_intercept <- rescale(spetree, model = "lambda", param[["lam_interceptsa"]])         
 intercepts <- fastBM(scaledtree_intercept, a = param[["a_z"]], mu = 0, sig2 = param[["sigma_interceptsa"]] ^ 2)
 # Generate bf slope
@@ -82,10 +90,10 @@ slopes_bf <- fastBM(scaledtree_bf, a = param[["b_zf"]], mu = 0, sig2 = param[["s
 
 dfhere <- data.frame(sp = c(), intercept = c(), x1=numeric(), trait1=numeric())
 for (i in 1:nspecies){
-    temp <- data.frame(sp = rep(i, nind),
-                       intercept = rep(intercepts[i], nind),
-                       x1 = rnorm(n = nind, mean = 10, sd = 3),
-                       trait1 = rep(slopes_bf[i], nind)
+    temp <- data.frame(sp = rep(i, nind[i]),
+                       intercept = rep(intercepts[i], nind[i]),
+                       x1 = rnorm(n = nind[i], mean = 10, sd = 3),
+                       trait1 = rep(slopes_bf[i], nind[i])
                        )
     dfhere <- rbind(dfhere, temp)
 }
@@ -183,8 +191,12 @@ write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 # sumer <- data.frame(sumer)
 # sumer$param <- do.call(rbind.data.frame, t(param))
 # colnames(sumer)[colnames(sumer) == "c.4..0..0.2..0.6..0..0.1..0.01."] <- "testValue"
+}
 
 ##########################################################################################
+if(!runmodels){
+nspecies <- 40
+
 sumDatL <- read.csv("output/mdlOutLambdaRepped.csv")
 sumDatL$paramName <- c(  "sigma_y",
                          "lam_interceptsa" ,
@@ -235,4 +247,67 @@ sumDatL$diffTrue <- sumDatL$mean - sumDatL$true
 
 ggplot(sumDatL, aes(x= paramName, y=diffTrue)) +
   geom_boxplot(aes(col = as.factor(lambda)))
-  
+
+# 3. Count up when true value is in 50% interval
+ifelse(sumDatL$X25.[1]<sumDatL$true[1] & sumDatL$X75.[1]>sumDatL$true[1], 1, 0)
+sumDatL$truewithin50interval <- ifelse(sumDatL$X25.<sumDatL$true & sumDatL$X75.>sumDatL$true, 1, 0)
+sumDatN$truewithin50interval <- ifelse(sumDatN$X25.<sumDatN$true & sumDatN$X75.>sumDatN$true, 1, 0)
+sum(sumDatL$truewithin50interval, na.rm=TRUE)
+sum(sumDatN$truewithin50interval, na.rm=TRUE)
+
+# Do I have my signs right? Probably (otherwise these sums would go DOWN, not up)
+sum(ifelse(sumDatL$X2.5.<sumDatL$true & sumDatL$X97.5.>sumDatL$true, 1, 0), na.rm=TRUE)
+sum(ifelse(sumDatN$X2.5.<sumDatN$true & sumDatN$X97.5.>sumDatN$true, 1, 0), na.rm=TRUE)
+
+# And now do it just for the species-level slopes ... 
+sppDatL <- data.frame(lambda=character(), run=numeric(), intabstrue=numeric(),
+  intntrue=numeric(), slopeabstrue=numeric(), slopentrue=numeric())
+for(lamby in c(1:length(unique(sumDatL$lambda)))){
+  subby <- subset(sumDatL, lambda==unique(sumDatL$lambda)[lamby])
+  for(runhere in c(1:length(unique(subby$runs)))){
+    runsubby <-  subset(subby, runs==unique(runs)[runhere])
+    subbyint <- runsubby[grep("a\\[", runsubby$X),]
+    subbyslope <- runsubby[grep("b\\[", runsubby$X),]
+    dfhereadd <- data.frame(lambda=unique(sumDatL$lambda)[lamby], run=runhere, 
+      intabstrue=sum(abs(subbyint$diffTrue), na.rm=TRUE), 
+      intntrue=sum(subbyint$truewithin50interval, na.rm=TRUE), 
+      slopeabstrue=sum(abs(subbyslope$diffTrue), na.rm=TRUE), 
+      slopentrue=sum(subbyslope$truewithin50interval, na.rm=TRUE))
+    sppDatL <- rbind(sppDatL, dfhereadd)
+}
+}
+
+# And now do it just for the species-level slopes ... 
+sppDatN <- data.frame(lambda=character(), run=numeric(), intabstrue=numeric(),
+  intntrue=numeric(), slopeabstrue=numeric(), slopentrue=numeric())
+for(lamby in c(1:length(unique(sumDatN$lambda)))){
+  subby <- subset(sumDatN, lambda==unique(sumDatN$lambda)[lamby])
+  for(runhere in c(1:length(unique(subby$runs)))){
+    runsubby <-  subset(subby, runs==unique(runs)[runhere])
+    subbyint <- runsubby[grep("a_sp\\[", runsubby$X),]
+    subbyslope <- runsubby[grep("b\\[", runsubby$X),]
+    dfhereadd <- data.frame(lambda=unique(sumDatN$lambda)[lamby], run=runhere, 
+      intabstrue=sum(abs(subbyint$mean-subbyint$true), na.rm=TRUE), 
+      intntrue=sum(subbyint$truewithin50interval, na.rm=TRUE), 
+      slopeabstrue=sum(abs(subbyslope$mean-subbyslope$true), na.rm=TRUE), 
+      slopentrue=sum(subbyslope$truewithin50interval, na.rm=TRUE))
+    sppDatN <- rbind(sppDatN, dfhereadd)
+  }
+}
+
+# Smaller is better
+aggregate(sppDatN["intabstrue"], sppDatN["lambda"], FUN=sum)
+aggregate(sppDatL["intabstrue"], sppDatL["lambda"], FUN=sum)
+
+aggregate(sppDatN["slopeabstrue"], sppDatN["lambda"], FUN=sum)
+aggregate(sppDatL["slopeabstrue"], sppDatL["lambda"], FUN=sum)
+
+
+# Bigger is better
+aggregate(sppDatN["intntrue"], sppDatN["lambda"], FUN=sum)
+aggregate(sppDatL["intntrue"], sppDatL["lambda"], FUN=sum)
+
+aggregate(sppDatN["slopentrue"], sppDatN["lambda"], FUN=sum)
+aggregate(sppDatL["slopentrue"], sppDatL["lambda"], FUN=sum)
+
+  }
