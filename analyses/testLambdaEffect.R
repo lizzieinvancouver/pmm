@@ -34,6 +34,7 @@ nind = 10
 nind <- rep(10, nspecies)
 # Or... make it more uneven ... 
 nind <- round(runif(nspecies, 1, 40))
+# hist(nind, xlab="Simulated uneven sampling: n per sp", main="", breaks=100)
 
 ndat <- sum(nind)
 
@@ -195,9 +196,21 @@ write.csv(sumDatN, paste("output/mdlOutNoLambdaRepped.csv", sep = ""))
 
 ##########################################################################################
 if(!runmodels){
+# Pick if you want to run the even or uneven sampled sims
+runeven <- FALSE
 nspecies <- 40
 
-sumDatL <- read.csv("output/mdlOutLambdaRepped.csv")
+if(runeven){ # highest lambda is 0.8
+  sumDatL <- read.csv("output/mdlOutLambdaRepped.csv")
+  sumDatN <- read.csv("output/mdlOutNoLambdaRepped.csv")
+}
+
+if(!runeven){ # highest lambda is 1
+sumDatL <- read.csv("output/mdlOutLambdaUneven.csv")
+sumDatN <- read.csv("output/mdlOutNoLambdaUneven.csv")
+}
+
+
 sumDatL$paramName <- c(  "sigma_y",
                          "lam_interceptsa" ,
                          "sigma_interceptsa",
@@ -209,7 +222,6 @@ sumDatL$paramName <- c(  "sigma_y",
                          "a_z"," lp__")
 
 
-sumDatN <- read.csv("output/mdlOutNoLambdaRepped.csv")
 sumDatN$paramName <- c(  "sigma_y",
                          "mu_a" ,intercepts = paste("a", seq(1:nspecies), sep = "_"),
                          "sigma_a",
@@ -222,23 +234,37 @@ sumDatN$paramName <- c(  "sigma_y",
 
 # lambda model, pooled all values of lambda
 slopesLamb <- sumDatL[grep("b\\[", sumDatL$X),]
+slopesLamblam1 <- subset(slopesLamb, lambda==1|lambda==0.8)
 
 mdlLamb <- summary(lm(true~mean, data = slopesLamb))
 
 mdlLamb["r.squared"]$r.squared # 0.9998574
 
-plot(slopesLamb$true ~ slopesLamb$mean)
+par(mfrow=c(2,2))
+plot(slopesLamb$true ~ slopesLamb$mean, 
+  xlab="estimated", ylab="true", main="lambda model: all data")
 abline(lm(true~mean, data = slopesLamb))
+
+plot(slopesLamblam1$true ~ slopesLamblam1$mean,
+  xlab="estimated", ylab="true", main="lambda model: lamba=1 (or 0.8)")
+abline(lm(true~mean, data = slopesLamblam1))
+
 
 # NO lambda model
 slopesNone <- sumDatN[grep("b\\[", sumDatN$X),]
+slopesNonelam1 <- subset(slopesNone, lambda==1|lambda==0.8)
 
 mdlNone <- summary(lm(true~mean, data = slopesNone))
 
 mdlNone["r.squared"]$r.squared # 0.999858
 
-plot(slopesNone$true ~ slopesNone$mean)
+plot(slopesNone$true ~ slopesNone$mean,
+    xlab="estimated", ylab="true", main="hier. model: all data")
 abline(lm(true~mean, data = slopesNone))
+
+plot(slopesNonelam1$true ~ slopesNonelam1$mean,
+    xlab="estimated", ylab="true", main="hier. model: lamba=1 (or 0.8)")
+abline(lm(true~mean, data = slopesNonelam1))
 
   # 2. Calculate the diff of the mean value from the true value for the parameters
 
@@ -295,7 +321,7 @@ for(lamby in c(1:length(unique(sumDatN$lambda)))){
   }
 }
 
-# Smaller is better
+# Smaller is better (less deviations from true value)
 aggregate(sppDatN["intabstrue"], sppDatN["lambda"], FUN=sum)
 aggregate(sppDatL["intabstrue"], sppDatL["lambda"], FUN=sum)
 
@@ -303,7 +329,7 @@ aggregate(sppDatN["slopeabstrue"], sppDatN["lambda"], FUN=sum)
 aggregate(sppDatL["slopeabstrue"], sppDatL["lambda"], FUN=sum)
 
 
-# Bigger is better
+# Bigger is better (50% interval captures true value more often)
 aggregate(sppDatN["intntrue"], sppDatN["lambda"], FUN=sum)
 aggregate(sppDatL["intntrue"], sppDatL["lambda"], FUN=sum)
 
