@@ -1,9 +1,9 @@
-//
-// Ordinal beta regression model for analying experimental outcomes
-// with proportion and degenerate responses (i.e. 0 and 1)
-// Models 0/1 as ordered categories above/below (0,1) 
-// Robert Kubinec
-// New York University Abu Dhabi
+// Feb 3, 2025
+// Started by V Van der Meersch
+// Inspired by previous works on PPMs in the lab
+
+// Beta regression with proportion and degenerate responses (i.e. 0 and 1)
+// Original code from R. Kubinec, https://github.com/saudiwin/ordbetareg
 
 functions {
   
@@ -36,6 +36,7 @@ functions {
 }
 
 data {
+  
   int<lower=0> N_prop; // number of proportion observations (0,1)
   int<lower=0> N_degen; // number of 0/1 observations
   
@@ -85,7 +86,6 @@ transformed parameters {
   real calc_degen[N_degen];
   real calc_prop[N_prop];
   
-  // drop the intercepts so everything is relative to the cutpoints
   if(N_degen>0) {
     for(i in 1:N_degen){
       calc_degen[i] = a[sp_degen[i]] + b[sp_degen[i]] * x_degen[i];
@@ -97,9 +97,7 @@ transformed parameters {
     calc_prop[i] = a[sp_prop[i]] + b[sp_prop[i]] * x_prop[i];
     
   }
-  
-  //print(calc_prop[1:10]);
-  
+
 }
 model {
   
@@ -108,16 +106,16 @@ model {
   
   target += induced_dirichlet_lpdf(cutpoints | rep_vector(1, 3), 0);
   
-  // need separate counters for logit (0/1) and beta regression
+  // need separate loops for logit (0/1) and beta regression
   if(N_degen>0) {
     for(n in 1:N_degen) {
-    if(y_degen[n]==0) {
-      // Pr(Y==0)
-      target += log1m_inv_logit(calc_degen[n] - cutpoints[1]);
-    } else {
-      //Pr(Y==1)
-      target += log_inv_logit(calc_degen[n] - cutpoints[2]);
-    }
+      if(y_degen[n]==0) {
+        // Pr(Y==0)
+        target += log1m_inv_logit(calc_degen[n] - cutpoints[1]);
+      } else {
+        //Pr(Y==1)
+        target += log_inv_logit(calc_degen[n] - cutpoints[2]);
+      }
     }
   }
   

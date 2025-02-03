@@ -291,6 +291,7 @@ priors <- list(a_z = rnorm(1e6,0,1.5), # root value intercept
 priors_df <- data.frame(t(rbind(lapply(priors, mean), lapply(priors, sd))))
 colnames(priors_df) <- c("mean", "sd")
 
+# plot other estimated parameters
 pdf(file=paste0("figures/binomial/priors_check_wglobalparams.pdf"), height = 15, width = 18)
 par(mfrow = c(11,11), mar=c(1.4,0,0,0)+0.7, mgp=c(0,0.5,0))
 for(i in order(sigmasb)){
