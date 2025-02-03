@@ -56,6 +56,7 @@ transformed parameters{
     // print("-----");
     shape_alpha[i] = mu[i]  * phi;
     shape_beta[i] = (1.0 - mu[i] ) * phi;
+    
   }
                                                                                          
 }
