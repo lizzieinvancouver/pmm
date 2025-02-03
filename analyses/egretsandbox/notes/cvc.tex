@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{titling} 
+\setlength{\droptitle}{-10em}   
+\newcommand{\subtitle}[1]{%
+	\posttitle{%
+		\par\end{center}
+	\begin{center}\large#1\end{center}
+	\vskip0.5em}%
+}
+\newcommand{\Rho}{\mathrm{P}}
+\newcommand{\Tau}{\mathrm{T}}
+
+
+\begin{document}
+	
+\title{Here’s how I understand things}
+\subtitle{(and I’m probably wrong)}
+\author{Victor}
+\date{Feb. 2025}
+	
+\maketitle
+
+\noindent By definition, covariance matrix is:
+	
+\begin{equation*}
+	\Sigma = 
+	\begin{bmatrix}
+		\mathrm{Var}[X_1]  & \mathrm{Cov}[X_1,X_2] & \ldots & \mathrm{Cov}[X_1,X_n]  \\
+		\mathrm{Cov}[X_2,X_1] & \mathrm{Var}[X_2] & \ldots  & \vdots\\
+		\vdots & \vdots & \ddots & \vdots \\
+		\mathrm{Cov}[X_n,X_1] & \ldots &  \ldots & \mathrm{Var}[X_n]
+	\end{bmatrix}
+\end{equation*}\\
+
+\noindent Again, by definition:
+
+\begin{equation*}
+	\mathrm{Cov}[X_i,X_j]=\mathrm{Corr}[X_i,X_j]*\sqrt{\mathrm{Var}[X_i]}*\sqrt{\mathrm{Var}[\smash{X_j}]} 
+\end{equation*}\\
+
+\noindent By convention, we often write:
+$$\sigma^2_{i}=\mathrm{Var}[X_i]$$
+$$\sigma_{i,j}=\mathrm{Cov}[X_i,X_j]$$
+$$\rho_{i,j}=\mathrm{Corr}[X_i,X_j]$$
+
+\noindent And thus:
+$$\sigma_{i,j}=\rho_{i,j}*\sigma_{i}*\sigma_{j}$$\\
+
+\noindent I don't know if there is a convention for the correlation matrix, but $\Rho$ (big $\rho$) seems a good choice. We can write:
+
+\begin{equation*}
+	\Rho = 
+	\begin{bmatrix}
+		1 & \rho_{1,2} & \ldots & \rho_{1,n} \\
+		\rho_{2,1} & 1 & \ldots  & \rho_{2,n}  \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\rho_{n,1} & \rho_{n,2}  &  \ldots & 1
+	\end{bmatrix}
+\end{equation*}\\
+
+
+\noindent And the relation between $\Sigma$ and $\Rho$ is:
+
+\begin{equation*}
+	\Sigma = 
+	\begin{bmatrix}
+		\sigma_1 &&& 0 \\
+		& \sigma_2 \\
+		&& \ddots \\
+		0 &&& \sigma_n
+	\end{bmatrix}
+	\Rho
+	\begin{bmatrix}
+		\sigma_1 &&& 0 \\
+		& \sigma_2 \\
+		&& \ddots \\
+		0 &&& \sigma_n
+	\end{bmatrix}
+\end{equation*}\\
+
+\newpage
+
+\noindent Ok, thank you for this Victor. But what about phylogeny and evolution?
+From what I read, we can define a phylogenetic (variance-)covariance matrix (also  called \emph{evolutionary rate matrix}?), sometimes noted C:
+
+\begin{equation*}
+	\mathrm{C} = 
+	\begin{bmatrix}
+		\sigma^2_{1} & \sigma_{1,2} & \ldots & \sigma_{1,n} \\
+		\sigma_{2,1} & \sigma^2_{2} & \ldots  & \sigma_{2,n}  \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\sigma_{n,1} & \sigma_{n,2}  &  \ldots & \sigma^2_{n}
+	\end{bmatrix}
+	= \Sigma
+\end{equation*}\\
+
+\noindent Let's stick with the $\Sigma$ and $\Rho$ notation. On this covariance matrix, we may multiply all off-diagonal elements by the Pagel's $\lambda$:
+
+\begin{equation*}
+	\Sigma_{\lambda} =
+	\begin{bmatrix}
+		\sigma^2_{1} & \lambda*\sigma_{1,2} & \ldots & \lambda*\sigma_{1,n} \\
+		\lambda*\sigma_{2,1} & \sigma^2_{2} & \ldots  & \lambda*\sigma_{2,n}  \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\lambda*\sigma_{n,1} & \lambda*\sigma_{n,2}  &  \ldots & \sigma^2_{n}
+	\end{bmatrix}
+\end{equation*}\\
+
+\noindent If I understood correctly, with Brownian motion we assume that the rate of change (evolution) is constant across species... Let's do some unit analysis now! A rate of change should not be unitless, but something like a $[\mathrm{trait.time}^{-1}]$ (the rate of evolution of a trait value). From what I read, when we assume that $\sigma^2$ is the rate of evolution, we mean that its units is somehow $[\mathrm{trait}^2.\mathrm{time}^{-1}]$ (and not $[\mathrm{trait}^2.\mathrm{time}^{-2}]$...). \\
+But, by definition, the units of the variance (or covariance matrix) of the random variable we are interested in (e.g. trait variation across species)  should be the square of the units of the random variable, i.e. $[\mathrm{trait}^2]$. So if we multiply the rate of evolution $\sigma^2$ by a matrix $\mathrm{M}$, the units of the matrix have to be $[\mathrm{time}]$, so we can get a $\sigma^2\mathrm{M}$ in $[\mathrm{trait}^2]$... so if we want $\mathrm{M}$ to be a correlation matrix (unitless), we need to add something. I guess a common hypothesis is that all species have been evolving from a common root for the same amount of time, which is a constant $\tau$. We can now write $\Sigma = \sigma^2 \tau \Rho$, whose units are $[\mathrm{trait}^2]$.
+\vspace{0.25cm}
+
+\noindent So how to extract $\sigma^2$ of the covariance matrix $\Sigma$? By definition, the units of this covariance matrix are $[\mathrm{trait}^2]$.
+So that's mean, for example, that a diagonal element $\sigma^2_{i}$ is not in the same units as the rate of evolution $\sigma^2$! This is confusing. To have the right units, we have to define $\tau_i$, the time of evolution shared within the same species, and thus we have  $\tau_i = \tau ~\forall i$ (i.e. within a species, the time shared is the max. amount time since the beginning of the tree considered). And then, we may write $\sigma^2_{i}=\tau*\sigma^2 ~\forall i$.\\
+For the off diagonal-element, we can write: 
+$$\forall i,j \qquad \sigma_{i,j}=\rho_{i,j}*\sigma_{i}*\sigma_{j}=\rho_{i,j}*\sqrt{\tau*\sigma^2}*\sqrt{\tau*\sigma^2}=\rho_{i,j}*\tau*\sigma^2 $$
+
+\noindent By definition, $\rho_{i,j}$ is unitless, and units of $\tau*\sigma^2$ are $[\mathrm{trait}^2]$, so that's good! The time of evolution shared between $i$ and $j$ is thus $\rho_{i,j}*\tau$.
+\vspace{0.25cm}
+
+We can then write $\Sigma_{\lambda}$ (units: $[\mathrm{trait}^2]$! $\lambda$ is unitless) as:
+\begin{equation*}
+	\Sigma_{\lambda} = 
+	\begin{bmatrix}
+		\sigma^2*\tau & \lambda*\sigma^2*\tau*\rho_{1,2}  & \ldots & \lambda*\sigma^2*\tau*\rho_{1,n}\\
+		\lambda*\sigma^2*\tau*\rho_{2,1} & \sigma^2*\tau & \ldots  & \lambda*\sigma^2*\tau*\rho_{2,n} \\
+		\vdots & \vdots & \ddots & \vdots \\
+		\lambda*\sigma^2*\tau*\rho_{n,1} & \lambda*\sigma^2*\tau*\rho_{n,2}  &  \ldots & \sigma^2*\tau
+	\end{bmatrix}
+\end{equation*}\\
+
+
+
+
+
+
+
+
+	
+
+	
+\end{document}
