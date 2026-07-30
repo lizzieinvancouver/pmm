@@ -1,0 +1,71 @@
+\documentclass[11pt]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1in, right=1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+
+\def\labelitemi{--}
+\parindent=0pt
+
+\begin{document}
+\bibliographystyle{/Users/Lizzie/Documents/EndnoteRelated/Bibtex/styles/besjournals}
+\renewcommand{\refname}{\CHead{}}
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{5pt}
+
+% just a cheap file to fix math errors more easily...
+
+\begin{align}
+  \label{modely}
+  y_{i,j} \sim \mathcal{N}(\mu_j, \sigma_e^2)
+\end{align}
+where
+\begin{align}
+  \label{modelmu}
+  \mu_j = \alpha_j 
+  \end{align}
+and $\sigma_e^2$ represents random error unrelated to the phylogeny. And the species-specific intercept $\alpha_j$ is elements of the following normal random vectors:
+
+\begin{align}
+    \label{phybetas}
+  \boldsymbol{\alpha} = [\alpha_1, \ldots, \alpha_n]^T & \text{ such that }
+  \boldsymbol{\alpha} \sim \machtal{N}(\mu_{\alpha},\boldsymbol{\Sigma_{\alpha}}) 
+\end{align}
+
+
+\begin{align}
+  \label{phymatnew}
+\begin{bmatrix}
+  \sigma^2 & \lambda \times \sigma^2 \times \rho_{12} & \ldots & \lambda \times \sigma^2 \times \rho_{1n} \\
+  \lambda \times \sigma^2 \times \rho_{21} & \sigma^2 & \ldots & \lambda \times \sigma^2 \times \rho_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda \times \sigma^2 \times \rho_{n1} & \lambda \times \sigma^2 \times \rho_{n2} & \ldots & \sigma^2\\
+\end{bmatrix}
+\end{align}
+
+\begin{align}
+  \label{phymatalt}
+\begin{bmatrix}
+  \sigma^2 & \lambda \times \sigma_{12} & \ldots & \lambda \times \sigma_{1n} \\
+  \lambda \times \sigma_{21} & \sigma^2 & \ldots & \lambda \times \sigma_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda \times \sigma_{n1} & \lambda \times \sigma_{n2} & \ldots & \sigma^2_i \\
+\end{bmatrix}
+\end{align}
+
+Above I have dropped $\rho$. Now $\sigma^2$ is still the Brownian motion rate of evolution across the tree, and $\sigma$ is the covariance between representative taxa. This is not an uncommon representation but I think we could have been clearer if we presented the last part of our notation as:
+
+
+  \begin{equation} {\bf \Sigma}  =  \sigma^2_{BM} \cdot 
+\begin{bmatrix}
+  \rho_{1,1} & \lambda \cdots \rho_{1,2} & \ldots & \lambda \cdots \rho_{1,n} \\
+  \lambda \cdots \rho_{2,1} &  \rho_{2,2} & \ldots & \lambda \cdots \rho_{2,n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda \cdots \rho_{n,1} & \lambda \cdots \rho_{n,2} & \ldots & \rho_{n,n}\\
+\end{bmatrix}
+
+
+
+\end{document}

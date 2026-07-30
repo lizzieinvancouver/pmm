@@ -1,0 +1,110 @@
+\documentclass[11pt]{article}
+\usepackage[top=1.00in, bottom=1.0in, left=1in, right=1in]{geometry}
+\renewcommand{\baselinestretch}{1.1}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{parskip}
+
+
+\def\labelitemi{--}
+\parindent=0pt
+
+% Some paper chunks I grabbed to get started
+\begin{document}
+
+\section*{Chunks of exiting papers...}
+
+From \cite{pearse2025define}
+
+\subsection*{Defining Pagel's \lam}
+It is remarkably difficult to pinpoint exactly when Pagel's \lam was first defined, but the most common citation is to \textcite{Pagel1999} where \lam is discussed in detail (the original \deleted{citation and} derivation of \lam remain\added{s} somewhat obscure). \lam is broadly described as a multiplier of a phylogeny's internal branch lengths, but is more precisely---and correctly---described as \emph{a multiplier of the off-diagonal elements of the phylogenetic variance-covariance matrix}. The phylogenetic variance-covariance matrix ($\bf C$) is defined by summing the shared branch lengths between species on the phylogeny (\added{excluding the root}; see figure \ref{conceptual}). This can be used to generate the expected covariances among species' traits under Brownian motion evolution ($\bf C_{BM}$) by multiplying by the overall rate of evolution:
+
+\added{
+\begin{equation} {\bf C_{BM}} = \sigma^2_{BM} \cdot {\bf C} = \sigma^2_{BM} \cdot 
+\begin{bmatrix}
+t_1 & t_{1,2} & \cdots & t_{1,n} \\
+t_{2,1} & t_2 & \cdots & t_{2,n}\\
+\vdots & \vdots & \ddots & \vdots\\
+t_{n,1} & t_{n,2} & \cdots & t_n\\
+\end{bmatrix}
+\label{Cbm}
+\end{equation}
+}
+
+Where $\sigma^2_{BM}$ represents the overall rate of Brownian motion evolution, and the $t$ terms refer to (shared) branch-lengths by their subscripts \added{across $n$ species}, such that, for example, $t_1$ reflects the root-to-tip distance of the first species, and $t_{1,2}$ the branch-length shared by species 1 and 2. \added{Sometimes $\bf C_{BM}$, and not $\bf C$, is referred to as the phylogenetic variance-covariance matrix; here we distinguish between the two where the distinction matters and try to follow the terminology of \textcite{Revell2022}.} Finally, the \lam transformation is applied to the phylogenetic variance-covariance matrix (${\bf C}$) to return a variance-covariance matrix (${\bf C_\lambda}$) as follows:
+
+\begin{equation} {\bf C_\lambda} =
+\begin{bmatrix}
+t_1 & \lambda \cdot t_{1,2} & \cdots & \lambda \cdot t_{1,n} \\
+\lambda \cdot t_{2,1} & t_2 & \cdots & \lambda \cdot t_{2,n} \\
+\vdots & \vdots & \ddots & \vdots\\
+\lambda \cdot t_{n,1} & \lambda \cdot t_{n,2} & \cdots & t_n\\
+\end{bmatrix}
+\label{matrix}
+\end{equation}
+ The variances (the diagonals of  ${\bf C_\lambda}$) are equal to the root-to-tip distances for each species on the phylogeny and are unaltered by $\lambda$; the covariances reflect the shared branch-length between pairs of species and are altered by  $\lambda$
+ 
+
+From: \citet{morales2024phylogenetic}
+ 
+ \subsection*{Bayesian hierarchical phylogenetic model}
+Commonly used phylogenetic regression methods today (e.g., phylogenetic generalized least squares models, PGLS, \cite{freckleton2002phylogenetic}; phylogenetic mixed models, PMM, \cite{housworth2004phylogenetic}) were originally conceived as statistical corrections for phylogenetic non-independence across observations---generally species---thus allowing multi-species studies to meet the assumptions of linear regression \citep{freckleton2002phylogenetic}. These corrections incorporated phylogenetic structure by estimating the magnitude of a transformation of a variance-covariance (VCV) matrix whose elements were derived from the amount of evolutionary history (branch lengths) shared between species on a phylogeny. The most commonly used transformation was Pagel's $\lambda$---a multiplier of the off-diagonal elements---where estimates of $\lambda = 1$ essentially left the VCV untransformed and suggested that the residuals of the regression had phylogenetic signal consistent with Brownian motion; estimates of $\lambda = 0$ suggested no phylogenetic signal. 
+Because the original aim of these methods was to correct for statistical bias introduced by shared evolutionary history among species, the underlying assumption of phylogenetic regressions is that phylogenetic relatedness would only affect either model residuals \citep[in PGLS approaches,][]{freckleton2002phylogenetic} or model intercepts \citep[e.g., in many PMM approaches,][]{housworth2004phylogenetic}.
+
+Because our aim is to understand how evolution may have imprinted biological responses to multiple interactive cues, our approach expands the above methods by explicitly incorporating phylogenetic structure across model intercepts and slopes. Doing so allows explicitly estimating the amount of phylogenetic relatedness in species sensitivities to each cue, when these sensitivities are modelled in a multi-predictor regression setting.  
+
+For each observation $i$ of species $j$, we assumed that the timing of phenological events were generated from the following sampling distribution:
+
+\begin{align}
+  \label{modely}
+  y_{i,j} \sim \mathcal{N}(\mu_j, \sigma_e^2)
+\end{align}
+where
+\begin{align}
+  \label{modelmu}
+  \mu_j = \alpha_j + \beta_{chill,j} X_{chill} + \beta_{force,j} X_{force} + \beta_{photo,j} X_{photo}
+\end{align}
+and $\sigma_e^2$ represents random error unrelated to the phylogeny. 
+
+Predictors $X_{chill}$, $X_{force}$, $X_{photo}$ are standardized chilling, forcing, and photoperiod, and their effects on the phenology of species $j$ are determined by parameters $\beta_{chill,j}$, $\beta_{force,j}$, $\beta_{photo,j}$, representing species responses (or sensitivities) to each of the cues. These responses, including the species-specific intercept $\alpha_j$, are elements of the following normal random vectors:
+
+\begin{align}
+    \label{phybetas}
+  \boldsymbol{\alpha} = [\alpha_1, \ldots, \alpha_n]^T & \text{ such that }
+  \boldsymbol{\alpha} \sim \mathcal{N}(\mu_{\alpha},\boldsymbol{\Sigma_{\alpha}}) \\
+  \boldsymbol{\beta_{chill}} =  [\beta_{chill,1}, \ldots, \beta_{chill,n}]^T & \text{ such that }
+  \boldsymbol{\beta_{chill}} \sim \mathcal{N}(\mu_{\beta_{chill}},\boldsymbol{\Sigma_{\beta_{chill}}}) \nonumber \\
+  \boldsymbol{\beta_{force}} =  [\beta_{force,1}, \ldots, \beta_{force,n}]^T & \text{ such that }
+  \boldsymbol{\beta_{force}} \sim \mathcal{N}(\mu_{\beta_{force}},\boldsymbol{\Sigma_{\beta_{force}}}) \nonumber \\
+  \boldsymbol{\beta_{photo}} =  [\beta_{photo,1}, \ldots, \beta_{photo,n}]^T & \text{ such that }
+  \boldsymbol{\beta_{photo}} \sim \mathcal{N}(\mu_{\beta_{photo}},\boldsymbol{\Sigma_{\beta_{photo}}}) \nonumber
+\end{align}
+
+\noindent where the means of the multivariate normal distributions are root trait values (i.e., values of cue responses prior to evolving across a phylogenetic tree) and $\boldsymbol{\Sigma_i}$ are $n \times n$ phylogenetic variance-covariance matrices of the form: \\ 
+\begin{align}
+  \label{phymat}
+\begin{bmatrix}
+  \sigma^2_i & \lambda_i \times \sigma_{i} \times \rho_{12} & \ldots & \lambda_i \times \sigma_{i} \times \rho_{1n} \\
+  \lambda_i \times \sigma_i \times \rho_{21} & \sigma^2_i & \ldots & \lambda_i \times \sigma_{i} \times \rho_{2n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda_i \times \sigma_i \times \rho_{n1} & \lambda_i \times \sigma_i \times \rho_{n2} & \ldots & \sigma^2_i \\
+\end{bmatrix}
+\end{align}
+
+\noindent where $\sigma_i^2$ is the rate of evolution across a tree for a given trait or predictor (here assumed to be constant along all branches), $\lambda_i$ scales branch lengths and therefore is a measure of the phylogenetic signal or extent of phylogenetic relatedness on each model parameter (i.e., $\alpha_{j}$, $\beta_{force,j}$, $\beta_{force,j}$, $\beta_{photo,j}$), and $\rho_{xy}$ is the phylogenetic correlation between species $x$ and $y$, or the fraction of the tree shared by the two species.
+
+The above specification is equivalent to writing equation \ref{modelmu} in terms of root trait values and residuals, such that:
+
+\begin{align}
+  \label{eqfive}
+  \mu_j = \mu_\alpha + \mu_{\beta_{chill}} X_{chill} + \mu_{\beta_{force}} X_{force} + \mu_{\beta_{photo}} X_{photo} + e_{\alpha_{j}} + e_{\beta_{force,j}} + e_{\beta_{chill,j}} + e_{\beta_{photo,j}}
+\end{align}
+
+\noindent where the residual phylogenetic error terms (e.g., $e_{\alpha_{j}}$) are elements of normal random vectors from multivariate normal distributions centered on $0$ with the same phylogenetic variance-covariance matrices as in equation \ref{phymat}. 
+
+\bibliographystyle{refs/iambeststyle}
+\bibliography{refs/fixnotationmc2024}
+
+
+\end{document}
