@@ -7,7 +7,7 @@
 \usepackage{parskip}
 \usepackage{wrapfigure}
 \usepackage{multicol}
-
+\usepackage[symbol]{footmisc} % https://tex.stackexchange.com/questions/826/symbols-instead-of-numbers-as-footnote-markers
 
 \def\labelitemi{--}
 \parindent=0pt
@@ -45,7 +45,7 @@ and $\sigma_e^2$ represents random error unrelated to the phylogeny. And the spe
   \boldsymbol{\alpha} \sim \mathcal{N}(\mu_{\alpha},\boldsymbol{\Sigma_{\alpha}}) 
 \end{align*}
 
-\noindent where the means of the multivariate normal distributions are root trait values (i.e., budburst date prior to evolving across a phylogenetic tree) and $\boldsymbol{\Sigma_{\alpha}}$ is an $n \times n$ phylogenetic variance-covariance matrix of the form ({\bf this is where it gets confusing}): \\ 
+\noindent where the means of the multivariate normal distributions are root trait values (i.e., budburst date prior to evolving across a phylogenetic tree) and $\boldsymbol{\Sigma_{\alpha}}$ is an $n \times n$ phylogenetic variance-covariance matrix\footnote[2]{Phylogenetic people always call this the variance-covariance matrix, but if you want to look it up on Wikipedia, you can look for the covariance matrix, where you will see an additional four names for this sort of matrix. Yay, terminology!} of the form ({\bf this is where it gets confusing}): \\ 
 \begin{align*}
   \label{phymatold}
 \begin{bmatrix}
@@ -73,7 +73,7 @@ A few things. First, the $i$ notation mixed with the numbers on $\rho_{xy}$ is n
 \end{align*}
 
 %%
-We could have also correctly written this as:
+We could have also maybe have written this as:
 
 \begin{align*}
   \label{phymatalt}
@@ -85,7 +85,7 @@ We could have also correctly written this as:
 \end{bmatrix}
 \end{align*}
 
-Above I have dropped $\rho$ (it's just inherently in there, apparently this is a thing people do). Now $\sigma^2$ is still the Brownian motion rate of evolution across the tree, and $\sigma$ is the covariance between representative taxa. This is not an uncommon representation but I think we could have been clearer if we presented the last part of our notation as:
+Above I have dropped $\rho$ (it's just inherently in there, apparently this is a thing people do). Now $\sigma^2$ is still the Brownian motion rate of evolution across the tree, and $\sigma_{i,j}$ is the covariance between representative taxa ($i$ and $j$). This is not an uncommon representation but: (1) we actually used the correlation matrix here and I find it bizarre to leave out, and (2) I think we could have been clearer if we presented the last part of our notation as:
 
 \added{
   \label{phymatbest}
@@ -100,7 +100,20 @@ Above I have dropped $\rho$ (it's just inherently in there, apparently this is a
 
 Here I moved $ \sigma^2$ to outside the matrix since it a common factor multiplied across elements of the matrix (and I added  $_{BM}$ to denote Brownian Motion). Then I show the $\rho$ across all elements also, even the diagonals (and I use the dot multiplier throughout, and I add a common in the subscript when referencing elements, both of which I find easier to read). 
 
-At this point, I will add that $\lambda$ is a multiplier of the off-diagonal elements (as you can see), where estimates of $\lambda = 1$ essentially leave the matrix untransformed and suggest that the species intercepts (or $\beta$ etc.) are completely consistent with Brownian motion, while estimates of $\lambda = 0$ suggest no phylogenetic patterning according to Brownian motion. Further, when $\lambda = 0$ the model effectively defaults to a normal distribution, and thus simple partial pooling (or `random effects' if you really want to call it that). 
+By definition $\rho_{1,1}=1$ so the above also equals:
+
+\added{
+  \label{phymatbest}
+  \begin{equation} {\bf \Sigma_{\alpha}}  =  \sigma^2_{BM} \cdot 
+\begin{bmatrix}
+  1 & \lambda \cdot \rho_{1,2} & \ldots & \lambda \cdot \rho_{1,n} \\
+  \lambda \cdot \rho_{2,1} & 1 & \ldots & \lambda \cdot \rho_{2,n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  \lambda \cdot \rho_{n,1} & \lambda \cdot \rho_{n,2} & \ldots & 1\\
+\end{bmatrix}
+}
+
+As you can now see, $\lambda$ is a multiplier of the off-diagonal elements. Estimates of $\lambda = 1$ essentially leave the matrix untransformed and suggest that the species intercepts (or $\beta$ etc.) are completely consistent with Brownian motion, while estimates of $\lambda = 0$ suggest no phylogenetic patterning according to Brownian motion. Further, when $\lambda = 0$ the model effectively defaults to a normal distribution, and thus simple partial pooling (or `random effects' if you really want to call it that). 
 
 \section*{Want even more information?}
 
