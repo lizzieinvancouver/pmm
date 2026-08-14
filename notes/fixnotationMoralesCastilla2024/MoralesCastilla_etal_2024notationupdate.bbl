@@ -1,5 +1,9 @@
-\begin{thebibliography}{2}
+\begin{thebibliography}{3}
 \providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Harmon(2019)}]{harmon2019phylogenetic}
+Harmon, L.J. (2019) \emph{Phylogenetic comparative methods}. Independent
+  Traverse City, MI.
 
 \bibitem[{Morales-Castilla \emph{et~al.}(2024)Morales-Castilla, Davies,
   Legault, Buonaiuto, Chamberlain, Ettinger, Garner, Jones, Loughnan, Pearse
@@ -11,8 +15,8 @@ Morales-Castilla, I., Davies, T., Legault, G., Buonaiuto, D., Chamberlain,
 
 \bibitem[{Pearse \emph{et~al.}(2025)Pearse, Davies \&
   Wolkovich}]{pearse2025define}
-Pearse, W.D., Davies, T.J. \& Wolkovich, E. (2025) How to define, use, and
-  interpret pagel's $\lambda$ $\lambda$ (lambda) in ecology and evolution.
-  \emph{Global Ecology and Biogeography} \textbf{34}, e70012.
+Pearse, W.D., Davies, T.J. \& Wolkovich, E. (2025) {How to define, use, and
+  interpret Pagel's $\lambda$ (Lambda) in ecology and evolution}. \emph{Global
+  Ecology and Biogeography} \textbf{34}, e70012.
 
 \end{thebibliography}

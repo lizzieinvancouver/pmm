@@ -98,7 +98,7 @@ Above I have dropped $\rho$ (it's just inherently in there, apparently this is a
 \end{bmatrix}
 }
 
-Here I moved $ \sigma^2$ to outside the matrix since it a common factor multiplied across elements of the matrix (and I added  $_{BM}$ to denote Brownian Motion). Then I show the $\rho$ across all elements also, even the diagonals (and I use the dot multiplier throughout, and I add a common in the subscript when referencing elements, both of which I find easier to read). 
+Here I moved $ \sigma^2$ to outside the matrix since it a common factor multiplied across elements of the matrix (and I added  $_{BM}$ to denote Brownian Motion). Then I show the $\rho$ across all elements also, even the diagonals (and I use the dot multiplier throughout, and I add a comma in the subscript when referencing elements, both of which I find easier to read). 
 
 By definition $\rho_{1,1}=1$ so the above also equals:
 
@@ -119,7 +119,7 @@ As you can now see, $\lambda$ is a multiplier of the off-diagonal elements. Esti
 
 You can also check out  \cite{pearse2025define}, where we tried to do the notation much better in explaining this for variance-covariance matrices. If you want even more, I have included below a basically verbatim version of information kindly sent from Liam Revell:
 
-First, this is from Chapter 3 of Luke's book.
+First, this is from Chapter 3 of Luke's book \citep{harmon2019phylogenetic}.
 
 \setlength{\intextsep}{6pt} 
 \begin{wrapfigure}
@@ -141,7 +141,7 @@ If we jump to Chapter 6 of Luke's book then we see:
   \label{fig:c0}
 \end{wrapfigure}
 
-This is just the covariance matrix... so $\sigma(1)^2$ is the variance for taxon 1, which we'd calculate under Brownian motion as $\sigma(B)^2$ time the sum of the edge lengths leading from the root of the tree to the taxon 1 (or equivalently, the height above the root of taxon 1); $\sigma(12)$ is the covariance of taxa 1 and 2 which we'd calculate as \$sigma(B)^2$ times the height above the root of the MRCA (most recent common ancestor) of taxa 1 and 2; and so on.
+This is just the covariance matrix... so $\sigma_1^2$ is the variance for taxon 1, which we'd calculate under Brownian motion as $\sigma(B)^2$ times the sum of the edge lengths leading from the root of the tree to the taxon 1 (or equivalently, the height above the root of taxon 1); $\sigma_{12}$ is the covariance of taxa 1 and 2 which we'd calculate as $\sigma(B)^2$ times the height above the root of the MRCA (most recent common ancestor) of taxa 1 and 2; and so on.
 
 When introducing lambda, we can think of it as a transformation of the covariance matrix in which all non- diagonal elements are multiplied by lambda.
 
